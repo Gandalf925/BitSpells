@@ -9,10 +9,11 @@ public class Player : MonoBehaviour
     BattleSceneManager battleSceneManager;
     public int maxHP;
     public int currentHP;
-    public int Block;
+    public int block;
     public List<Card> playerDeck = new List<Card>();
     public int maxEnergy = 3;
     public int currentEnergy;
+    public bool hasBlock = false;
 
     [Header("UI")]
 
@@ -22,6 +23,8 @@ public class Player : MonoBehaviour
     public TMP_Text currentHPText;
     public TMP_Text maxEnergyText;
     public TMP_Text currentEnergyText;
+    public Image blockImage;
+
     private void Awake()
     {
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
@@ -54,7 +57,19 @@ public class Player : MonoBehaviour
 
     public void Damage(int damage)
     {
-        currentHP -= damage;
+        if (block > 0)
+        {
+            block -= damage;
+            if (block <= 0)
+            {
+                // currentHPからblockの絶対値を引く(ダメージを与える)
+                currentHP -= Mathf.Abs(block);
+            }
+        }
+        else
+        {
+            currentHP -= damage;
+        }
         if (currentHP <= 0)
         {
             currentHP = 0;
@@ -67,13 +82,6 @@ public class Player : MonoBehaviour
 
     public void Refresh()
     {
-        // maxHPText.text = maxHP.ToString();
-        // currentHPText.text = currentHP.ToString();
-        // hpBarSlider.value = currentHP;
-        // currentEnergyText.text = currentEnergy.ToString();
-        // maxEnergyText.text = maxEnergy.ToString();
-        // energyBarSlider.value = currentEnergy;
-
         maxEnergyText.text = maxEnergy.ToString();
         currentEnergyText.text = currentEnergy.ToString();
         energyBarSlider.maxValue = maxEnergy;
@@ -83,5 +91,11 @@ public class Player : MonoBehaviour
         currentHPText.text = currentHP.ToString();
         hpBarSlider.maxValue = maxHP;
         hpBarSlider.value = currentHP;
+
+        if (block > 0)
+        {
+            hasBlock = true;
+
+        }
     }
 }

@@ -12,6 +12,6 @@ public class EnemyEntity : ScriptableObject
     public int maxHp;
     public int currentHp;
     public int currentBlock;
-    public int str;
     public Sprite icon;
+    public List<EnemyAction> actions = new List<EnemyAction>();
 }
