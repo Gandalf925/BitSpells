@@ -6,8 +6,6 @@ public class CardDropAction : MonoBehaviour, IDropHandler
 
     BattleSceneManager battleSceneManager;
     GameManager gameManager;
-    [SerializeField] Transform handPanel;
-
 
     private void Awake()
     {
@@ -21,8 +19,6 @@ public class CardDropAction : MonoBehaviour, IDropHandler
         {
             gameManager.player.PlayCard(cardUI);
         }
-        cardUI.transform.SetParent(handPanel, false);
         cardUI.GetComponent<CanvasGroup>().blocksRaycasts = true;
-
     }
 }

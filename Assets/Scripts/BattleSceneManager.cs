@@ -32,9 +32,10 @@ public class BattleSceneManager : MonoBehaviour
     Transform cemetery;
     public TMP_Text drawPileCountText;
     public TMP_Text discardPileCountText;
-    public GameObject turnTextFramePanel;
     public GameObject enemyTurnTextFrame;
     public GameObject playerTurnTextFrame;
+    public GameObject turnTextFramePanel;
+    public Transform handPanel;
 
 
 
@@ -90,11 +91,11 @@ public class BattleSceneManager : MonoBehaviour
     {
         if (isPlayerTurn)
         {
-            PlayerTurn();
+            StartCoroutine(PlayerTurn());
         }
         else
         {
-            EnemyTurn();
+            StartCoroutine(EnemyTurn());
         }
     }
 
@@ -104,21 +105,35 @@ public class BattleSceneManager : MonoBehaviour
         TurnCalc();
     }
 
-    void PlayerTurn()
+    IEnumerator PlayerTurn()
     {
         Debug.Log("Player Turn");
         StartCoroutine("DisplayPlayerTurnTextFrame");
-
+        turnEndButton.interactable = true;
         DrawCards(drawAmount);
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
+        gameManager.player.block = 0;
         gameManager.player.Refresh();
+        yield return new WaitForSeconds(2f);
     }
 
-    void EnemyTurn()
+    IEnumerator EnemyTurn()
     {
         Debug.Log("Enemy Turn");
+        // EnemuTurnTextは後で調整すること
         StartCoroutine("DisplayEnemyTurnTextFrame");
+        EachTurnInit();
+        turnEndButton.interactable = false;
+        yield return new WaitForSeconds(3f);
 
+        cardsInHand = new List<Card>();
+
+        enemy.TakeTurn();
+        ChangeTurn();
+    }
+
+    private void EachTurnInit()
+    {
         // 手札をすべて捨てる
         foreach (Card card in cardsInHand)
         {
@@ -126,36 +141,42 @@ public class BattleSceneManager : MonoBehaviour
         }
         foreach (CardUI cardUI in cardsInHandGameObjects)
         {
+            cardUI.transform.SetParent(handPanel);
             cardUI.gameObject.SetActive(false);
         }
-        cardsInHand = new List<Card>();
-
-        enemy.WeekAttack(gameManager.player);
-        ChangeTurn();
     }
 
     IEnumerator DisplayPlayerTurnTextFrame()
     {
         Image turnTextFramePanelImage = turnTextFramePanel.GetComponent<Image>();
-
         turnTextFramePanel.SetActive(true);
-        yield return new WaitForSeconds(1f);
+        enemyTurnTextFrame.SetActive(false);
         playerTurnTextFrame.SetActive(true);
-        turnTextFramePanelImage.DOFade(180f, 5f);
+        yield return new WaitForSeconds(0.5f);
+        playerTurnTextFrame.transform.position = new Vector3(2500, 600, 0);
+        playerTurnTextFrame.transform.DOMove(new Vector3(1000, 600, 0), 0.5f);
         yield return new WaitForSeconds(1f);
-        turnTextFramePanelImage.DOFade(0f, 5f);
+        playerTurnTextFrame.transform.DOMove(new Vector3(-1000, 600, 0), 0.5f);
+        yield return new WaitForSeconds(0.5f);
         playerTurnTextFrame.SetActive(false);
-        yield return new WaitForSeconds(1f);
         turnTextFramePanel.SetActive(false);
     }
 
     IEnumerator DisplayEnemyTurnTextFrame()
     {
+        Image turnTextFramePanelImage = turnTextFramePanel.GetComponent<Image>();
+        turnTextFramePanel.SetActive(true);
         enemyTurnTextFrame.SetActive(true);
+        playerTurnTextFrame.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
+        enemyTurnTextFrame.transform.position = new Vector3(2500, 600, 0);
+        enemyTurnTextFrame.transform.DOMove(new Vector3(1000, 600, 0), 0.5f);
         yield return new WaitForSeconds(1f);
+        enemyTurnTextFrame.transform.DOMove(new Vector3(-1000, 600, 0), 0.5f);
+        yield return new WaitForSeconds(0.5f);
         enemyTurnTextFrame.SetActive(false);
+        turnTextFramePanel.SetActive(false);
     }
-
 
 
     public void ShuffleCards()

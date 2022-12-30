@@ -9,8 +9,8 @@ public class EnemyModel
     public int maxHP;
     public int currentHP;
     public int block;
-    public int str;
     public Sprite icon;
+    public List<EnemyAction> actions;
     public bool isAlive = true;
 
     public EnemyModel()
@@ -24,8 +24,8 @@ public class EnemyModel
         maxHP = enemyData.maxHp;
         currentHP = enemyData.maxHp;
         block = enemyData.currentBlock;
-        str = enemyData.str;
         icon = enemyData.icon;
+        actions = enemyData.actions;
 
         // 使い終わったらリリース
         Addressables.Release(op);
@@ -39,5 +39,11 @@ public class EnemyModel
             currentHP = 0;
             isAlive = false;
         }
+    }
+
+    public void Block(int amount)
+    {
+        block += amount;
+
     }
 }

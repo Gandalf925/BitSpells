@@ -17,6 +17,7 @@ public class Card : ScriptableObject
     public enum Types
     {
         Attack,
+        Block,
         Skill,
         Power
     }
