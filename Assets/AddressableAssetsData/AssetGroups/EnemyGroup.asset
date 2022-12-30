@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: EnemyGroup
+  m_EditorClassIdentifier: 
+  m_GroupName: EnemyGroup
+  m_Data:
+    m_SerializedData: []
+  m_GUID: ca09b90f3704b8f48b4abb9ec458775b
+  m_SerializeEntries:
+  - m_GUID: bc2a25f86813c2e48adb77a986d331dd
+    m_Address: Assets/Entities/EnemyEntity/GoblinSolder.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: e7736f4c170d5604aaa7d7df728a84fc
+    m_Address: Assets/Entities/EnemyEntity/FrontierLoad.asset
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  m_ReadOnly: 0
+  m_Settings: {fileID: 11400000, guid: 1854ccb9b58aeee44909251fa079d60e, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: c5584b84e462e1649b8c2b8504105577, type: 2}
+    - {fileID: 11400000, guid: 4805f207ebcdd8e44b6c829bbba5f81f, type: 2}
