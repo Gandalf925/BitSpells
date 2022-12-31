@@ -18,11 +18,11 @@ MonoBehaviour:
   m_GUID: ca09b90f3704b8f48b4abb9ec458775b
   m_SerializeEntries:
   - m_GUID: bc2a25f86813c2e48adb77a986d331dd
-    m_Address: Assets/Entities/EnemyEntity/GoblinSolder.asset
+    m_Address: EnemyEntity/GoblinSolder
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: e7736f4c170d5604aaa7d7df728a84fc
-    m_Address: Assets/Entities/EnemyEntity/FrontierLoad.asset
+    m_Address: EnemyEntity/FrontierLoad
     m_ReadOnly: 0
     m_SerializedLabels: []
   m_ReadOnly: 0

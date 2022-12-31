@@ -19,9 +19,10 @@ public class BattleSceneManager : MonoBehaviour
 
     [Header("Enemies")]
     public Enemy enemy;
-    public Transform enemyPositionPanel;
     public Enemy enemyPrefab;
-    public GameObject defeatEnemy;
+    public List<Enemy> enemies;
+    public Enemy[] eArr;
+    public Transform enemyPositionPanel;
 
     [Header("Manager")]
     public GameManager gameManager;
@@ -59,8 +60,8 @@ public class BattleSceneManager : MonoBehaviour
     public void InitBattle()
     {
         // Enemyの初期化
-        enemy = Instantiate<Enemy>(enemyPrefab, enemyPositionPanel, false);
-        enemy.CreateEnemy();
+        enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
+        enemy.CreateEnemy("GoblinSolder");
 
         // 手札の初期設定
         foreach (Card card in cardsInHand)

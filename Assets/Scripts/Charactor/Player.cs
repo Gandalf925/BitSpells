@@ -42,7 +42,7 @@ public class Player : MonoBehaviour
         if (selectedCard.data.cardType == Card.Types.Attack)
         {
             currentEnergy -= selectedCard.data.cost;
-            battleSceneManager.enemy.model.Damage(selectedCard);
+            battleSceneManager.enemy.Damage(selectedCard);
             battleSceneManager.enemy.CheckAlive();
 
             // ダメージ演出とカードを消す演出を入れる

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.AddressableAssets;
+using TMPro;
 
 public class EnemyModel
 {
@@ -13,9 +15,9 @@ public class EnemyModel
     public List<EnemyAction> actions;
     public bool isAlive = true;
 
-    public EnemyModel()
+    public EnemyModel(string enemyName)
     {
-        var op = Addressables.LoadAssetAsync<EnemyEntity>("Assets/Entities/EnemyEntity/FrontierLoad.asset");
+        var op = Addressables.LoadAssetAsync<EnemyEntity>("EnemyEntity/" + enemyName);
 
         // WaitForCompletionで同期的にロード完了を待機
         var enemyData = op.WaitForCompletion();
@@ -31,19 +33,5 @@ public class EnemyModel
         Addressables.Release(op);
     }
 
-    public void Damage(CardUI card)
-    {
-        currentHP -= card.data.value;
-        if (currentHP <= 0)
-        {
-            currentHP = 0;
-            isAlive = false;
-        }
-    }
 
-    public void Block(int amount)
-    {
-        block += amount;
-
-    }
 }

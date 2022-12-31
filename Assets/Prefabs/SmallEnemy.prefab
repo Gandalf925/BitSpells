@@ -436,7 +436,7 @@ GameObject:
   - component: {fileID: 434219559951823212}
   - component: {fileID: 7575625343620023631}
   m_Layer: 5
-  m_Name: BlockShieldIcon
+  m_Name: ShieldFrameIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -562,6 +562,8 @@ MonoBehaviour:
   currentBlockText: {fileID: 2911277601681240312}
   hpBarSlider: {fileID: 5317860541958785691}
   icon: {fileID: 8652073481703323305}
+  ShieldFrameIcon: {fileID: 7575625343620023631}
+  ShieldFrameText: {fileID: 2911277601681240312}
 --- !u!114 &1947632301793058744
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -601,7 +603,7 @@ GameObject:
   - component: {fileID: 8685045857842481866}
   - component: {fileID: 2911277601681240312}
   m_Layer: 5
-  m_Name: BlockText
+  m_Name: ShieldFrameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

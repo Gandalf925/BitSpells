@@ -13,6 +13,9 @@ public class EnemyView : MonoBehaviour
     [SerializeField] Slider hpBarSlider;
     [SerializeField] Image icon;
 
+    public Image ShieldFrameIcon;
+    public TMP_Text ShieldFrameText;
+
     public void Show(EnemyModel enemyModel)
     {
         nameText.text = enemyModel.enemyName;
@@ -29,5 +32,19 @@ public class EnemyView : MonoBehaviour
         currentHPText.text = enemyModel.currentHP.ToString();
         hpBarSlider.value = enemyModel.currentHP;
         currentBlockText.text = enemyModel.block.ToString();
+        DisplayBlock(enemyModel);
+    }
+
+    public void DisplayBlock(EnemyModel model)
+    {
+        if (model.block > 0)
+        {
+            ShieldFrameIcon.gameObject.SetActive(true);
+            ShieldFrameText.text = model.block.ToString();
+        }
+        else
+        {
+            ShieldFrameIcon.gameObject.SetActive(false);
+        }
     }
 }

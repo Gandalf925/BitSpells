@@ -18,5 +18,9 @@ MonoBehaviour:
   maxHp: 43
   currentHp: 0
   currentBlock: 0
-  str: 6
   icon: {fileID: 21300000, guid: 1205f085bc7d0cd4cb97a5e873c53ece, type: 3}
+  actions:
+  - intentType: 1
+    value: 8
+    chance: 1
+    icon: {fileID: 0}

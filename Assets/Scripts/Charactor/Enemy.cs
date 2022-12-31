@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     [Header("Base")]
     public EnemyModel model;
     EnemyView view;
+    int damage;
 
     [Header("Action")]
     Player player;
@@ -23,9 +24,9 @@ public class Enemy : MonoBehaviour
         player = gameManager.player;
     }
 
-    public void CreateEnemy()
+    public void CreateEnemy(string enemyName)
     {
-        model = new EnemyModel();
+        model = new EnemyModel(enemyName);
         view.Show(model);
         GenerateTurns();
     }
@@ -37,6 +38,9 @@ public class Enemy : MonoBehaviour
         {
             case EnemyAction.IntentType.Attack:
                 StartCoroutine(Attack());
+                break;
+            case EnemyAction.IntentType.Block:
+                StartCoroutine(Block());
                 break;
         }
     }
@@ -63,7 +67,7 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator Block()
     {
-        model.Block(turns[turnNumber].value);
+        AddBlock(turns[turnNumber].value);
         view.Refresh(model);
         WrapUpTurn();
         yield return new WaitForSeconds(3f);
@@ -86,5 +90,46 @@ public class Enemy : MonoBehaviour
         turnNumber++;
         if (turnNumber == turns.Count)
             turnNumber = 0;
+    }
+
+    public void Damage(CardUI card)
+    {
+        damage = card.data.value;
+
+        if (model.block > 0)
+        {
+            damage = BlockDamage(damage);
+        }
+
+        model.currentHP -= damage;
+        if (model.currentHP <= 0)
+        {
+            model.currentHP = 0;
+            model.isAlive = false;
+        }
+    }
+
+    private int BlockDamage(int amount)
+    {
+        if (model.block >= amount)
+        {
+            //block all
+            model.block -= amount;
+            amount = 0;
+        }
+        else
+        {
+            //cant block all
+            amount -= model.block;
+            model.block = 0;
+        }
+
+        view.DisplayBlock(model);
+        return amount;
+    }
+
+    public void AddBlock(int amount)
+    {
+        model.block += amount;
     }
 }

@@ -1137,7 +1137,7 @@ GameObject:
   - component: {fileID: 583808117}
   - component: {fileID: 583808116}
   m_Layer: 5
-  m_Name: Text
+  m_Name: ShieldFrameText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1319,9 +1319,11 @@ MonoBehaviour:
   - {fileID: 1753865083}
   - {fileID: 105613191}
   enemy: {fileID: 7249818257205804307, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
-  enemyPositionPanel: {fileID: 1637029962}
   enemyPrefab: {fileID: 7249818257205804307, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
-  defeatEnemy: {fileID: 0}
+  enemies:
+  - {fileID: 0}
+  eArr: []
+  enemyPositionPanel: {fileID: 1637029962}
   gameManager: {fileID: 1149129520}
   turnEndButton: {fileID: 1202742449}
   drawPileCountText: {fileID: 1260868728}
@@ -1862,7 +1864,7 @@ GameObject:
   - component: {fileID: 741465041}
   - component: {fileID: 741465040}
   m_Layer: 5
-  m_Name: ShieldFrameIcon_l
+  m_Name: ShieldFrameIcon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2849,7 +2851,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHP: 100
   currentHP: 0
-  Block: 0
+  block: 0
   playerDeck:
   - {fileID: 11400000, guid: 005ccc0bc5060f04489984e7b533803c, type: 2}
   - {fileID: 11400000, guid: 005ccc0bc5060f04489984e7b533803c, type: 2}
@@ -2860,12 +2862,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
   maxEnergy: 3
   currentEnergy: 0
+  hasBlock: 0
   hpBarSlider: {fileID: 786925091}
   energyBarSlider: {fileID: 2082171820}
   maxHPText: {fileID: 103923641}
   currentHPText: {fileID: 667606721}
   maxEnergyText: {fileID: 1386992721}
   currentEnergyText: {fileID: 860509083}
+  ShieldFrameIcon: {fileID: 741465040}
+  ShieldFrameText: {fileID: 583808116}
 --- !u!4 &1271203776
 Transform:
   m_ObjectHideFlags: 0
@@ -3768,7 +3773,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.392}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
