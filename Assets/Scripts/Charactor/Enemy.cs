@@ -6,7 +6,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Base")]
     public EnemyModel model;
-    EnemyView view;
+    public EnemyView view;
     int damage;
 
     [Header("Action")]
@@ -60,7 +60,6 @@ public class Enemy : MonoBehaviour
     public IEnumerator Attack()
     {
         player.Damage(turns[turnNumber].value);
-        player.Refresh();
         WrapUpTurn();
         yield return new WaitForSeconds(3f);
     }
@@ -68,7 +67,6 @@ public class Enemy : MonoBehaviour
     public IEnumerator Block()
     {
         AddBlock(turns[turnNumber].value);
-        view.Refresh(model);
         WrapUpTurn();
         yield return new WaitForSeconds(3f);
     }
@@ -131,5 +129,6 @@ public class Enemy : MonoBehaviour
     public void AddBlock(int amount)
     {
         model.block += amount;
+        view.DisplayBlock(model);
     }
 }

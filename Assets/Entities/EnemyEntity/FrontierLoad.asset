@@ -28,3 +28,7 @@ MonoBehaviour:
     value: 16
     chance: 1
     icon: {fileID: 0}
+  - intentType: 1
+    value: 12
+    chance: 1
+    icon: {fileID: 0}

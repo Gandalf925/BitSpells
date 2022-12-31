@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
         }
 
         currentHP -= damage;
+        Refresh();
 
 
         if (currentHP <= 0)
@@ -102,6 +103,7 @@ public class Player : MonoBehaviour
         currentHPText.text = currentHP.ToString();
         hpBarSlider.maxValue = maxHP;
         hpBarSlider.value = currentHP;
+        DisplayBlock();
     }
 
     public void AddBlock(int amount)

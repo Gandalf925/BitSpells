@@ -47,7 +47,6 @@ public class BattleSceneManager : MonoBehaviour
     private void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-
     }
 
     void Start()
@@ -61,7 +60,7 @@ public class BattleSceneManager : MonoBehaviour
     {
         // Enemyの初期化
         enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
-        enemy.CreateEnemy("GoblinSolder");
+        enemy.CreateEnemy("FrontierLoad");
 
         // 手札の初期設定
         foreach (Card card in cardsInHand)
@@ -114,8 +113,10 @@ public class BattleSceneManager : MonoBehaviour
 
         DrawCards(drawAmount);
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
+
         gameManager.player.block = 0;
         gameManager.player.Refresh();
+
         yield return new WaitForSeconds(2f);
     }
 
@@ -126,6 +127,8 @@ public class BattleSceneManager : MonoBehaviour
         StartCoroutine("DisplayEnemyTurnTextFrame");
         EachTurnInit();
         turnEndButton.interactable = false;
+        enemy.model.block = 0;
+        enemy.view.Refresh(enemy.model);
         yield return new WaitForSeconds(3f);
 
         cardsInHand = new List<Card>();

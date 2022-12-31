@@ -588,6 +588,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 681873ff17305a247b4a936c92cc2f8c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  view: {fileID: 9146588772694136712}
   turns: []
   turnNumber: 0
   gameManager: {fileID: 0}
