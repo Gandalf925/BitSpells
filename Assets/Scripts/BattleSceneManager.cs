@@ -110,10 +110,7 @@ public class BattleSceneManager : MonoBehaviour
         Debug.Log("Player Turn");
         StartCoroutine("DisplayPlayerTurnTextFrame");
         turnEndButton.interactable = true;
-<<<<<<< HEAD
-=======
 
->>>>>>> 318596bfd60559b1f59a04ccd5cfbe9e9388851b
         DrawCards(drawAmount);
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
         gameManager.player.block = 0;

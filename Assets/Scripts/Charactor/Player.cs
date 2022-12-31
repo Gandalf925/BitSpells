@@ -23,12 +23,8 @@ public class Player : MonoBehaviour
     public TMP_Text currentHPText;
     public TMP_Text maxEnergyText;
     public TMP_Text currentEnergyText;
-<<<<<<< HEAD
     public Image ShieldFrameIcon;
     public TMP_Text ShieldFrameText;
-=======
-    public Image blockImage;
->>>>>>> 318596bfd60559b1f59a04ccd5cfbe9e9388851b
 
     private void Awake()
     {
@@ -78,25 +74,12 @@ public class Player : MonoBehaviour
     {
         if (block > 0)
         {
-<<<<<<< HEAD
             damage = BlockDamage(damage);
         }
 
         currentHP -= damage;
 
-=======
-            block -= damage;
-            if (block <= 0)
-            {
-                // currentHPからblockの絶対値を引く(ダメージを与える)
-                currentHP -= Mathf.Abs(block);
-            }
-        }
-        else
-        {
-            currentHP -= damage;
-        }
->>>>>>> 318596bfd60559b1f59a04ccd5cfbe9e9388851b
+
         if (currentHP <= 0)
         {
             currentHP = 0;
@@ -119,8 +102,6 @@ public class Player : MonoBehaviour
         currentHPText.text = currentHP.ToString();
         hpBarSlider.maxValue = maxHP;
         hpBarSlider.value = currentHP;
-<<<<<<< HEAD
-        DisplayBlock();
     }
 
     public void AddBlock(int amount)
@@ -158,13 +139,7 @@ public class Player : MonoBehaviour
         else
         {
             ShieldFrameIcon.gameObject.SetActive(false);
-=======
-
-        if (block > 0)
-        {
-            hasBlock = true;
-
->>>>>>> 318596bfd60559b1f59a04ccd5cfbe9e9388851b
         }
     }
 }
+
