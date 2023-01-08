@@ -8,6 +8,19 @@ public class GameManager : MonoBehaviour
 {
     BattleSceneManager battleSceneManager;
     public Player player;
+    public static GameManager instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
 
 }

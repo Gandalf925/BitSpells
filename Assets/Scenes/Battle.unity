@@ -1318,8 +1318,8 @@ MonoBehaviour:
   - {fileID: 731307068}
   - {fileID: 1753865083}
   - {fileID: 105613191}
-  enemy: {fileID: 7249818257205804307, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
-  enemyPrefab: {fileID: 7249818257205804307, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
+  enemy: {fileID: 1661105898856063601, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
+  enemyPrefab: {fileID: 1661105898856063601, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
   enemies:
   - {fileID: 0}
   eArr: []
@@ -2434,7 +2434,7 @@ GameObject:
   - component: {fileID: 1149129520}
   m_Layer: 0
   m_Name: GameManager
-  m_TagString: Untagged
+  m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

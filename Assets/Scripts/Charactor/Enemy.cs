@@ -87,7 +87,9 @@ public class Enemy : MonoBehaviour
     {
         turnNumber++;
         if (turnNumber == turns.Count)
+        {
             turnNumber = 0;
+        }
     }
 
     public void Damage(CardUI card)

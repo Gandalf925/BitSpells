@@ -19,7 +19,7 @@ public class BattleSceneManager : MonoBehaviour
 
     [Header("Enemies")]
     public Enemy enemy;
-    public Enemy enemyPrefab;
+    [SerializeField] Enemy enemyPrefab;
     public List<Enemy> enemies;
     public Enemy[] eArr;
     public Transform enemyPositionPanel;
@@ -59,6 +59,7 @@ public class BattleSceneManager : MonoBehaviour
     public void InitBattle()
     {
         // Enemyの初期化
+        enemy.gameManager = FindObjectOfType<GameManager>();
         enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
         enemy.CreateEnemy("FrontierLoad");
 
