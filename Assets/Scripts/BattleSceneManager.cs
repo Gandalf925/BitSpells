@@ -21,7 +21,7 @@ public class BattleSceneManager : MonoBehaviour
     public Enemy enemy;
     [SerializeField] Enemy enemyPrefab;
     public List<Enemy> enemies;
-    public Enemy[] eArr;
+    public EnemyEntity[] eEntityArr;
     public Transform enemyPositionPanel;
 
     [Header("Manager")]
@@ -59,9 +59,15 @@ public class BattleSceneManager : MonoBehaviour
     public void InitBattle()
     {
         // Enemyの初期化
-        enemy.gameManager = FindObjectOfType<GameManager>();
-        enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
-        enemy.CreateEnemy("FrontierLoad");
+        for (int i = 0; i < eEntityArr.Length; i++)
+        {
+            enemy.gameManager = FindObjectOfType<GameManager>();
+            enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
+            enemy.CreateEnemy(eEntityArr[i].name);
+            enemy.DisplayNextAction();
+
+            enemies.Add(enemy);
+        }
 
         // 手札の初期設定
         foreach (Card card in cardsInHand)
@@ -111,6 +117,7 @@ public class BattleSceneManager : MonoBehaviour
         Debug.Log("Player Turn");
         StartCoroutine("DisplayPlayerTurnTextFrame");
         turnEndButton.interactable = true;
+        enemy.DisplayNextAction();
 
         DrawCards(drawAmount);
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;

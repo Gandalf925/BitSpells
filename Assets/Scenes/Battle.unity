@@ -1322,7 +1322,9 @@ MonoBehaviour:
   enemyPrefab: {fileID: 1661105898856063601, guid: 847ca7e1d0e749641b5e100bb043010a, type: 3}
   enemies:
   - {fileID: 0}
-  eArr: []
+  eEntityArr:
+  - {fileID: 11400000, guid: e7736f4c170d5604aaa7d7df728a84fc, type: 2}
+  - {fileID: 11400000, guid: e7736f4c170d5604aaa7d7df728a84fc, type: 2}
   enemyPositionPanel: {fileID: 1637029962}
   gameManager: {fileID: 1149129520}
   turnEndButton: {fileID: 1202742449}
@@ -3302,7 +3304,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 942, y: 515}
+  m_AnchoredPosition: {x: 942, y: 574}
   m_SizeDelta: {x: 1457.29, y: 359.82}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1637029963

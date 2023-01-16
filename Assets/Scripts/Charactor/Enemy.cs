@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class Enemy : MonoBehaviour
 {
@@ -11,6 +13,8 @@ public class Enemy : MonoBehaviour
 
     [Header("Action")]
     Player player;
+    public Image NextActionImage;
+    public TMP_Text NextActionValue;
 
     public List<EnemyAction> turns = new List<EnemyAction>();
     public int turnNumber;
@@ -45,6 +49,19 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void DisplayNextAction()
+    {
+        NextActionImage.sprite = turns[turnNumber].icon;
+        if (turns[turnNumber].value > 0)
+        {
+            NextActionValue.text = turns[turnNumber].value.ToString();
+        }
+        else
+        {
+            NextActionValue.text = "";
+        }
+    }
+
     public void CheckAlive()
     {
         if (model.isAlive)
@@ -53,7 +70,7 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            this.gameObject.SetActive(false);
         }
     }
 
