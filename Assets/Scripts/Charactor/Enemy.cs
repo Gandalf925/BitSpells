@@ -21,6 +21,7 @@ public class Enemy : MonoBehaviour
 
     [Header("Utils")]
     public GameManager gameManager;
+    public BattleSceneManager battleSceneManager;
 
     private void Awake()
     {
@@ -35,8 +36,9 @@ public class Enemy : MonoBehaviour
         GenerateTurns();
     }
 
-    public void TakeTurn()
+    public IEnumerator TakeTurn()
     {
+        StopAllCoroutines();
         // 敵の行動はここに追加する
         switch (turns[turnNumber].intentType)
         {
@@ -47,6 +49,7 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(Block());
                 break;
         }
+        yield return new WaitForSeconds(3f);
     }
 
     public void DisplayNextAction()
@@ -70,7 +73,8 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            this.gameObject.SetActive(false);
+            Destroy(this.gameObject);
+            battleSceneManager.enemies.RemoveAll(item => item == null);
         }
     }
 

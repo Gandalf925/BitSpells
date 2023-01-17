@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
     }
 
-    public void PlayCard(CardUI selectedCard)
+    public void PlayCard(CardUI selectedCard, Enemy enemy)
     {
         if (currentEnergy < selectedCard.data.cost)
         {
@@ -42,8 +42,8 @@ public class Player : MonoBehaviour
         if (selectedCard.data.cardType == Card.Types.Attack)
         {
             currentEnergy -= selectedCard.data.cost;
-            battleSceneManager.enemy.Damage(selectedCard);
-            battleSceneManager.enemy.CheckAlive();
+            enemy.Damage(selectedCard);
+            enemy.CheckAlive();
 
             // ダメージ演出とカードを消す演出を入れる
 

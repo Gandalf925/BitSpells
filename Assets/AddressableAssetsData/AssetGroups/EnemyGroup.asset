@@ -25,6 +25,14 @@ MonoBehaviour:
     m_Address: EnemyEntity/FrontierLoad
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: fdc133b0eb242c340bb4d3fbda018811
+    m_Address: EnemyEntity/MasterLion
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 654ea0ec198fe094dbecaf70235f9feb
+    m_Address: EnemyEntity/TigerGeneral
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1854ccb9b58aeee44909251fa079d60e, type: 2}
   m_SchemaSet:

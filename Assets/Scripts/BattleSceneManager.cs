@@ -38,10 +38,9 @@ public class BattleSceneManager : MonoBehaviour
     public GameObject turnTextFramePanel;
     public Transform handPanel;
 
-
-
     [Header("Utils")]
     bool isPlayerTurn = true;
+    bool isGameClear = false;
 
 
     private void Awake()
@@ -54,6 +53,20 @@ public class BattleSceneManager : MonoBehaviour
         InitBattle();
     }
 
+    private void Update()
+    {
+        enemies.RemoveAll(item => item == null);
+        if (enemies.Count == 0)
+        {
+            StopAllCoroutines();
+            if (!isGameClear)
+            {
+                isGameClear = true;
+                EndBattle();
+            }
+        }
+    }
+
     // Battle開始時の処理
     // 敵の生成、デッキの生成、手札の配布など
     public void InitBattle()
@@ -62,11 +75,11 @@ public class BattleSceneManager : MonoBehaviour
         for (int i = 0; i < eEntityArr.Length; i++)
         {
             enemy.gameManager = FindObjectOfType<GameManager>();
+            enemy.battleSceneManager = FindObjectOfType<BattleSceneManager>();
             enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
-            enemy.CreateEnemy(eEntityArr[i].name);
-            enemy.DisplayNextAction();
-
             enemies.Add(enemy);
+            enemies[i].CreateEnemy(eEntityArr[i].name);
+            enemies[i].DisplayNextAction();
         }
 
         // 手札の初期設定
@@ -89,9 +102,8 @@ public class BattleSceneManager : MonoBehaviour
 
         // PlayerのStatusを初期化
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
-        gameManager.player.currentHP = gameManager.player.maxHP;
+        gameManager.player.currentHP = gameManager.player.maxHP; // 回復ポイントまで回復できないよう変更予定
         gameManager.player.Refresh();
-
     }
 
     public void TurnCalc()
@@ -117,7 +129,10 @@ public class BattleSceneManager : MonoBehaviour
         Debug.Log("Player Turn");
         StartCoroutine("DisplayPlayerTurnTextFrame");
         turnEndButton.interactable = true;
-        enemy.DisplayNextAction();
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.DisplayNextAction();
+        }
 
         DrawCards(drawAmount);
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
@@ -135,13 +150,20 @@ public class BattleSceneManager : MonoBehaviour
         StartCoroutine("DisplayEnemyTurnTextFrame");
         EachTurnInit();
         turnEndButton.interactable = false;
-        enemy.model.block = 0;
-        enemy.view.Refresh(enemy.model);
+
+        foreach (Enemy enemy in enemies)
+        {
+            enemy.model.block = 0;
+            enemy.view.Refresh(enemy.model);
+        }
         yield return new WaitForSeconds(3f);
 
         cardsInHand = new List<Card>();
 
-        enemy.TakeTurn();
+        foreach (Enemy enemy in enemies)
+        {
+            StartCoroutine(enemy.TakeTurn());
+        }
         ChangeTurn();
     }
 
@@ -191,7 +213,6 @@ public class BattleSceneManager : MonoBehaviour
         turnTextFramePanel.SetActive(false);
     }
 
-
     public void ShuffleCards()
     {
         discardPile.Shuffle();
@@ -231,4 +252,8 @@ public class BattleSceneManager : MonoBehaviour
         discardPileCountText.text = discardPile.Count.ToString();
     }
 
+    public void EndBattle()
+    {
+        Debug.Log("Game Clear");
+    }
 }

@@ -23,4 +23,8 @@ MonoBehaviour:
   - intentType: 1
     value: 8
     chance: 1
-    icon: {fileID: 0}
+    icon: {fileID: 21300000, guid: 701f50f3b85b64e4b9baa1dcff94063b, type: 3}
+  - intentType: 0
+    value: 10
+    chance: 2
+    icon: {fileID: 21300000, guid: 538ccfe523a226e42a9a72f31e3eb47e, type: 3}

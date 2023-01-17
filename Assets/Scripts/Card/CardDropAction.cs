@@ -15,9 +15,10 @@ public class CardDropAction : MonoBehaviour, IDropHandler
     public void OnDrop(PointerEventData eventData)
     {
         CardUI cardUI = eventData.pointerDrag.GetComponent<CardUI>();
+        Enemy target = GetComponent<Enemy>();
         if (cardUI != null)
         {
-            gameManager.player.PlayCard(cardUI);
+            gameManager.player.PlayCard(cardUI, target);
         }
         cardUI.GetComponent<CanvasGroup>().blocksRaycasts = true;
     }
