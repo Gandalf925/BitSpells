@@ -37,13 +37,25 @@ public class BattleSceneManager : MonoBehaviour
     public GameObject playerTurnTextFrame;
     public GameObject turnTextFramePanel;
     public Transform handPanel;
+    public GameObject EndPanel;
+    public GameObject ClearPopup;
+    public GameObject DefeatPopup;
+    public Toggle HideUIToggle;
+    public GameObject BackGroundPanel;
+    public GameObject PlayerSideUI;
+    public GameObject EnemySideUI;
+    public Transform TurnFrameStart;
+    public Transform TurnFrameCenter;
+    public Transform TurnFrameEnd;
+
+
 
     [Header("Utils")]
     bool isPlayerTurn = true;
     bool isGameClear = false;
 
 
-    private void Awake()
+    void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
     }
@@ -53,7 +65,7 @@ public class BattleSceneManager : MonoBehaviour
         InitBattle();
     }
 
-    private void Update()
+    void Update()
     {
         enemies.RemoveAll(item => item == null);
         if (enemies.Count == 0)
@@ -62,14 +74,15 @@ public class BattleSceneManager : MonoBehaviour
             if (!isGameClear)
             {
                 isGameClear = true;
-                EndBattle();
+                HideUIToggle.gameObject.SetActive(false);
+                BattleClear();
             }
         }
     }
 
     // Battle開始時の処理
     // 敵の生成、デッキの生成、手札の配布など
-    public void InitBattle()
+    void InitBattle()
     {
         // Enemyの初期化
         for (int i = 0; i < eEntityArr.Length; i++)
@@ -106,7 +119,7 @@ public class BattleSceneManager : MonoBehaviour
         gameManager.player.Refresh();
     }
 
-    public void TurnCalc()
+    void TurnCalc()
     {
         if (isPlayerTurn)
         {
@@ -118,7 +131,7 @@ public class BattleSceneManager : MonoBehaviour
         }
     }
 
-    public void ChangeTurn()
+    void ChangeTurn()
     {
         isPlayerTurn = !isPlayerTurn;
         TurnCalc();
@@ -167,7 +180,7 @@ public class BattleSceneManager : MonoBehaviour
         ChangeTurn();
     }
 
-    private void EachTurnInit()
+    void EachTurnInit()
     {
         // 手札をすべて捨てる
         foreach (Card card in cardsInHand)
@@ -188,10 +201,10 @@ public class BattleSceneManager : MonoBehaviour
         enemyTurnTextFrame.SetActive(false);
         playerTurnTextFrame.SetActive(true);
         yield return new WaitForSeconds(0.5f);
-        playerTurnTextFrame.transform.position = new Vector3(2500, 600, 0);
-        playerTurnTextFrame.transform.DOMove(new Vector3(1000, 600, 0), 0.5f);
+        playerTurnTextFrame.transform.position = TurnFrameStart.position;
+        playerTurnTextFrame.transform.DOMove(TurnFrameCenter.position, 0.5f);
         yield return new WaitForSeconds(1f);
-        playerTurnTextFrame.transform.DOMove(new Vector3(-1000, 600, 0), 0.5f);
+        playerTurnTextFrame.transform.DOMove(TurnFrameEnd.position, 0.5f);
         yield return new WaitForSeconds(0.5f);
         playerTurnTextFrame.SetActive(false);
         turnTextFramePanel.SetActive(false);
@@ -204,16 +217,16 @@ public class BattleSceneManager : MonoBehaviour
         enemyTurnTextFrame.SetActive(true);
         playerTurnTextFrame.SetActive(false);
         yield return new WaitForSeconds(0.5f);
-        enemyTurnTextFrame.transform.position = new Vector3(2500, 600, 0);
-        enemyTurnTextFrame.transform.DOMove(new Vector3(1000, 600, 0), 0.5f);
+        enemyTurnTextFrame.transform.position = TurnFrameStart.position;
+        enemyTurnTextFrame.transform.DOMove(TurnFrameCenter.position, 0.5f);
         yield return new WaitForSeconds(1f);
-        enemyTurnTextFrame.transform.DOMove(new Vector3(-1000, 600, 0), 0.5f);
+        enemyTurnTextFrame.transform.DOMove(TurnFrameEnd.position, 0.5f);
         yield return new WaitForSeconds(0.5f);
         enemyTurnTextFrame.SetActive(false);
         turnTextFramePanel.SetActive(false);
     }
 
-    public void ShuffleCards()
+    void ShuffleCards()
     {
         discardPile.Shuffle();
         drawPile = discardPile;
@@ -221,7 +234,7 @@ public class BattleSceneManager : MonoBehaviour
         discardPileCountText.text = discardPile.Count.ToString();
     }
 
-    public void DrawCards(int amountToDraw)
+    void DrawCards(int amountToDraw)
     {
         int cardsDrawn = 0;
         while (cardsDrawn < amountToDraw && cardsInHand.Count <= 10)
@@ -239,21 +252,44 @@ public class BattleSceneManager : MonoBehaviour
         }
     }
 
-    public void DealCardInHand(Card card)
+    void DealCardInHand(Card card)
     {
         CardUI cardUI = cardsInHandGameObjects[cardsInHand.Count - 1];
         cardUI.CreateCard(card);
         cardUI.gameObject.SetActive(true);
     }
 
-    public void DiscardCard(Card card)
+    void DiscardCard(Card card)
     {
         discardPile.Add(card);
         discardPileCountText.text = discardPile.Count.ToString();
     }
 
-    public void EndBattle()
+    void BattleClear()
     {
-        Debug.Log("Game Clear");
+        EndPanel.SetActive(true);
+        DefeatPopup.SetActive(false);
+        ClearPopup.SetActive(true);
+        ClearPopup.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
     }
+
+    void PushOKButtonAtBattleClear()
+    {
+        ClearPopup.SetActive(false);
+    }
+
+    public void HideUI()
+    {
+        if (!HideUIToggle.isOn)
+        {
+            PlayerSideUI.SetActive(false);
+            EnemySideUI.SetActive(false);
+        }
+        else
+        {
+            PlayerSideUI.SetActive(true);
+            EnemySideUI.SetActive(true);
+        }
+    }
+
 }
