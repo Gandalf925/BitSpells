@@ -23,4 +23,4 @@ MonoBehaviour:
     this and your HP will increase by 100'
   effectType: 1
   value: 100
-  icon: {fileID: 21300000, guid: dd74d5633bb31c145828d6bf393bec75, type: 3}
+  icon: {fileID: 21300000, guid: c76c7196e79ae614c9d1883c97131f51, type: 3}

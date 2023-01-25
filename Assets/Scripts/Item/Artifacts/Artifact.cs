@@ -23,5 +23,6 @@ public class Artifact : MonoBehaviour
 
             Addressables.Release(op);
         }
+
     }
 }
