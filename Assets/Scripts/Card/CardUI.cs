@@ -6,10 +6,10 @@ using DG.Tweening;
 
 public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
-    public Transform defaultParent;
-    public BattleSceneManager battleSceneManager;
-    public Card data;
     GameManager gameManager;
+    BattleSceneManager battleSceneManager;
+    public Transform defaultParent;
+    public Card data;
 
     [SerializeField] TMP_Text cardNameText;
     [SerializeField] TMP_Text cardCostText;

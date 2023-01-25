@@ -7,13 +7,20 @@ using TMPro;
 public class Player : MonoBehaviour
 {
     BattleSceneManager battleSceneManager;
+
+    [Header("Status")]
     public int maxHP;
     public int currentHP;
     public int block;
-    public List<Card> playerDeck = new List<Card>();
     public int maxEnergy = 3;
     public int currentEnergy;
-    public bool hasBlock = false;
+    public int drawAmount = 5;
+
+    [Header("Cards")]
+    public List<Card> playerDeck = new List<Card>();
+
+    [Header("Artifacts")]
+    public List<ArtifactEntity> artsList = new List<ArtifactEntity>();
 
     [Header("UI")]
 
@@ -26,7 +33,23 @@ public class Player : MonoBehaviour
     public Image ShieldFrameIcon;
     public TMP_Text ShieldFrameText;
 
+    //singleton
+    public static Player instance;
+
     private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    private void Start()
     {
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
     }
@@ -85,6 +108,7 @@ public class Player : MonoBehaviour
         {
             currentHP = 0;
             Refresh();
+            battleSceneManager.BattleDefeat();
         }
         else
         {
@@ -142,6 +166,11 @@ public class Player : MonoBehaviour
         {
             ShieldFrameIcon.gameObject.SetActive(false);
         }
+    }
+
+    public bool hasArts(string artifactName)
+    {
+        return artsList.Exists(artifact => artifact.name == artifactName);
     }
 }
 

@@ -8,7 +8,11 @@ public class GameManager : MonoBehaviour
 {
     BattleSceneManager battleSceneManager;
     public Player player;
+    public Artifact artifact;
+
+    //singleton
     public static GameManager instance;
+
     private void Awake()
     {
         if (instance == null)

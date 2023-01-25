@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
+using System;
 
 public class BattleSceneManager : MonoBehaviour
 {
@@ -15,7 +16,7 @@ public class BattleSceneManager : MonoBehaviour
 
 
     [Header("Status")]
-    int drawAmount = 5;
+
 
     [Header("Enemies")]
     public Enemy enemy;
@@ -53,6 +54,7 @@ public class BattleSceneManager : MonoBehaviour
     [Header("Utils")]
     bool isPlayerTurn = true;
     bool isGameClear = false;
+    bool isGameOver = false;
 
 
     void Awake()
@@ -78,7 +80,19 @@ public class BattleSceneManager : MonoBehaviour
                 BattleClear();
             }
         }
+
+        if (gameManager.player.currentHP == 0)
+        {
+            StopAllCoroutines();
+            if (!isGameOver)
+            {
+                isGameOver = true;
+                HideUIToggle.gameObject.SetActive(false);
+                BattleDefeat();
+            }
+        }
     }
+
 
     // Battle開始時の処理
     // 敵の生成、デッキの生成、手札の配布など
@@ -111,9 +125,10 @@ public class BattleSceneManager : MonoBehaviour
 
         discardPile.AddRange(gameManager.player.playerDeck);
         ShuffleCards();
-        DrawCards(drawAmount);
+        DrawCards(gameManager.player.drawAmount);
 
         // PlayerのStatusを初期化
+        gameManager.artifact.playArtifactEffect();
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
         gameManager.player.currentHP = gameManager.player.maxHP; // 回復ポイントまで回復できないよう変更予定
         gameManager.player.Refresh();
@@ -147,7 +162,7 @@ public class BattleSceneManager : MonoBehaviour
             enemy.DisplayNextAction();
         }
 
-        DrawCards(drawAmount);
+        DrawCards(gameManager.player.drawAmount);
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
 
         gameManager.player.block = 0;
@@ -273,9 +288,28 @@ public class BattleSceneManager : MonoBehaviour
         ClearPopup.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
     }
 
+    public void BattleDefeat()
+    {
+        EndPanel.SetActive(true);
+        DefeatPopup.SetActive(true);
+        ClearPopup.SetActive(false);
+        DefeatPopup.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
+    }
+
     void PushOKButtonAtBattleClear()
     {
         ClearPopup.SetActive(false);
+
+        // ゲームクリア時の処理（カードの欠片抽選、次のシーンへ移行）
+
+        // ゲームオーバー時の処理（王国へ移行）
+    }
+
+    void PushOKButtonAtGameOver()
+    {
+        ClearPopup.SetActive(false);
+        // ゲームオーバー時の処理（王国へシーン移行）
+
     }
 
     public void HideUI()

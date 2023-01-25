@@ -1494,6 +1494,8 @@ MonoBehaviour:
   enemies: []
   eEntityArr:
   - {fileID: 11400000, guid: 654ea0ec198fe094dbecaf70235f9feb, type: 2}
+  - {fileID: 11400000, guid: fdc133b0eb242c340bb4d3fbda018811, type: 2}
+  - {fileID: 11400000, guid: 654ea0ec198fe094dbecaf70235f9feb, type: 2}
   enemyPositionPanel: {fileID: 1637029962}
   gameManager: {fileID: 1149129520}
   turnEndButton: {fileID: 1202742449}
@@ -2956,6 +2958,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1271203775}
+  artifact: {fileID: 1271203777}
 --- !u!4 &1149129521
 Transform:
   m_ObjectHideFlags: 0
@@ -3334,6 +3337,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1271203776}
   - component: {fileID: 1271203775}
+  - component: {fileID: 1271203777}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -3353,9 +3357,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c4319252c1784448be97eb796b74a9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHP: 250
+  maxHP: 200
   currentHP: 0
   block: 0
+  maxEnergy: 3
+  currentEnergy: 0
+  drawAmount: 5
   playerDeck:
   - {fileID: 11400000, guid: a07cecac5707e924aa5811942bb8e0e8, type: 2}
   - {fileID: 11400000, guid: a07cecac5707e924aa5811942bb8e0e8, type: 2}
@@ -3364,9 +3371,8 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
-  maxEnergy: 3
-  currentEnergy: 0
-  hasBlock: 0
+  artsList:
+  - {fileID: 11400000, guid: 18fec4587580aaf49881dcd4b814b7aa, type: 2}
   hpBarSlider: {fileID: 786925091}
   energyBarSlider: {fileID: 2082171820}
   maxHPText: {fileID: 103923641}
@@ -3390,6 +3396,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1271203777
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1271203774}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac17be2b972bbb048ba37f34ca7fc700, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1300444434 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 451127214688854086, guid: 8783275836d314590874db3ad8455137, type: 3}
@@ -3435,7 +3453,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -6.000122}
+  m_AnchoredPosition: {x: 0, y: -6.000061}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1351854264
@@ -5828,7 +5846,7 @@ GameObject:
   - component: {fileID: 1962510890}
   - component: {fileID: 1962510889}
   m_Layer: 5
-  m_Name: Panel
+  m_Name: FittingPanel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
