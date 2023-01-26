@@ -12,7 +12,7 @@ public class Artifact : MonoBehaviour
         gameManager = FindObjectOfType<GameManager>();
     }
 
-    // Artifactの効果はここに追加する
+    // Geme開始時に効果を発するArtifactEffectはここに追加する
     public void playArtifactEffect()
     {
         if (gameManager.player.hasArts("Locket") == true)

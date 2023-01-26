@@ -22,6 +22,9 @@ public class Player : MonoBehaviour
     [Header("Artifacts")]
     public List<ArtifactEntity> artsList = new List<ArtifactEntity>();
 
+    [Header("Items")]
+
+
     [Header("UI")]
 
     public Slider hpBarSlider;

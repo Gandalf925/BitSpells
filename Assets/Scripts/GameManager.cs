@@ -9,6 +9,8 @@ public class GameManager : MonoBehaviour
     BattleSceneManager battleSceneManager;
     public Player player;
     public Artifact artifact;
+    [SerializeField] GameObject configPanel;
+    bool isOpenConfig = false;
 
     //singleton
     public static GameManager instance;
@@ -26,5 +28,18 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void toggleConfigPanel()
+    {
+        if (!isOpenConfig)
+        {
+            isOpenConfig = true;
+            configPanel.SetActive(true);
+        }
+        else
+        {
+            isOpenConfig = false;
+            configPanel.SetActive(false);
+        }
+    }
 
 }
