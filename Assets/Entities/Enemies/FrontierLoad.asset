@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170393411780de340aed97022aec049f, type: 3}
   m_Name: FrontierLoad
   m_EditorClassIdentifier: 
-  id: 1
-  enemyName: Frontier Load
+  id: 3
+  enemyName: 
   enemyDescription: He is still in Frontier.
   maxHp: 77
   currentHp: 0

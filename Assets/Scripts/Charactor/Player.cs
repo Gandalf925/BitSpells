@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using MoreMountains.Feedbacks;
 using TMPro;
 
 public class Player : MonoBehaviour
@@ -35,6 +36,10 @@ public class Player : MonoBehaviour
     public TMP_Text currentEnergyText;
     public Image ShieldFrameIcon;
     public TMP_Text ShieldFrameText;
+    public GameObject playerStatusUI;
+
+    [Header("Utils")]
+    public MMF_Player feedbackPlayer;
 
     //singleton
     public static Player instance;
@@ -55,6 +60,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
+        feedbackPlayer = FindObjectOfType<MMF_Player>();
     }
 
     public void PlayCard(CardUI selectedCard, Enemy enemy)
@@ -103,6 +109,7 @@ public class Player : MonoBehaviour
             damage = BlockDamage(damage);
         }
 
+        PlayerUIShakeFB();
         currentHP -= damage;
         Refresh();
 
@@ -117,6 +124,14 @@ public class Player : MonoBehaviour
         {
             Refresh();
         }
+    }
+
+    private void PlayerUIShakeFB()
+    {
+        MMPositionShaker target = GetComponent<MMPositionShaker>();
+        MMF_PositionShake shakeFeedback = feedbackPlayer.GetFeedbackOfType<MMF_PositionShake>();
+        shakeFeedback.TargetShaker = target;
+        shakeFeedback.Play(new Vector3(5f, 5f, 5f));
     }
 
     public void Refresh()

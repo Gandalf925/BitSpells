@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170393411780de340aed97022aec049f, type: 3}
   m_Name: GoblinSolder
   m_EditorClassIdentifier: 
-  id: 2
-  enemyName: Goblin Solder
+  id: 4
+  enemyName: 
   enemyDescription: 
   maxHp: 43
   currentHp: 0

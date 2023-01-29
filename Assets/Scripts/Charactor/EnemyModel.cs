@@ -7,7 +7,7 @@ using TMPro;
 
 public class EnemyModel
 {
-    public string enemyName;
+    public string name;
     public int maxHP;
     public int currentHP;
     public int block;
@@ -20,14 +20,14 @@ public class EnemyModel
         var op = Addressables.LoadAssetAsync<EnemyEntity>("EnemyEntity/" + enemyName);
 
         // WaitForCompletionで同期的にロード完了を待機
-        var enemyData = op.WaitForCompletion();
+        var enemyEntity = op.WaitForCompletion();
 
-        enemyName = enemyData.name;
-        maxHP = enemyData.maxHp;
-        currentHP = enemyData.maxHp;
-        block = enemyData.currentBlock;
-        icon = enemyData.icon;
-        actions = enemyData.actions;
+        name = enemyEntity.enemyName;
+        maxHP = enemyEntity.maxHp;
+        currentHP = enemyEntity.maxHp;
+        block = enemyEntity.currentBlock;
+        icon = enemyEntity.icon;
+        actions = enemyEntity.actions;
 
         // 使い終わったらリリース
         Addressables.Release(op);

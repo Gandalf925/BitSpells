@@ -192,6 +192,7 @@ public class BattleSceneManager : MonoBehaviour
         {
             StartCoroutine(enemy.TakeTurn());
         }
+        yield return new WaitForSeconds(1f);
         ChangeTurn();
     }
 
@@ -303,6 +304,7 @@ public class BattleSceneManager : MonoBehaviour
         // ゲームクリア時の処理（カードの欠片抽選、次のシーンへ移行）
 
         // ゲームオーバー時の処理（王国へ移行）
+
     }
 
     void PushOKButtonAtGameOver()

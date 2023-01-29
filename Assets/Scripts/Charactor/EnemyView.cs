@@ -18,7 +18,7 @@ public class EnemyView : MonoBehaviour
 
     public void Show(EnemyModel enemyModel)
     {
-        nameText.text = enemyModel.enemyName;
+        nameText.text = enemyModel.name;
         maxHPText.text = enemyModel.maxHP.ToString();
         currentHPText.text = enemyModel.currentHP.ToString();
         currentBlockText.text = enemyModel.block.ToString();

@@ -12,10 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 170393411780de340aed97022aec049f, type: 3}
   m_Name: TigerGeneral
   m_EditorClassIdentifier: 
-  id: 4
-  enemyName: TigerGeneral
+  id: 2
+  enemyName: Tiger general
   enemyDescription: 
-  maxHp: 1
+  maxHp: 55
   currentHp: 0
   currentBlock: 0
   icon: {fileID: 21300000, guid: 5e9b5258b95f8744f8e6c1fddeee5a28, type: 3}

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
@@ -22,11 +23,13 @@ public class Enemy : MonoBehaviour
     [Header("Utils")]
     public GameManager gameManager;
     public BattleSceneManager battleSceneManager;
+    public MMF_Player feedbackPlayer;
 
     private void Awake()
     {
         view = GetComponent<EnemyView>();
         player = gameManager.player;
+        feedbackPlayer = FindObjectOfType<MMF_Player>();
     }
 
     public void CreateEnemy(string enemyName)
@@ -49,7 +52,7 @@ public class Enemy : MonoBehaviour
                 StartCoroutine(Block());
                 break;
         }
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSeconds(5f);
     }
 
     public void DisplayNextAction()
@@ -80,16 +83,18 @@ public class Enemy : MonoBehaviour
 
     public IEnumerator Attack()
     {
+        StopAllCoroutines();
         player.Damage(turns[turnNumber].value);
         WrapUpTurn();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(1f);
     }
 
     public IEnumerator Block()
     {
+        StopAllCoroutines();
         AddBlock(turns[turnNumber].value);
         WrapUpTurn();
-        yield return new WaitForSeconds(3f);
+        yield return new WaitForSecondsRealtime(1f);
     }
 
     public void GenerateTurns()
@@ -115,6 +120,8 @@ public class Enemy : MonoBehaviour
 
     public void Damage(CardUI card)
     {
+        MMPositionShaker target = GetComponent<MMPositionShaker>();
+        EnemyShakeFB();
         damage = card.data.value;
 
         if (model.block > 0)
@@ -123,11 +130,21 @@ public class Enemy : MonoBehaviour
         }
 
         model.currentHP -= damage;
+
+
         if (model.currentHP <= 0)
         {
             model.currentHP = 0;
             model.isAlive = false;
         }
+    }
+
+    private void EnemyShakeFB()
+    {
+        MMPositionShaker target = GetComponent<MMPositionShaker>();
+        MMF_PositionShake shakeFeedback = feedbackPlayer.GetFeedbackOfType<MMF_PositionShake>();
+        shakeFeedback.TargetShaker = target;
+        shakeFeedback.Play(new Vector3(5f, 5f, 5f));
     }
 
     private int BlockDamage(int amount)
