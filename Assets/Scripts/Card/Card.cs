@@ -13,6 +13,7 @@ public class Card : ScriptableObject
     public Types cardType;
     public TargetTypes targetTypes;
     public Sprite icon;
+    public GameObject effectPrefab;
 
     public enum Types
     {

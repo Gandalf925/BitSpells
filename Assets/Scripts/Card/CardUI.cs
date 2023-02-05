@@ -10,6 +10,7 @@ public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
     BattleSceneManager battleSceneManager;
     public Transform defaultParent;
     public Card data;
+    public Camera mainCamera;
 
     [SerializeField] TMP_Text cardNameText;
     [SerializeField] TMP_Text cardCostText;
@@ -37,7 +38,8 @@ public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
 
     public void OnDrag(PointerEventData eventData)
     {
-        transform.position = eventData.position;
+        // transform.position = eventData.position;
+        transform.position = ConvertPosition(eventData);
     }
 
     public void OnEndDrag(PointerEventData eventData)
@@ -45,5 +47,27 @@ public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
         transform.SetParent(defaultParent, false);
         transform.DOScale(new Vector3(1.2f, 1.2f, 0f), 0.05f);
         GetComponent<CanvasGroup>().blocksRaycasts = true;
+    }
+
+    private Vector2 GetLocalPosition(Vector2 screenPosition)
+    {
+        Vector2 result = Vector2.zero;
+
+        return transform.InverseTransformPoint(screenPosition);
+    }
+
+    private Vector3 ConvertPosition(PointerEventData eventData)
+    {
+        //ドラッグイベントの座標を、CanVasの中のGameObject上のlocalPositionに変更
+        Vector2 localPosition = GetLocalPosition(eventData.position);
+
+        //Canvas内のlocalPositionをCanvas内のpositionへ変更
+        Vector3 position = transform.TransformPoint(localPosition);
+
+        //Canvas内のpositionを、カメラのWorld座標系へ変更
+        Vector3 nowVector3 = mainCamera.ScreenToWorldPoint(position);
+        nowVector3.z = 0;
+
+        return nowVector3;
     }
 }

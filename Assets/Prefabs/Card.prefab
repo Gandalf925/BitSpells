@@ -501,6 +501,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   defaultParent: {fileID: 0}
   data: {fileID: 0}
+  mainCamera: {fileID: 0}
   cardNameText: {fileID: 2502604690570360757}
   cardCostText: {fileID: 125550400199369701}
   cardDescriptionText: {fileID: 2104362540113342600}
