@@ -40,6 +40,7 @@ public class Player : MonoBehaviour
 
     [Header("Utils")]
     public MMF_Player feedbackPlayer;
+    public GameObject playerSideUI;
 
     //singleton
     public static Player instance;
@@ -128,7 +129,7 @@ public class Player : MonoBehaviour
 
     private void PlayerUIShakeFB()
     {
-        MMPositionShaker target = GetComponent<MMPositionShaker>();
+        MMPositionShaker target = playerSideUI.GetComponent<MMPositionShaker>();
         MMF_PositionShake shakeFeedback = feedbackPlayer.GetFeedbackOfType<MMF_PositionShake>();
         shakeFeedback.TargetShaker = target;
         shakeFeedback.Play(new Vector3(5f, 5f, 5f));
