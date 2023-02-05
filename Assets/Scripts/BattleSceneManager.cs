@@ -48,6 +48,7 @@ public class BattleSceneManager : MonoBehaviour
     public Transform TurnFrameStart;
     public Transform TurnFrameCenter;
     public Transform TurnFrameEnd;
+    public GameObject uncontrollablePanel;
 
 
 

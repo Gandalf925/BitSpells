@@ -89,6 +89,7 @@ public class Player : MonoBehaviour
             AddBlock(selectedCard.data.value);
 
             // ダメージ演出とカードを消す演出を入れる
+
             AfterCardEffects(selectedCard);
         }
     }

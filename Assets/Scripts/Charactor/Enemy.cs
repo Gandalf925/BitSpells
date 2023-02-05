@@ -4,6 +4,7 @@ using MoreMountains.Feedbacks;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using Coffee.UIExtensions;
 
 public class Enemy : MonoBehaviour
 {
@@ -24,13 +25,16 @@ public class Enemy : MonoBehaviour
     public GameManager gameManager;
     public BattleSceneManager battleSceneManager;
     public MMF_Player feedbackPlayer;
+    [SerializeField] UIDissolve enemyIconPanel;
 
     private void Awake()
     {
         view = GetComponent<EnemyView>();
         player = gameManager.player;
         feedbackPlayer = FindObjectOfType<MMF_Player>();
+        enemyIconPanel = enemyIconPanel.GetComponent<UIDissolve>();
     }
+
 
     public void CreateEnemy(string enemyName)
     {
@@ -76,9 +80,25 @@ public class Enemy : MonoBehaviour
         }
         else
         {
-            Destroy(this.gameObject);
+            StopAllCoroutines();
+            StartCoroutine(Disapear());
+
             battleSceneManager.enemies.RemoveAll(item => item == null);
         }
+    }
+
+    public IEnumerator Disapear()
+    {
+        battleSceneManager.uncontrollablePanel.SetActive(true);
+        while (enemyIconPanel.location < 1)
+        {
+            enemyIconPanel.location += Time.deltaTime * 2.2f;
+            enemyIconPanel.location = Mathf.Clamp01(enemyIconPanel.location);
+            // アタッチしたスクリプトの変数にcurrentValueを適用する
+            yield return null;
+        }
+        battleSceneManager.uncontrollablePanel.SetActive(false);
+        Destroy(this.gameObject);
     }
 
     public IEnumerator Attack()

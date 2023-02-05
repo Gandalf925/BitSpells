@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 2
   enemyName: Tiger general
   enemyDescription: 
-  maxHp: 55
+  maxHp: 1
   currentHp: 0
   currentBlock: 0
   icon: {fileID: 21300000, guid: 5e9b5258b95f8744f8e6c1fddeee5a28, type: 3}

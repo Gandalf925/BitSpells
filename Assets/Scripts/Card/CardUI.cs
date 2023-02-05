@@ -58,6 +58,7 @@ public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
 
     private Vector3 ConvertPosition(PointerEventData eventData)
     {
+        Camera mainCamera = FindObjectOfType<Camera>();
         //ドラッグイベントの座標を、CanVasの中のGameObject上のlocalPositionに変更
         Vector2 localPosition = GetLocalPosition(eventData.position);
 
