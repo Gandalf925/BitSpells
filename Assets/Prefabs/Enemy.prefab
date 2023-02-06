@@ -690,6 +690,7 @@ GameObject:
   - component: {fileID: 1410049003670454367}
   - component: {fileID: 4168831625705827740}
   - component: {fileID: 3283936248292341323}
+  - component: {fileID: 3316880593693926359}
   m_Layer: 5
   m_Name: EnemyNameFlame
   m_TagString: Untagged
@@ -738,7 +739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 21068288719974348, guid: 2ac9a8033337c4b908c54c087abd31e8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -756,6 +757,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &3316880593693926359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3315082905018969516}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9a4349581d64dcabe67c494ee1d531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Location: 0
+  m_Width: 0.5
+  m_Softness: 0.5
+  m_Color: {r: 0.9716981, g: 0.113670304, b: 0.24680677, a: 1}
+  m_ColorMode: 2
+  m_EffectMaterial: {fileID: 21068288719974348, guid: 2ac9a8033337c4b908c54c087abd31e8, type: 2}
 --- !u!1 &3327128950631790337
 GameObject:
   m_ObjectHideFlags: 0
@@ -850,7 +869,9 @@ MonoBehaviour:
   gameManager: {fileID: 0}
   battleSceneManager: {fileID: 0}
   feedbackPlayer: {fileID: 0}
-  enemyIconPanel: {fileID: 2434471511409511774}
+  disapearEnemyIconPanel: {fileID: 2434471511409511774}
+  disapearEnemyBase: {fileID: 5727181308598909956}
+  disapearEnemyNameFrame: {fileID: 3316880593693926359}
 --- !u!114 &8081341332270829532
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1707,6 +1728,7 @@ GameObject:
   - component: {fileID: 4570338606060878729}
   - component: {fileID: 2975702387878599976}
   - component: {fileID: 2100452228597637490}
+  - component: {fileID: 5727181308598909956}
   m_Layer: 5
   m_Name: EnemyBase
   m_TagString: Untagged
@@ -1759,7 +1781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 21068288719974348, guid: 2ac9a8033337c4b908c54c087abd31e8, type: 2}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
@@ -1777,6 +1799,24 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &5727181308598909956
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7841626675986305191}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f9a4349581d64dcabe67c494ee1d531, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Location: 0
+  m_Width: 0.5
+  m_Softness: 0.5
+  m_Color: {r: 0.9245283, g: 0.13431823, b: 0.17106241, a: 1}
+  m_ColorMode: 2
+  m_EffectMaterial: {fileID: 21068288719974348, guid: 2ac9a8033337c4b908c54c087abd31e8, type: 2}
 --- !u!1 &8458472014724238307
 GameObject:
   m_ObjectHideFlags: 0

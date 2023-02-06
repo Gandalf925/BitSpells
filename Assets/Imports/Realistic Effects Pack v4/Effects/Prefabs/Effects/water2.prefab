@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4432322983238936}
   - component: {fileID: 114272326741369864}
   m_Layer: 0
-  m_Name: Effect18
+  m_Name: water2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

@@ -30,13 +30,6 @@ public class EnemyView : MonoBehaviour
         icon.sprite = enemyModel.icon;
     }
 
-    public IEnumerator Disapear()
-    {
-        enemyIconPanel = GetComponent<UIDissolve>();
-        enemyIconPanel.location = Mathf.Lerp(enemyIconPanel.location, 0, Time.deltaTime);
-        yield return new WaitForSeconds(2f);
-    }
-
     public void Refresh(EnemyModel enemyModel)
     {
         currentHPText.text = enemyModel.currentHP.ToString();

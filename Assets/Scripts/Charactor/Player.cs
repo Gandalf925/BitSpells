@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using MoreMountains.Feedbacks;
 using TMPro;
+using DG.Tweening;
 
 public class Player : MonoBehaviour
 {
@@ -79,8 +80,10 @@ public class Player : MonoBehaviour
             enemy.CheckAlive();
 
             // ダメージ演出とカードを消す演出を入れる
-
-            AfterCardEffects(selectedCard);
+            StopAllCoroutines();
+            StartCoroutine(selectedCard.Disapear());
+            StartCoroutine(PlayCardEffect(selectedCard));
+            StartCoroutine(AfterCardEffects(selectedCard));
         }
 
         if (selectedCard.data.cardType == Card.Types.Block)
@@ -90,12 +93,29 @@ public class Player : MonoBehaviour
 
             // ダメージ演出とカードを消す演出を入れる
 
-            AfterCardEffects(selectedCard);
+            StartCoroutine(AfterCardEffects(selectedCard));
         }
     }
 
-    void AfterCardEffects(CardUI selectedCard)
+    private IEnumerator PlayCardEffect(CardUI selectedCard)
     {
+        Vector3 mousePos = Input.mousePosition;
+        Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);
+        Transform effectPos = new GameObject().transform;
+
+        effectPos.position = worldPos;
+
+        GameObject effect = Instantiate(selectedCard.data.effectPrefab, effectPos) as GameObject;
+        Transform parent = effect.transform.parent;
+
+        yield return new WaitForSeconds(1f);
+        Destroy(parent.gameObject);
+        Destroy(effect);
+    }
+
+    IEnumerator AfterCardEffects(CardUI selectedCard)
+    {
+        yield return new WaitForSeconds(0.5f);
         selectedCard.gameObject.SetActive(false);
         battleSceneManager.cardsInHand.Remove(selectedCard.data);
         battleSceneManager.discardPile.Add(selectedCard.data);

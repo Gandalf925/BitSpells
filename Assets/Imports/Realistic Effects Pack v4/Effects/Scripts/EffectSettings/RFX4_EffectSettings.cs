@@ -21,7 +21,7 @@ public class RFX4_EffectSettings : MonoBehaviour
     public bool LimitMaxDistance;
     public float MaxDistnace = -1;
     public float Mass = 1;
-    public float Speed = 10;
+    public float Speed = 30;
     public float AirDrag = 0.1f;
     public bool UseGravity = true;
 
@@ -45,8 +45,8 @@ public class RFX4_EffectSettings : MonoBehaviour
 
     void OnEnable()
     {
-        if(ParticlesBudget < 0.99f) ChangeParticlesBudget(ParticlesBudget);
-        if(UseCustomColor) ChangeParticleColor();
+        if (ParticlesBudget < 0.99f) ChangeParticlesBudget(ParticlesBudget);
+        if (UseCustomColor) ChangeParticleColor();
         if (UseFastFlatDecalsForMobiles) SetFlatDecals();
         if (!UseLightShadows || IsMobilePlatform()) DisableShadows();
     }
@@ -68,7 +68,7 @@ public class RFX4_EffectSettings : MonoBehaviour
         foreach (var ps in particles)
         {
             var main = ps.main;
-            main.maxParticles = Mathf.Max(1, (int) (main.maxParticles * particlesMul));
+            main.maxParticles = Mathf.Max(1, (int)(main.maxParticles * particlesMul));
 
             var emission = ps.emission;
             if (!emission.enabled) continue;
@@ -82,10 +82,10 @@ public class RFX4_EffectSettings : MonoBehaviour
             }
 
             var rateOverDistance = emission.rateOverDistance;
-            if (rateOverDistance.constantMin > 1 )
+            if (rateOverDistance.constantMin > 1)
             {
-                if(rateOverDistance.constantMin > 1) rateOverDistance.constantMin *= particlesMul;
-                if(rateOverDistance.constantMax > 1) rateOverDistance.constantMax *= particlesMul;
+                if (rateOverDistance.constantMin > 1) rateOverDistance.constantMin *= particlesMul;
+                if (rateOverDistance.constantMax > 1) rateOverDistance.constantMax *= particlesMul;
                 emission.rateOverDistance = rateOverDistance;
             }
         }
@@ -118,12 +118,12 @@ public class RFX4_EffectSettings : MonoBehaviour
         var lights = GetComponentsInChildren<Light>();
         foreach (var customLight in lights)
         {
-                var lightCurves = customLight.GetComponent<RFX4_LightCurves>();
-                if (lightCurves != null && lightCurves.UseShadowsIfPossible)
-                {
-                    lightCurves.UseShadowsIfPossible = false;
-                }
-                customLight.shadows = LightShadows.None;
+            var lightCurves = customLight.GetComponent<RFX4_LightCurves>();
+            if (lightCurves != null && lightCurves.UseShadowsIfPossible)
+            {
+                lightCurves.UseShadowsIfPossible = false;
+            }
+            customLight.shadows = LightShadows.None;
         }
 
         var psLights = GetComponentsInChildren<RFX4_ParticleLight>();
@@ -155,8 +155,9 @@ public class RFX4_EffectSettings : MonoBehaviour
         while ((Time.time - currentFadeoutTime) < FadeoutTime)
         {
             ChangeAlphaFade();
-            yield return new WaitForSeconds(1f/30f);
+            yield return new WaitForSeconds(1f / 30f);
         }
+        // 追加
     }
 
     string[] colorProperties =
@@ -172,7 +173,7 @@ public class RFX4_EffectSettings : MonoBehaviour
             {
                 var color = mat.GetColor(prop);
                 if (overrideAlpha > -0.5f) color.a = overrideAlpha;
-                else   color.a -= (1f / 30f) / FadeoutTime;
+                else color.a -= (1f / 30f) / FadeoutTime;
                 mat.SetColor(prop, color);
             }
         }
@@ -213,7 +214,7 @@ public class RFX4_EffectSettings : MonoBehaviour
 
         foreach (var audioSource in audioSources)
         {
-            audioSource.volume -= (1f / 30f) / FadeoutTime;;
+            audioSource.volume -= (1f / 30f) / FadeoutTime; ;
         }
     }
 
@@ -249,5 +250,5 @@ public class RFX4_EffectSettings : MonoBehaviour
             audioSource.volume = 1;
         }
     }
-#endregion
+    #endregion
 }

@@ -928,7 +928,7 @@ GameObject:
   - component: {fileID: 498504}
   - component: {fileID: 114375291465130398}
   m_Layer: 0
-  m_Name: Effect27
+  m_Name: bind
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

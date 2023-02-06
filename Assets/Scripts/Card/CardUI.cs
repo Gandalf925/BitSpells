@@ -1,8 +1,11 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using Coffee.UIExtensions;
 
 public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHandler
 {
@@ -11,11 +14,15 @@ public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
     public Transform defaultParent;
     public Card data;
     public Camera mainCamera;
+    float disaperSpeed = 1.8f;
 
     [SerializeField] TMP_Text cardNameText;
     [SerializeField] TMP_Text cardCostText;
     [SerializeField] TMP_Text cardDescriptionText;
     [SerializeField] Image cardIcon;
+    [SerializeField] UIDissolve dissolveIconFrame;
+    [SerializeField] UIDissolve dissolveCostFrame;
+    [SerializeField] UIDissolve dissolvecardBase;
 
     public void CreateCard(Card _card)
     {
@@ -25,6 +32,33 @@ public class CardUI : MonoBehaviour, IDragHandler, IBeginDragHandler, IEndDragHa
         cardDescriptionText.text = data.description;
         cardCostText.text = data.cost.ToString();
         cardIcon.sprite = data.icon;
+    }
+
+    void Awake()
+    {
+        dissolveIconFrame = dissolveIconFrame.GetComponent<UIDissolve>();
+        dissolveCostFrame = dissolveCostFrame.GetComponent<UIDissolve>();
+        dissolvecardBase = dissolvecardBase.GetComponent<UIDissolve>();
+    }
+
+    public IEnumerator Disapear()
+    {
+        cardDescriptionText.text = null;
+        cardCostText.text = null;
+        cardNameText.text = null;
+        while (dissolveIconFrame.location < 1)
+        {
+            dissolveIconFrame.location += Time.deltaTime * disaperSpeed;
+            dissolveCostFrame.location += Time.deltaTime * disaperSpeed;
+            dissolvecardBase.location += Time.deltaTime * disaperSpeed;
+            dissolveIconFrame.location = Mathf.Clamp01(dissolveIconFrame.location);
+            dissolveCostFrame.location = Mathf.Clamp01(dissolveCostFrame.location);
+            dissolvecardBase.location = Mathf.Clamp01(dissolvecardBase.location);
+            yield return null;
+        }
+        dissolveIconFrame.location = 0;
+        dissolveCostFrame.location = 0;
+        dissolvecardBase.location = 0;
     }
 
     // Drag＆Drop時

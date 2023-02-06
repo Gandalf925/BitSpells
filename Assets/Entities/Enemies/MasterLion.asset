@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 1
   enemyName: Master Lion
   enemyDescription: 
-  maxHp: 5
+  maxHp: 55
   currentHp: 0
   currentBlock: 0
   icon: {fileID: 21300000, guid: 51f12ff85f254d34fab96732c568f8b9, type: 3}

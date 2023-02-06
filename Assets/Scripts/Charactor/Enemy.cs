@@ -25,14 +25,15 @@ public class Enemy : MonoBehaviour
     public GameManager gameManager;
     public BattleSceneManager battleSceneManager;
     public MMF_Player feedbackPlayer;
-    [SerializeField] UIDissolve enemyIconPanel;
+    [SerializeField] UIDissolve disapearEnemyIconPanel;
+    [SerializeField] UIDissolve disapearEnemyBase;
+    [SerializeField] UIDissolve disapearEnemyNameFrame;
 
     private void Awake()
     {
         view = GetComponent<EnemyView>();
         player = gameManager.player;
         feedbackPlayer = FindObjectOfType<MMF_Player>();
-        enemyIconPanel = enemyIconPanel.GetComponent<UIDissolve>();
     }
 
 
@@ -90,10 +91,14 @@ public class Enemy : MonoBehaviour
     public IEnumerator Disapear()
     {
         battleSceneManager.uncontrollablePanel.SetActive(true);
-        while (enemyIconPanel.location < 1)
+        while (disapearEnemyIconPanel.location < 1)
         {
-            enemyIconPanel.location += Time.deltaTime * 2.2f;
-            enemyIconPanel.location = Mathf.Clamp01(enemyIconPanel.location);
+            disapearEnemyIconPanel.location += Time.deltaTime * 2.2f;
+            disapearEnemyBase.location += Time.deltaTime * 2.2f;
+            disapearEnemyNameFrame.location += Time.deltaTime * 2.2f;
+            disapearEnemyIconPanel.location = Mathf.Clamp01(disapearEnemyIconPanel.location);
+            disapearEnemyBase.location = Mathf.Clamp01(disapearEnemyIconPanel.location);
+            disapearEnemyNameFrame.location = Mathf.Clamp01(disapearEnemyIconPanel.location);
             // アタッチしたスクリプトの変数にcurrentValueを適用する
             yield return null;
         }
