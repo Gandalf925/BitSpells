@@ -206,6 +206,7 @@ public class BattleSceneManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         Debug.Log("Enemy Turn");
+        uncontrollablePanel.SetActive(true);
         // EnemuTurnTextは後で調整すること
         StartCoroutine("DisplayEnemyTurnTextFrame");
         EachTurnInit();
@@ -225,6 +226,7 @@ public class BattleSceneManager : MonoBehaviour
             StartCoroutine(enemy.TakeTurn());
         }
         yield return new WaitForSeconds(1f);
+        uncontrollablePanel.SetActive(false);
         ChangeTurn();
     }
 
