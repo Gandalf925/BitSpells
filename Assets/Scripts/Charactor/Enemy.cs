@@ -109,9 +109,21 @@ public class Enemy : MonoBehaviour
     public IEnumerator Attack()
     {
         StopAllCoroutines();
+        StartCoroutine(PlayEnemyAttackEffect());
         player.Damage(turns[turnNumber].value);
         WrapUpTurn();
         yield return new WaitForSecondsRealtime(1f);
+    }
+
+    public IEnumerator PlayEnemyAttackEffect()
+    {
+        GameObject effect = Instantiate(turns[turnNumber].effectPrefab);
+        effect.transform.localScale = new Vector3(15, 15);
+        Transform parent = effect.transform.parent;
+
+        yield return new WaitForSeconds(1f);
+        Destroy(parent.gameObject);
+        Destroy(effect);
     }
 
     public IEnumerator Block()

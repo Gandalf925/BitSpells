@@ -15,7 +15,12 @@ public class BattleSceneManager : MonoBehaviour
     public List<CardUI> cardsInHandGameObjects = new List<CardUI>();
 
 
-    [Header("Status")]
+    [Header("Items")]
+    [SerializeField] GameObject itemDisplay;
+    [SerializeField] Image itemIcon;
+    [SerializeField] TMP_Text itemName;
+    [SerializeField] TMP_Text itemAmount;
+    public int currentItemIndex = 0;
 
 
     [Header("Enemies")]
@@ -49,6 +54,13 @@ public class BattleSceneManager : MonoBehaviour
     public Transform TurnFrameCenter;
     public Transform TurnFrameEnd;
     public GameObject uncontrollablePanel;
+    [SerializeField] GameObject nextArrow;
+    [SerializeField] GameObject previousArrow;
+    public GameObject useItemPanel;
+    [SerializeField] Image useItemIcon;
+    [SerializeField] TMP_Text useItemInfo;
+    [SerializeField] TMP_Text useItemName;
+
 
 
 
@@ -56,6 +68,7 @@ public class BattleSceneManager : MonoBehaviour
     bool isPlayerTurn = true;
     bool isGameClear = false;
     bool isGameOver = false;
+    bool isOpenUseItemPanel = false;
 
 
     void Awake()
@@ -133,6 +146,24 @@ public class BattleSceneManager : MonoBehaviour
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
         gameManager.player.currentHP = gameManager.player.maxHP; // 回復ポイントまで回復できないよう変更予定
         gameManager.player.Refresh();
+
+        // アイテム関連の初期化
+
+        if (gameManager.player.MyItemList.Count <= 0)
+        {
+            itemDisplay.SetActive(false);
+            nextArrow.SetActive(false);
+            previousArrow.SetActive(false);
+            itemAmount = null;
+            itemName = null;
+        }
+        else
+        {
+            nextArrow.SetActive(true);
+            previousArrow.SetActive(true);
+            itemDisplay.SetActive(true);
+            ShowItem();
+        }
     }
 
     void TurnCalc()
@@ -327,6 +358,73 @@ public class BattleSceneManager : MonoBehaviour
             PlayerSideUI.SetActive(true);
             EnemySideUI.SetActive(true);
         }
+    }
+
+    public void ShowNextItem()
+    {
+        currentItemIndex = (currentItemIndex + 1) % gameManager.player.MyItemList.Count;
+        ShowItem();
+    }
+
+    public void ShowPreviousItem()
+    {
+        // 前のアイテムを表示する
+        currentItemIndex = (currentItemIndex - 1 + gameManager.player.MyItemList.Count) % gameManager.player.MyItemList.Count;
+        ShowItem();
+    }
+
+    public void OpenUseItemPanel()
+    {
+        if (!isOpenUseItemPanel)
+        {
+            isOpenUseItemPanel = !isOpenUseItemPanel;
+            useItemPanel.SetActive(true);
+            ShowItem();
+        }
+    }
+
+    private void ShowItem()
+    {
+        itemName.text = gameManager.player.MyItemList[currentItemIndex].name;
+        itemIcon.sprite = gameManager.player.MyItemList[currentItemIndex].icon;
+        itemAmount.text = gameManager.player.MyItemList[currentItemIndex].amount.ToString();
+        useItemIcon.sprite = gameManager.player.MyItemList[currentItemIndex].icon;
+        useItemName.text = gameManager.player.MyItemList[currentItemIndex].name;
+        useItemInfo.text = gameManager.player.MyItemList[currentItemIndex].useInfo;
+    }
+
+    public void CloseUseItemPanel()
+    {
+        if (isOpenUseItemPanel)
+        {
+            isOpenUseItemPanel = !isOpenUseItemPanel;
+            useItemPanel.SetActive(false);
+        }
+    }
+
+    public void UseItem()
+    {
+        switch (gameManager.player.MyItemList[currentItemIndex].name)
+        {
+            case "Red Potion":
+                gameManager.player.currentHP += gameManager.player.MyItemList[currentItemIndex].value;
+                if (gameManager.player.currentHP > gameManager.player.maxHP)
+                {
+                    gameManager.player.currentHP = gameManager.player.maxHP;
+                }
+                gameManager.player.Refresh();
+                gameManager.player.MyItemList[currentItemIndex].amount -= 1;
+                ShowItem();
+                if (gameManager.player.MyItemList[currentItemIndex].amount <= 0)
+                {
+                    gameManager.player.MyItemList[currentItemIndex].amount = 0;
+                    gameManager.player.MyItemList.RemoveAt(currentItemIndex);
+                    ShowNextItem();
+                }
+                break;
+        }
+        isOpenUseItemPanel = !isOpenUseItemPanel;
+        useItemPanel.SetActive(false);
     }
 
 }

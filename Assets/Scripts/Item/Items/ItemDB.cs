@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class ItemDB : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public List<ItemSO> ItemDataBase = new List<ItemSO>();
 
-    // Update is called once per frame
-    void Update()
+    //singleton
+    public static ItemDB instance;
+
+    private void Awake()
     {
-        
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 }

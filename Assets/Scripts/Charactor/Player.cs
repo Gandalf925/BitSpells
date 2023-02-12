@@ -25,7 +25,7 @@ public class Player : MonoBehaviour
     public List<ArtifactEntity> artsList = new List<ArtifactEntity>();
 
     [Header("Items")]
-
+    public List<ItemSO> MyItemList = new List<ItemSO>();
 
     [Header("UI")]
 
@@ -73,31 +73,38 @@ public class Player : MonoBehaviour
             return;
         }
 
+        currentEnergy -= selectedCard.data.cost;
+
         if (selectedCard.data.cardType == Card.Types.Attack)
         {
-            currentEnergy -= selectedCard.data.cost;
-            enemy.Damage(selectedCard);
-            enemy.CheckAlive();
+            switch (selectedCard.data.name)
+            {
+                case "Fire":
+                    enemy.Damage(selectedCard);
+                    enemy.CheckAlive();
+                    break;
 
-            // ダメージ演出とカードを消す演出を入れる
-            StopAllCoroutines();
-            StartCoroutine(selectedCard.Disapear());
-            StartCoroutine(PlayCardEffect(selectedCard));
-            StartCoroutine(AfterCardEffects(selectedCard));
+                case "Ice":
+                    enemy.Damage(selectedCard);
+                    enemy.CheckAlive();
+                    break;
+            }
+
         }
 
         if (selectedCard.data.cardType == Card.Types.Block)
         {
-            currentEnergy -= selectedCard.data.cost;
             AddBlock(selectedCard.data.value);
-
-            // ダメージ演出とカードを消す演出を入れる
-
-            StartCoroutine(AfterCardEffects(selectedCard));
         }
+
+        StopAllCoroutines();
+        StartCoroutine(PlayAttackEffect(selectedCard));
+        StartCoroutine(selectedCard.Disapear());
+        StartCoroutine(AfterCardEffects(selectedCard));
     }
 
-    private IEnumerator PlayCardEffect(CardUI selectedCard)
+
+    private IEnumerator PlayAttackEffect(CardUI selectedCard)
     {
         Vector3 mousePos = Input.mousePosition;
         Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);

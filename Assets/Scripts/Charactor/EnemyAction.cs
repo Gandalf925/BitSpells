@@ -10,4 +10,5 @@ public class EnemyAction
     public int value;
     public int chance;
     public Sprite icon;
+    public GameObject effectPrefab;
 }

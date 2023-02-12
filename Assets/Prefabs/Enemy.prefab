@@ -872,6 +872,7 @@ MonoBehaviour:
   disapearEnemyIconPanel: {fileID: 2434471511409511774}
   disapearEnemyBase: {fileID: 5727181308598909956}
   disapearEnemyNameFrame: {fileID: 3316880593693926359}
+  enemyAttackEffectPosition: {fileID: 0}
 --- !u!114 &8081341332270829532
 MonoBehaviour:
   m_ObjectHideFlags: 0
