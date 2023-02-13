@@ -11,6 +11,9 @@ public class GameManager : MonoBehaviour
     public Artifact artifact;
     [SerializeField] GameObject configPanel;
     bool isOpenConfig = false;
+    public GameObject PlayerSideUI;
+    public GameObject EnemySideUI;
+    public Toggle HideUIToggle;
 
     //singleton
     public static GameManager instance;
@@ -39,6 +42,20 @@ public class GameManager : MonoBehaviour
         {
             isOpenConfig = false;
             configPanel.SetActive(false);
+        }
+    }
+
+    public void HideUI()
+    {
+        if (!HideUIToggle.isOn)
+        {
+            PlayerSideUI.SetActive(false);
+            EnemySideUI.SetActive(false);
+        }
+        else
+        {
+            PlayerSideUI.SetActive(true);
+            EnemySideUI.SetActive(true);
         }
     }
 

@@ -3152,10 +3152,7 @@ MonoBehaviour:
   EndPanel: {fileID: 1375773968}
   ClearPopup: {fileID: 1725673145}
   DefeatPopup: {fileID: 1610696532}
-  HideUIToggle: {fileID: 778351476}
   BackGroundPanel: {fileID: 1351854262}
-  PlayerSideUI: {fileID: 656402601}
-  EnemySideUI: {fileID: 1746269344}
   TurnFrameStart: {fileID: 410847237}
   TurnFrameCenter: {fileID: 1819354493}
   TurnFrameEnd: {fileID: 1100189183}
@@ -5367,6 +5364,52 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4e7494aaf54916e4f92fd374457e126f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &965815820
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 965815822}
+  - component: {fileID: 965815821}
+  m_Layer: 0
+  m_Name: ArtifactDB
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &965815821
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965815820}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e326d8c1be85514cae4bef460df5e2c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  artifactDataBase:
+  - {fileID: 11400000, guid: 18fec4587580aaf49881dcd4b814b7aa, type: 2}
+--- !u!4 &965815822
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 965815820}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &975166410 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6361240030393747875, guid: 4518dea19dacc4920ac012d15fb91ccf, type: 3}
@@ -6190,7 +6233,7 @@ GameObject:
   - component: {fileID: 1135521137}
   - component: {fileID: 1135521136}
   m_Layer: 0
-  m_Name: ItemManager
+  m_Name: ItemDB
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6358,6 +6401,9 @@ MonoBehaviour:
   player: {fileID: 1271203775}
   artifact: {fileID: 1271203777}
   configPanel: {fileID: 1422745764}
+  PlayerSideUI: {fileID: 656402601}
+  EnemySideUI: {fileID: 1746269344}
+  HideUIToggle: {fileID: 778351476}
 --- !u!4 &1149129521
 Transform:
   m_ObjectHideFlags: 0
@@ -7195,8 +7241,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
   - {fileID: 11400000, guid: 0d32b78f8f96b90449ac5a5331030f50, type: 2}
-  artsList:
-  - {fileID: 11400000, guid: 18fec4587580aaf49881dcd4b814b7aa, type: 2}
   MyItemList:
   - {fileID: 11400000, guid: 4107603d92d3bef4691e7227a7ad11ba, type: 2}
   - {fileID: 11400000, guid: 64ae7482eb6229148b0e091b73e3b89d, type: 2}
@@ -7238,6 +7282,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac17be2b972bbb048ba37f34ca7fc700, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1271203775}
+  playerHasArts:
+  - {fileID: 11400000, guid: 18fec4587580aaf49881dcd4b814b7aa, type: 2}
+  equipedArts:
+  - {fileID: 11400000, guid: 18fec4587580aaf49881dcd4b814b7aa, type: 2}
 --- !u!1 &1292033309
 GameObject:
   m_ObjectHideFlags: 0

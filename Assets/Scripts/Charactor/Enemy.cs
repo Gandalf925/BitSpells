@@ -122,7 +122,6 @@ public class Enemy : MonoBehaviour
         Transform parent = effect.transform.parent;
 
         yield return new WaitForSeconds(1f);
-        Destroy(parent.gameObject);
         Destroy(effect);
     }
 

@@ -2,8 +2,24 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "ArtifactDB", menuName = "BitSpells/ArtifactDB", order = 0)]
-public class ArtifactDB : ScriptableObject
+public class ArtifactDB : MonoBehaviour
 {
-    public List<ArtifactEntity> artifactDB = new List<ArtifactEntity>();
+    public List<ArtifactEntity> artifactDataBase = new List<ArtifactEntity>();
+
+
+    //singleton
+    public static ArtifactDB instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 }

@@ -20,3 +20,4 @@ MonoBehaviour:
   cardType: 1
   targetTypes: 0
   icon: {fileID: 21300000, guid: c5fdd3a9713bc3b49ad7c8fde5f53e05, type: 3}
+  effectPrefab: {fileID: 6703250321131892297, guid: 2b987d41506d172419fa18578f6ac380, type: 3}

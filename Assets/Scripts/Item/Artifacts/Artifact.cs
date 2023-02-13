@@ -5,24 +5,40 @@ using UnityEngine.AddressableAssets;
 
 public class Artifact : MonoBehaviour
 {
-    GameManager gameManager;
+    public Player player;
+    public List<ArtifactEntity> playerHasArts = new List<ArtifactEntity>();
 
-    void Awake()
+    public List<ArtifactEntity> equipedArts = new List<ArtifactEntity>();
+
+    //singleton
+    public static Artifact instance;
+
+    private void Awake()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+        // player = FindObjectOfType<Player>();
     }
 
-    // Geme開始時に効果を発するArtifactEffectはここに追加する
+    // Game開始時に効果を発するArtifactEffectはここに追加する
     public void playArtifactEffect()
     {
-        if (gameManager.player.hasArts("Locket") == true)
+        foreach (ArtifactEntity art in equipedArts)
         {
-            var op = Addressables.LoadAssetAsync<ArtifactEntity>("Artifacts/Locket");
-            var artifact = op.WaitForCompletion();
-            gameManager.player.maxHP += artifact.value;
-
-            Addressables.Release(op);
+            switch (art.name)
+            {
+                case "Locket":
+                    player.maxHP += art.value;
+                    break;
+            }
         }
-
+        player.Refresh();
     }
 }

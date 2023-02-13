@@ -21,9 +21,6 @@ public class Player : MonoBehaviour
     [Header("Cards")]
     public List<Card> playerDeck = new List<Card>();
 
-    [Header("Artifacts")]
-    public List<ArtifactEntity> artsList = new List<ArtifactEntity>();
-
     [Header("Items")]
     public List<ItemSO> MyItemList = new List<ItemSO>();
 
@@ -57,13 +54,13 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
-    }
-
-    private void Start()
-    {
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
         feedbackPlayer = FindObjectOfType<MMF_Player>();
+
+        // artifactが機能しなくなったので、アーティファクト機能を作り変える。
+
     }
+
 
     public void PlayCard(CardUI selectedCard, Enemy enemy)
     {
@@ -213,11 +210,6 @@ public class Player : MonoBehaviour
         {
             ShieldFrameIcon.gameObject.SetActive(false);
         }
-    }
-
-    public bool hasArts(string artifactName)
-    {
-        return artsList.Exists(artifact => artifact.name == artifactName);
     }
 }
 

@@ -46,10 +46,7 @@ public class BattleSceneManager : MonoBehaviour
     public GameObject EndPanel;
     public GameObject ClearPopup;
     public GameObject DefeatPopup;
-    public Toggle HideUIToggle;
     public GameObject BackGroundPanel;
-    public GameObject PlayerSideUI;
-    public GameObject EnemySideUI;
     public Transform TurnFrameStart;
     public Transform TurnFrameCenter;
     public Transform TurnFrameEnd;
@@ -74,10 +71,6 @@ public class BattleSceneManager : MonoBehaviour
     void Awake()
     {
         gameManager = FindObjectOfType<GameManager>();
-    }
-
-    void Start()
-    {
         InitBattle();
     }
 
@@ -90,7 +83,7 @@ public class BattleSceneManager : MonoBehaviour
             if (!isGameClear)
             {
                 isGameClear = true;
-                HideUIToggle.gameObject.SetActive(false);
+                gameManager.HideUIToggle.gameObject.SetActive(false);
                 BattleClear();
             }
         }
@@ -101,7 +94,7 @@ public class BattleSceneManager : MonoBehaviour
             if (!isGameOver)
             {
                 isGameOver = true;
-                HideUIToggle.gameObject.SetActive(false);
+                gameManager.HideUIToggle.gameObject.SetActive(false);
                 BattleDefeat();
             }
         }
@@ -346,20 +339,6 @@ public class BattleSceneManager : MonoBehaviour
         ClearPopup.SetActive(false);
         // ゲームオーバー時の処理（王国へシーン移行）
 
-    }
-
-    public void HideUI()
-    {
-        if (!HideUIToggle.isOn)
-        {
-            PlayerSideUI.SetActive(false);
-            EnemySideUI.SetActive(false);
-        }
-        else
-        {
-            PlayerSideUI.SetActive(true);
-            EnemySideUI.SetActive(true);
-        }
     }
 
     public void ShowNextItem()
