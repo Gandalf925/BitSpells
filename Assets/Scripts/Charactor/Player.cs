@@ -56,9 +56,6 @@ public class Player : MonoBehaviour
         }
         battleSceneManager = FindObjectOfType<BattleSceneManager>();
         feedbackPlayer = FindObjectOfType<MMF_Player>();
-
-        // artifactが機能しなくなったので、アーティファクト機能を作り変える。
-
     }
 
 

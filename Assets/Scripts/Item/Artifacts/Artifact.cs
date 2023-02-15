@@ -24,7 +24,6 @@ public class Artifact : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        // player = FindObjectOfType<Player>();
     }
 
     // Game開始時に効果を発するArtifactEffectはここに追加する

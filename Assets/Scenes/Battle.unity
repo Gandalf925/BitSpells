@@ -2525,7 +2525,7 @@ GameObject:
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!81 &519420029
 AudioListener:
@@ -4454,17 +4454,6 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3843181118180891635, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
   m_PrefabInstance: {fileID: 1480585702}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &778351476 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
-  m_PrefabInstance: {fileID: 1480585702}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!224 &786925090 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8015721068659747757, guid: cc214a7cb9b12bf4fa59dadf8b9918e7, type: 3}
@@ -4770,6 +4759,37 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 860509081}
   m_CullTransparentMesh: 0
+--- !u!1 &868978835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 868978836}
+  m_Layer: 0
+  m_Name: DummyObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &868978836
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 868978835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &878832044
 GameObject:
   m_ObjectHideFlags: 0
@@ -5379,7 +5399,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &965815821
 MonoBehaviour:
@@ -6237,7 +6257,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1135521136
 MonoBehaviour:
@@ -6384,7 +6404,7 @@ GameObject:
   m_TagString: GameManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1149129520
 MonoBehaviour:
@@ -6398,12 +6418,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a07271a12360941bbbfe02edcf30c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  battlePlayerSideUI: {fileID: 656402601}
+  battleEnemySideUI: {fileID: 1746269344}
+  restTwoButtonEventPanel: {fileID: 0}
+  restOneButtonEventPanel: {fileID: 0}
+  restPlayerSideUI: {fileID: 0}
+  restSparkParticle1: {fileID: 0}
+  restSparkParticle2: {fileID: 0}
   player: {fileID: 1271203775}
   artifact: {fileID: 1271203777}
   configPanel: {fileID: 1422745764}
-  PlayerSideUI: {fileID: 656402601}
-  EnemySideUI: {fileID: 1746269344}
-  HideUIToggle: {fileID: 778351476}
+  HideUIToggle: {fileID: 1264892998}
 --- !u!4 &1149129521
 Transform:
   m_ObjectHideFlags: 0
@@ -6575,7 +6600,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1180905524
 MonoBehaviour:
@@ -7197,6 +7222,11 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &1264892998 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1457103607610406884, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
+  m_PrefabInstance: {fileID: 1480585702}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1271203774
 GameObject:
   m_ObjectHideFlags: 0
@@ -7213,7 +7243,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!114 &1271203775
 MonoBehaviour:
@@ -7774,7 +7804,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 2147483647
   m_IsActive: 1
 --- !u!20 &1382846451
 Camera:
@@ -8377,7 +8407,7 @@ PrefabInstance:
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 639820638}
+      objectReference: {fileID: 1149129520}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -8388,7 +8418,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: BattleSceneManager, Assembly-CSharp
+      value: GameManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
