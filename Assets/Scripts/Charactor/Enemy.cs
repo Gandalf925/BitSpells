@@ -32,7 +32,7 @@ public class Enemy : MonoBehaviour
     private void Awake()
     {
         view = GetComponent<EnemyView>();
-        player = gameManager.player;
+        player = Player.instance;
         feedbackPlayer = FindObjectOfType<MMF_Player>();
     }
 

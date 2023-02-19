@@ -5,7 +5,6 @@ using UnityEngine.AddressableAssets;
 
 public class Artifact : MonoBehaviour
 {
-    public Player player;
     public List<ArtifactEntity> playerHasArts = new List<ArtifactEntity>();
 
     public List<ArtifactEntity> equipedArts = new List<ArtifactEntity>();
@@ -34,10 +33,10 @@ public class Artifact : MonoBehaviour
             switch (art.name)
             {
                 case "Locket":
-                    player.maxHP += art.value;
+                    Player.instance.maxHP += art.value;
                     break;
             }
         }
-        player.Refresh();
+        Player.instance.Refresh();
     }
 }
