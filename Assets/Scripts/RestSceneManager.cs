@@ -8,6 +8,7 @@ using DG.Tweening;
 public class RestSceneManager : MonoBehaviour
 {
     GameManager gameManager;
+    NextSceneManager nextSceneManager;
     public GameObject twoButtonEventPanel;
     public TMP_Text twoButtonPanelTextInfo;
     public Button twoButtonPanelButton1;
@@ -23,22 +24,18 @@ public class RestSceneManager : MonoBehaviour
     Vector3 openEventPanelSize = new Vector3(1.35f, 1.35f, 1.35f);
     Vector3 closeEventPanelSize = new Vector3(0f, 0f, 0f);
     int healAmount = 70;
+
     [SerializeField] GameObject sparkParticle1;
     [SerializeField] GameObject sparkParticle2;
 
-    private void Awake()
-    {
-        gameManager = FindObjectOfType<GameManager>();
-
-    }
-
     void Start()
     {
+        gameManager = FindObjectOfType<GameManager>();
         RestInit();
         StartCoroutine(FirstOpenTwoButtonEventPanel());
         twoButtonPanelButton1.onClick.AddListener(PushRestButton);
-        twoButtonPanelButton2.onClick.AddListener(PushLeaveButton);
-        oneButtonPanelButton.onClick.AddListener(PushLeaveButton);
+        twoButtonPanelButton2.onClick.AddListener(Leave);
+        oneButtonPanelButton.onClick.AddListener(Leave);
     }
 
     void RestInit()
@@ -71,6 +68,7 @@ public class RestSceneManager : MonoBehaviour
         twoButtonEventPanel.transform.DOScale(closeEventPanelSize, 0.2f);
         yield return new WaitForSeconds(0.2f);
         twoButtonEventPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
     }
 
     IEnumerator CloseOneButtonEventPanel()
@@ -78,16 +76,12 @@ public class RestSceneManager : MonoBehaviour
         oneButtonEventPanel.transform.DOScale(closeEventPanelSize, 0.2f);
         yield return new WaitForSeconds(0.2f);
         oneButtonEventPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
     }
 
     public void PushRestButton()
     {
         StartCoroutine(Rest());
-    }
-
-    public void PushLeaveButton()
-    {
-        StartCoroutine(Leave());
     }
 
     public IEnumerator Rest()
@@ -105,15 +99,15 @@ public class RestSceneManager : MonoBehaviour
         OpenOneButtonEventPanel();
     }
 
-    public IEnumerator Leave()
+    public void Leave()
     {
         EndParticles();
         StartCoroutine(CloseTwoButtonEventPanel());
         StartCoroutine(CloseOneButtonEventPanel());
-        yield return new WaitForSeconds(1f);
         Debug.Log("移動先の表示をする");
-    }
 
+        StartCoroutine(NextSceneManager.instance.GenerateNextScene());
+    }
 
     void StartParticles()
     {

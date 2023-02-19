@@ -45,6 +45,14 @@ MonoBehaviour:
     m_Address: Cards/MagicShield
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: a0063631bfff78940a9dd74b79284974
+    m_Address: NextScenes/Forest1-1
+    m_ReadOnly: 0
+    m_SerializedLabels: []
+  - m_GUID: 0ab840d8998ca6a478c13499541b5baf
+    m_Address: NextScenes/Rest
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1854ccb9b58aeee44909251fa079d60e, type: 2}
   m_SchemaSet:

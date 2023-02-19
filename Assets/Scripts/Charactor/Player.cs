@@ -198,14 +198,19 @@ public class Player : MonoBehaviour
 
     public void DisplayBlock()
     {
-        if (block > 0)
+        if (ShieldFrameIcon != null && ShieldFrameText != null)
         {
-            ShieldFrameIcon.gameObject.SetActive(true);
-            ShieldFrameText.text = block.ToString();
-        }
-        else
-        {
-            ShieldFrameIcon.gameObject.SetActive(false);
+            if (block > 0)
+            {
+
+                ShieldFrameIcon.gameObject.SetActive(true);
+                ShieldFrameText.text = block.ToString();
+            }
+            else
+            {
+                ShieldFrameIcon.gameObject.SetActive(false);
+
+            }
         }
     }
 }
