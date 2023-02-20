@@ -19,11 +19,7 @@ MonoBehaviour:
     width: 1536
     height: 772.8
   m_ShowMode: 4
-<<<<<<< HEAD
   m_Title: Console
-=======
-  m_Title: Hierarchy
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
   m_RootView: {fileID: 8}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -78,11 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-<<<<<<< HEAD
   controlID: 64
-=======
-  controlID: 60
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -102,8 +94,8 @@ MonoBehaviour:
     y: 0
     width: 295.2
     height: 353.6
-  m_MinSize: {x: 200, y: 200}
-  m_MaxSize: {x: 4000, y: 4000}
+  m_MinSize: {x: 202, y: 221}
+  m_MaxSize: {x: 4002, y: 4021}
   m_ActualView: {fileID: 15}
   m_Panes:
   - {fileID: 15}
@@ -134,11 +126,7 @@ MonoBehaviour:
   m_MinSize: {x: 300, y: 200}
   m_MaxSize: {x: 24288, y: 16192}
   vertical: 0
-<<<<<<< HEAD
   controlID: 17
-=======
-  controlID: 54
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -188,12 +176,11 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 100}
   m_MaxSize: {x: 4000, y: 4000}
 =======
-    y: 374.4
-    width: 743.2
-    height: 348.4
-  m_MinSize: {x: 101, y: 121}
-  m_MaxSize: {x: 4001, y: 4021}
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
+    y: 482.4
+    width: 828.8
+    height: 240.4
+  m_MinSize: {x: 100, y: 100}
+  m_MaxSize: {x: 4000, y: 4000}
   m_ActualView: {fileID: 18}
   m_Panes:
   - {fileID: 18}
@@ -294,11 +281,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-<<<<<<< HEAD
-  controlID: 26
-=======
   controlID: 122
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -381,11 +364,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: cc590000
     m_LastClickedID: 22988
-<<<<<<< HEAD
-    m_ExpandedIDs: 000000007e7c0000807c0000827c0000847c0000867c0000887c00008a7c00008c7c00008e7c0000907c0000927c0000947c0000967c0000987c00009a7c00009c7c00009e7c0000a07c0000a27c0000a47c0000a67c0000a87c0000aa7c0000ac7c0000ae7c0000b07c0000b27c0000b47c0000b67c0000b87c0000ba7c0000bc7c0000be7c0000c07c0000
-=======
     m_ExpandedIDs: 000000007a7c00007c7c00007e7c0000807c0000827c0000847c0000867c0000887c00008a7c00008c7c00008e7c0000907c0000927c0000947c0000967c0000987c00009a7c00009c7c00009e7c0000a07c0000a27c0000a47c0000a67c0000a87c0000aa7c0000ac7c0000ae7c0000b07c0000b27c0000b47c0000b67c0000b87c0000ba7c0000
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -410,36 +389,21 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_AssetTreeState:
-<<<<<<< HEAD
-    scrollPos: {x: 0, y: 540}
-    m_SelectedIDs: 
-    m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff00000000147b00007e7c0000807c0000827c0000847c0000867c0000887c00008a7c00008c7c00008e7c0000907c0000927c0000947c0000967c0000987c00009a7c00009c7c00009e7c0000a07c0000a27c0000a47c0000a67c0000a87c0000aa7c0000ac7c0000ae7c0000b07c0000b27c0000b47c0000b67c0000b87c0000ba7c0000bc7c0000be7c0000c07c0000287d00005e7d0000
-    m_RenameOverlay:
-      m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
-=======
     scrollPos: {x: 0, y: 449.80005}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: ffffffff000000007a7c00007c7c00007e7c0000807c0000827c0000847c0000867c0000887c00008a7c00008c7c00008e7c0000907c0000927c0000947c0000967c0000987c00009a7c00009c7c00009e7c0000a07c0000a27c0000a47c0000a67c0000a87c0000aa7c0000ac7c0000ae7c0000b07c0000b27c0000b47c0000b67c0000b87c0000ba7c00003c7d00003e7d0000407d0000
+    m_ExpandedIDs: ffffffff000000007e7c0000807c0000827c0000847c0000867c0000887c00008a7c00008c7c00008e7c0000907c0000927c0000947c0000967c0000987c00009a7c00009c7c00009e7c0000a07c0000a27c0000a47c0000a67c0000a87c0000aa7c0000ac7c0000ae7c0000b07c0000b27c0000b47c0000b67c0000b87c0000ba7c0000bc7c0000be7c0000c07c0000c27c0000c47c0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: NextSceneCard
       m_OriginalName: NextSceneCard
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-<<<<<<< HEAD
-      m_UserData: 0
-=======
       m_UserData: 31378
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
       m_OriginalEventType: 11
@@ -556,15 +520,6 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-<<<<<<< HEAD
-      m_SelectedIDs: 547d0000
-      m_LastClickedID: 0
-      m_ExpandedIDs: b8ddfeff1ee1feff36ecfeff4602ffff4219ffff8c23ffffd62dffff9e39ffffe63dffff8c3fffffa447ffffcc59ffffb66fffffb684ffff82a1ffff3ca6ffff78aaffffe6aeffff5eb7ffffd0cdffffb6e5ffff82ecffff94f6ffffdcfaffffb87900002c7a0000c0900100d8900100dc9201000a9301008ec7010002c8010012c801008ef001002af201005cf20100c0f2010064f801007af8010090fa0100ca2b0200602d0200922d0200f62d0200322f02005e310200
-      m_RenameOverlay:
-        m_UserAcceptedRename: 0
-        m_Name: UIManager
-        m_OriginalName: UIManager
-=======
       m_SelectedIDs: dcfa0100
       m_LastClickedID: 129756
       m_ExpandedIDs: 2c38ffffe83bffff8641ffffc64fffff3e55ffffe266ffffb884ffff5689ffffee9fffff82a4ffff0aaeffff7ab2ffffecb6ffff80c2ffffdcfafffff4ffffffb0790000287a000000f9010066130200
@@ -572,24 +527,16 @@ MonoBehaviour:
         m_UserAcceptedRename: 0
         m_Name: 
         m_OriginalName: 
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
         m_EditFieldRect:
           serializedVersion: 2
           x: 0
           y: 0
           width: 0
           height: 0
-<<<<<<< HEAD
-        m_UserData: -46920
-        m_IsWaitingForDelay: 0
-        m_IsRenaming: 0
-        m_OriginalEventType: 4
-=======
         m_UserData: 0
         m_IsWaitingForDelay: 0
         m_IsRenaming: 0
         m_OriginalEventType: 11
->>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
         m_IsRenamingFilename: 0
         m_ClientGUIView: {fileID: 4}
       m_SearchString: 

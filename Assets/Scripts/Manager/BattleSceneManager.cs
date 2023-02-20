@@ -31,9 +31,6 @@ public class BattleSceneManager : MonoBehaviour
     public EnemyEntity[] eEntityArr;
     public Transform enemyPositionPanel;
 
-    [Header("Manager")]
-    public GameManager gameManager;
-
     [Header("UI")]
     public Button turnEndButton;
     Transform deck;
@@ -59,6 +56,7 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] TMP_Text useItemInfo;
     [SerializeField] TMP_Text useItemName;
     UIManager uIManager;
+    GameManager gameManager;
 
 
 
@@ -86,18 +84,18 @@ public class BattleSceneManager : MonoBehaviour
             if (!isGameClear)
             {
                 isGameClear = true;
-                gameManager.HideUIToggle.gameObject.SetActive(false);
+                GameManager.instance.HideUIToggle.gameObject.SetActive(false);
                 BattleClear();
             }
         }
 
-        if (gameManager.player.currentHP == 0)
+        if (Player.instance.currentHP == 0)
         {
             StopAllCoroutines();
             if (!isGameOver)
             {
                 isGameOver = true;
-                gameManager.HideUIToggle.gameObject.SetActive(false);
+                GameManager.instance.HideUIToggle.gameObject.SetActive(false);
                 BattleDefeat();
             }
         }
@@ -111,7 +109,7 @@ public class BattleSceneManager : MonoBehaviour
         // Enemyの初期化
         for (int i = 0; i < eEntityArr.Length; i++)
         {
-            enemy.gameManager = FindObjectOfType<GameManager>();
+            enemy.gameManager = GameManager.instance;
             enemy.battleSceneManager = FindObjectOfType<BattleSceneManager>();
             enemy = Instantiate(enemyPrefab, enemyPositionPanel, false);
             enemies.Add(enemy);
@@ -133,9 +131,9 @@ public class BattleSceneManager : MonoBehaviour
         drawPile = new List<Card>();
         cardsInHand = new List<Card>();
 
-        discardPile.AddRange(gameManager.player.playerDeck);
+        discardPile.AddRange(GameManager.instance.player.playerDeck);
         ShuffleCards();
-        DrawCards(gameManager.player.drawAmount);
+        DrawCards(Player.instance.drawAmount);
 
         // PlayerのStatusを初期化
         gameManager.artifact.playArtifactEffect();
@@ -146,7 +144,7 @@ public class BattleSceneManager : MonoBehaviour
 
         // アイテム関連の初期化
 
-        if (gameManager.player.MyItemList.Count <= 0)
+        if (Player.instance.MyItemList.Count <= 0)
         {
             itemDisplay.SetActive(false);
             nextArrow.SetActive(false);
@@ -191,8 +189,8 @@ public class BattleSceneManager : MonoBehaviour
             enemy.DisplayNextAction();
         }
 
-        DrawCards(gameManager.player.drawAmount);
-        gameManager.player.currentEnergy = gameManager.player.maxEnergy;
+        DrawCards(Player.instance.drawAmount);
+        Player.instance.currentEnergy = Player.instance.maxEnergy;
 
         gameManager.player.block = 0;
         uIManager.Refresh();
@@ -347,14 +345,14 @@ public class BattleSceneManager : MonoBehaviour
 
     public void ShowNextItem()
     {
-        currentItemIndex = (currentItemIndex + 1) % gameManager.player.MyItemList.Count;
+        currentItemIndex = (currentItemIndex + 1) % Player.instance.MyItemList.Count;
         ShowItem();
     }
 
     public void ShowPreviousItem()
     {
         // 前のアイテムを表示する
-        currentItemIndex = (currentItemIndex - 1 + gameManager.player.MyItemList.Count) % gameManager.player.MyItemList.Count;
+        currentItemIndex = (currentItemIndex - 1 + Player.instance.MyItemList.Count) % Player.instance.MyItemList.Count;
         ShowItem();
     }
 
@@ -370,12 +368,12 @@ public class BattleSceneManager : MonoBehaviour
 
     private void ShowItem()
     {
-        itemName.text = gameManager.player.MyItemList[currentItemIndex].name;
-        itemIcon.sprite = gameManager.player.MyItemList[currentItemIndex].icon;
-        itemAmount.text = gameManager.player.MyItemList[currentItemIndex].amount.ToString();
-        useItemIcon.sprite = gameManager.player.MyItemList[currentItemIndex].icon;
-        useItemName.text = gameManager.player.MyItemList[currentItemIndex].name;
-        useItemInfo.text = gameManager.player.MyItemList[currentItemIndex].useInfo;
+        itemName.text = Player.instance.MyItemList[currentItemIndex].name;
+        itemIcon.sprite = Player.instance.MyItemList[currentItemIndex].icon;
+        itemAmount.text = Player.instance.MyItemList[currentItemIndex].amount.ToString();
+        useItemIcon.sprite = Player.instance.MyItemList[currentItemIndex].icon;
+        useItemName.text = Player.instance.MyItemList[currentItemIndex].name;
+        useItemInfo.text = Player.instance.MyItemList[currentItemIndex].useInfo;
     }
 
     public void CloseUseItemPanel()
@@ -389,21 +387,21 @@ public class BattleSceneManager : MonoBehaviour
 
     public void UseItem()
     {
-        switch (gameManager.player.MyItemList[currentItemIndex].name)
+        switch (Player.instance.MyItemList[currentItemIndex].name)
         {
             case "Red Potion":
-                gameManager.player.currentHP += gameManager.player.MyItemList[currentItemIndex].value;
-                if (gameManager.player.currentHP > gameManager.player.maxHP)
+                Player.instance.currentHP += Player.instance.MyItemList[currentItemIndex].value;
+                if (Player.instance.currentHP > Player.instance.maxHP)
                 {
-                    gameManager.player.currentHP = gameManager.player.maxHP;
+                    Player.instance.currentHP = Player.instance.maxHP;
                 }
                 uIManager.Refresh();
                 gameManager.player.MyItemList[currentItemIndex].amount -= 1;
                 ShowItem();
-                if (gameManager.player.MyItemList[currentItemIndex].amount <= 0)
+                if (Player.instance.MyItemList[currentItemIndex].amount <= 0)
                 {
-                    gameManager.player.MyItemList[currentItemIndex].amount = 0;
-                    gameManager.player.MyItemList.RemoveAt(currentItemIndex);
+                    Player.instance.MyItemList[currentItemIndex].amount = 0;
+                    Player.instance.MyItemList.RemoveAt(currentItemIndex);
                     ShowNextItem();
                 }
                 break;

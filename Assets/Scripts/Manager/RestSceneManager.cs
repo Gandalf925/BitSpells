@@ -7,8 +7,6 @@ using DG.Tweening;
 
 public class RestSceneManager : MonoBehaviour
 {
-    GameManager gameManager;
-    NextSceneManager nextSceneManager;
     public GameObject twoButtonEventPanel;
     public TMP_Text twoButtonPanelTextInfo;
     public Button twoButtonPanelButton1;
@@ -32,7 +30,6 @@ public class RestSceneManager : MonoBehaviour
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
-
         RestInit();
         StartCoroutine(FirstOpenTwoButtonEventPanel());
         twoButtonPanelButton1.onClick.AddListener(PushRestButton);
@@ -91,10 +88,10 @@ public class RestSceneManager : MonoBehaviour
         EndParticles();
         StartCoroutine(CloseTwoButtonEventPanel());
         yield return new WaitForSeconds(0.5f);
-        gameManager.player.currentHP += gameManager.player.maxHP * (healAmount / 100);
-        if (gameManager.player.currentHP < gameManager.player.maxHP)
+        Player.instance.currentHP += Player.instance.maxHP * (healAmount / 100);
+        if (Player.instance.currentHP < Player.instance.maxHP)
         {
-            gameManager.player.currentHP = gameManager.player.maxHP;
+            Player.instance.currentHP = Player.instance.maxHP;
         }
         uIManager.Refresh();
 
