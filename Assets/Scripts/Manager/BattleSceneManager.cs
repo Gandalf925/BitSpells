@@ -70,10 +70,6 @@ public class BattleSceneManager : MonoBehaviour
     bool isOpenUseItemPanel = false;
 
 
-    void Awake()
-    {
-
-    }
     private void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
@@ -145,6 +141,7 @@ public class BattleSceneManager : MonoBehaviour
         gameManager.artifact.playArtifactEffect();
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
         gameManager.player.currentHP = gameManager.player.maxHP; // 回復ポイントまで回復できないよう変更予定
+
         uIManager.Refresh();
 
         // アイテム関連の初期化

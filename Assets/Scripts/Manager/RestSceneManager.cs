@@ -32,6 +32,7 @@ public class RestSceneManager : MonoBehaviour
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
+
         RestInit();
         StartCoroutine(FirstOpenTwoButtonEventPanel());
         twoButtonPanelButton1.onClick.AddListener(PushRestButton);
@@ -90,10 +91,10 @@ public class RestSceneManager : MonoBehaviour
         EndParticles();
         StartCoroutine(CloseTwoButtonEventPanel());
         yield return new WaitForSeconds(0.5f);
-        Player.instance.currentHP += Player.instance.maxHP * (healAmount / 100);
-        if (Player.instance.currentHP < Player.instance.maxHP)
+        gameManager.player.currentHP += gameManager.player.maxHP * (healAmount / 100);
+        if (gameManager.player.currentHP < gameManager.player.maxHP)
         {
-            Player.instance.currentHP = Player.instance.maxHP;
+            gameManager.player.currentHP = gameManager.player.maxHP;
         }
         uIManager.Refresh();
 

@@ -41,6 +41,10 @@ public class Artifact : MonoBehaviour
                     break;
             }
         }
+<<<<<<< HEAD
         uIManager.Refresh();
+=======
+        player.Refresh();
+>>>>>>> parent of 65a4c3a6 (Bug/BattleScene-not-move)
     }
 }
