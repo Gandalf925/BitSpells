@@ -6,6 +6,11 @@ TagManager:
   tags:
   - Enemy
   - GameManager
+  - PlayerSideUI
+  - BattleScene
+  - EnemySideUI
+  - ConfigPanel
+  - HideUIToggle
   layers:
   - Default
   - TransparentFX

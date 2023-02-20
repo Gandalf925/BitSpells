@@ -590,13 +590,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2148304282ec3e448aacff5c4245e307, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  forestSceneEntityList:
-  - {fileID: 11400000, guid: 0ab840d8998ca6a478c13499541b5baf, type: 2}
-  - {fileID: 11400000, guid: a0063631bfff78940a9dd74b79284974, type: 2}
+  forestSceneEntityList: []
   usedSceneList: []
   nextSceneEntityArr:
-  - {fileID: 11400000, guid: a0063631bfff78940a9dd74b79284974, type: 2}
   - {fileID: 11400000, guid: 0ab840d8998ca6a478c13499541b5baf, type: 2}
+  - {fileID: 11400000, guid: ed318957afd04f54b8c4e526d76cf7d7, type: 2}
   nextSceneCard: {fileID: 723424527}
   nextSceneCardPrefab: {fileID: 723424527}
   nextScenePositionPanel: {fileID: 655967807}
@@ -2798,6 +2796,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: HideUIToggle
       objectReference: {fileID: 0}
+    - target: {fileID: 1457103607610406884, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
+      propertyPath: m_TagString
+      value: HideUIToggle
+      objectReference: {fileID: 0}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: m_Interactable
       value: 1
@@ -2921,6 +2923,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 3843181118180891635, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
   m_PrefabInstance: {fileID: 690912296}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &722137882 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8015721068659747756, guid: cc214a7cb9b12bf4fa59dadf8b9918e7, type: 3}
+  m_PrefabInstance: {fileID: 1550784388}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &723424526 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 6242579806492448105, guid: 0f1296784a111de42857ca2099e8c83c, type: 3}
@@ -3364,7 +3377,7 @@ GameObject:
   - component: {fileID: 862044534}
   m_Layer: 5
   m_Name: ConfigPanel
-  m_TagString: Untagged
+  m_TagString: ConfigPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -8670,6 +8683,59 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 910918361}
   m_CullTransparentMesh: 0
+--- !u!1 &940450061
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 940450063}
+  - component: {fileID: 940450062}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &940450062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940450061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88d231636dd0ef4690e2e64b618c4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBarSlider: {fileID: 722137882}
+  energyBarSlider: {fileID: 1827901202}
+  maxHPText: {fileID: 789566043}
+  currentHPText: {fileID: 99448917}
+  maxEnergyText: {fileID: 270934224}
+  currentEnergyText: {fileID: 1044709783}
+  ShieldFrameIcon: {fileID: 634048432}
+  ShieldFrameText: {fileID: 583006392}
+  playerStatusUI: {fileID: 1485191760}
+--- !u!4 &940450063
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940450061}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &988681890
 GameObject:
   m_ObjectHideFlags: 0
@@ -11385,17 +11451,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1850514307 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8015721068659747756, guid: cc214a7cb9b12bf4fa59dadf8b9918e7, type: 3}
-  m_PrefabInstance: {fileID: 1550784388}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67db9e8f0e2ae9c40bc1e2b64352a6b4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1868151754
 GameObject:
   m_ObjectHideFlags: 0
@@ -11772,15 +11827,6 @@ MonoBehaviour:
   MyItemList:
   - {fileID: 11400000, guid: 4107603d92d3bef4691e7227a7ad11ba, type: 2}
   - {fileID: 11400000, guid: 64ae7482eb6229148b0e091b73e3b89d, type: 2}
-  hpBarSlider: {fileID: 1850514307}
-  energyBarSlider: {fileID: 1827901202}
-  maxHPText: {fileID: 789566043}
-  currentHPText: {fileID: 99448917}
-  maxEnergyText: {fileID: 270934224}
-  currentEnergyText: {fileID: 1044709783}
-  ShieldFrameIcon: {fileID: 634048432}
-  ShieldFrameText: {fileID: 583006392}
-  playerStatusUI: {fileID: 1485191760}
   feedbackPlayer: {fileID: 0}
   playerSideUI: {fileID: 1972458002}
 --- !u!4 &1977677845

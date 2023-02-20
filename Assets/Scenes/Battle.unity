@@ -2470,6 +2470,61 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 87f0c6aa9b85045efb55b6f6ad1df416, type: 3}
+--- !u!1 &472482131
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 472482133}
+  - component: {fileID: 472482132}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &472482132
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472482131}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f88d231636dd0ef4690e2e64b618c4fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBarSlider: {fileID: 786925091}
+  energyBarSlider: {fileID: 2082171820}
+  maxHPText: {fileID: 103923641}
+  currentHPText: {fileID: 667606721}
+  maxEnergyText: {fileID: 1386992721}
+  currentEnergyText: {fileID: 860509083}
+  ShieldFrameIcon: {fileID: 741465040}
+  ShieldFrameText: {fileID: 583808116}
+  playerStatusUI: {fileID: 1819769439}
+  feedbackPlayer: {fileID: 0}
+  playerSideUI: {fileID: 656402601}
+--- !u!4 &472482133
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 472482131}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &498734422
 GameObject:
   m_ObjectHideFlags: 0
@@ -3251,7 +3306,7 @@ GameObject:
   - component: {fileID: 656402603}
   m_Layer: 5
   m_Name: PlayerSideUI
-  m_TagString: Untagged
+  m_TagString: PlayerSideUI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -7243,17 +7298,6 @@ MonoBehaviour:
   MyItemList:
   - {fileID: 11400000, guid: 4107603d92d3bef4691e7227a7ad11ba, type: 2}
   - {fileID: 11400000, guid: 64ae7482eb6229148b0e091b73e3b89d, type: 2}
-  hpBarSlider: {fileID: 786925091}
-  energyBarSlider: {fileID: 2082171820}
-  maxHPText: {fileID: 103923641}
-  currentHPText: {fileID: 667606721}
-  maxEnergyText: {fileID: 1386992721}
-  currentEnergyText: {fileID: 860509083}
-  ShieldFrameIcon: {fileID: 741465040}
-  ShieldFrameText: {fileID: 583808116}
-  playerStatusUI: {fileID: 656402601}
-  feedbackPlayer: {fileID: 444818544}
-  playerSideUI: {fileID: 656402601}
 --- !u!4 &1271203776
 Transform:
   m_ObjectHideFlags: 0

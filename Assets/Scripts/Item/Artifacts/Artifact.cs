@@ -10,6 +10,8 @@ public class Artifact : MonoBehaviour
 
     public List<ArtifactEntity> equipedArts = new List<ArtifactEntity>();
 
+    UIManager uIManager;
+
     //singleton
     public static Artifact instance;
 
@@ -29,6 +31,7 @@ public class Artifact : MonoBehaviour
     // Game開始時に効果を発するArtifactEffectはここに追加する
     public void playArtifactEffect()
     {
+        uIManager = FindObjectOfType<UIManager>();
         foreach (ArtifactEntity art in equipedArts)
         {
             switch (art.name)
@@ -38,6 +41,6 @@ public class Artifact : MonoBehaviour
                     break;
             }
         }
-        player.Refresh();
+        uIManager.Refresh();
     }
 }

@@ -42,8 +42,6 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-        toggle = HideUIToggle.GetComponent<Toggle>();
     }
 
     public void toggleConfigPanel()

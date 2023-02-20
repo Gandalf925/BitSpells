@@ -24,21 +24,10 @@ public class Player : MonoBehaviour
     [Header("Items")]
     public List<ItemSO> MyItemList = new List<ItemSO>();
 
-    [Header("UI")]
 
-    public Slider hpBarSlider;
-    public Slider energyBarSlider;
-    public TMP_Text maxHPText;
-    public TMP_Text currentHPText;
-    public TMP_Text maxEnergyText;
-    public TMP_Text currentEnergyText;
-    public Image ShieldFrameIcon;
-    public TMP_Text ShieldFrameText;
-    public GameObject playerStatusUI;
 
     [Header("Utils")]
-    public MMF_Player feedbackPlayer;
-    public GameObject playerSideUI;
+    UIManager uIManager;
 
     //singleton
     public static Player instance;
@@ -54,10 +43,7 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        battleSceneManager = FindObjectOfType<BattleSceneManager>();
-        feedbackPlayer = FindObjectOfType<MMF_Player>();
     }
-
 
     public void PlayCard(CardUI selectedCard, Enemy enemy)
     {
@@ -116,12 +102,14 @@ public class Player : MonoBehaviour
 
     IEnumerator AfterCardEffects(CardUI selectedCard)
     {
+        battleSceneManager = FindObjectOfType<BattleSceneManager>();
+
         yield return new WaitForSeconds(0.5f);
         selectedCard.gameObject.SetActive(false);
         battleSceneManager.cardsInHand.Remove(selectedCard.data);
         battleSceneManager.discardPile.Add(selectedCard.data);
 
-        Refresh();
+        uIManager.Refresh();
         battleSceneManager.discardPileCountText.text = battleSceneManager.discardPile.Count.ToString();
     }
 
@@ -132,43 +120,21 @@ public class Player : MonoBehaviour
             damage = BlockDamage(damage);
         }
 
-        PlayerUIShakeFB();
+        uIManager.PlayerUIShakeFB();
         currentHP -= damage;
-        Refresh();
+        uIManager.Refresh();
 
 
         if (currentHP <= 0)
         {
             currentHP = 0;
-            Refresh();
+            uIManager.Refresh();
             battleSceneManager.BattleDefeat();
         }
         else
         {
-            Refresh();
+            uIManager.Refresh();
         }
-    }
-
-    private void PlayerUIShakeFB()
-    {
-        MMPositionShaker target = playerSideUI.GetComponent<MMPositionShaker>();
-        MMF_PositionShake shakeFeedback = feedbackPlayer.GetFeedbackOfType<MMF_PositionShake>();
-        shakeFeedback.TargetShaker = target;
-        shakeFeedback.Play(new Vector3(5f, 5f, 5f));
-    }
-
-    public void Refresh()
-    {
-        maxEnergyText.text = maxEnergy.ToString();
-        currentEnergyText.text = currentEnergy.ToString();
-        energyBarSlider.maxValue = maxEnergy;
-        energyBarSlider.value = currentEnergy;
-
-        maxHPText.text = maxHP.ToString();
-        currentHPText.text = currentHP.ToString();
-        hpBarSlider.maxValue = maxHP;
-        hpBarSlider.value = currentHP;
-        DisplayBlock();
     }
 
     public void AddBlock(int amount)
@@ -198,18 +164,17 @@ public class Player : MonoBehaviour
 
     public void DisplayBlock()
     {
-        if (ShieldFrameIcon != null && ShieldFrameText != null)
+        uIManager = FindObjectOfType<UIManager>();
+        if (uIManager.ShieldFrameIcon != null && uIManager.ShieldFrameText != null)
         {
-            if (block > 0)
+            if (Player.instance.block > 0)
             {
-
-                ShieldFrameIcon.gameObject.SetActive(true);
-                ShieldFrameText.text = block.ToString();
+                uIManager.ShieldFrameIcon.gameObject.SetActive(true);
+                uIManager.ShieldFrameText.text = Player.instance.block.ToString();
             }
             else
             {
-                ShieldFrameIcon.gameObject.SetActive(false);
-
+                uIManager.ShieldFrameIcon.gameObject.SetActive(false);
             }
         }
     }

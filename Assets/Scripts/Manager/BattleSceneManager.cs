@@ -5,6 +5,7 @@ using UnityEngine.UI;
 using DG.Tweening;
 using TMPro;
 using System;
+using UnityEngine.SceneManagement;
 
 public class BattleSceneManager : MonoBehaviour
 {
@@ -57,6 +58,7 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] Image useItemIcon;
     [SerializeField] TMP_Text useItemInfo;
     [SerializeField] TMP_Text useItemName;
+    UIManager uIManager;
 
 
 
@@ -70,6 +72,11 @@ public class BattleSceneManager : MonoBehaviour
 
     void Awake()
     {
+
+    }
+    private void Start()
+    {
+        uIManager = FindObjectOfType<UIManager>();
         gameManager = FindObjectOfType<GameManager>();
         InitBattle();
     }
@@ -138,7 +145,7 @@ public class BattleSceneManager : MonoBehaviour
         gameManager.artifact.playArtifactEffect();
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
         gameManager.player.currentHP = gameManager.player.maxHP; // 回復ポイントまで回復できないよう変更予定
-        gameManager.player.Refresh();
+        uIManager.Refresh();
 
         // アイテム関連の初期化
 
@@ -191,7 +198,7 @@ public class BattleSceneManager : MonoBehaviour
         gameManager.player.currentEnergy = gameManager.player.maxEnergy;
 
         gameManager.player.block = 0;
-        gameManager.player.Refresh();
+        uIManager.Refresh();
 
         yield return new WaitForSeconds(2f);
     }
@@ -393,7 +400,7 @@ public class BattleSceneManager : MonoBehaviour
                 {
                     gameManager.player.currentHP = gameManager.player.maxHP;
                 }
-                gameManager.player.Refresh();
+                uIManager.Refresh();
                 gameManager.player.MyItemList[currentItemIndex].amount -= 1;
                 ShowItem();
                 if (gameManager.player.MyItemList[currentItemIndex].amount <= 0)

@@ -24,13 +24,14 @@ public class RestSceneManager : MonoBehaviour
     Vector3 openEventPanelSize = new Vector3(1.35f, 1.35f, 1.35f);
     Vector3 closeEventPanelSize = new Vector3(0f, 0f, 0f);
     int healAmount = 70;
+    UIManager uIManager;
 
     [SerializeField] GameObject sparkParticle1;
     [SerializeField] GameObject sparkParticle2;
 
     void Start()
     {
-        gameManager = FindObjectOfType<GameManager>();
+        uIManager = FindObjectOfType<UIManager>();
         RestInit();
         StartCoroutine(FirstOpenTwoButtonEventPanel());
         twoButtonPanelButton1.onClick.AddListener(PushRestButton);
@@ -40,7 +41,7 @@ public class RestSceneManager : MonoBehaviour
 
     void RestInit()
     {
-        gameManager.player.Refresh();
+        uIManager.Refresh();
     }
 
     IEnumerator FirstOpenTwoButtonEventPanel()
@@ -89,12 +90,12 @@ public class RestSceneManager : MonoBehaviour
         EndParticles();
         StartCoroutine(CloseTwoButtonEventPanel());
         yield return new WaitForSeconds(0.5f);
-        gameManager.player.currentHP += gameManager.player.maxHP * (healAmount / 100);
-        if (gameManager.player.currentHP < gameManager.player.maxHP)
+        Player.instance.currentHP += Player.instance.maxHP * (healAmount / 100);
+        if (Player.instance.currentHP < Player.instance.maxHP)
         {
-            gameManager.player.currentHP = gameManager.player.maxHP;
+            Player.instance.currentHP = Player.instance.maxHP;
         }
-        gameManager.player.Refresh();
+        uIManager.Refresh();
 
         OpenOneButtonEventPanel();
     }
