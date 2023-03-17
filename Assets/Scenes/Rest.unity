@@ -595,10 +595,9 @@ MonoBehaviour:
   nextSceneEntityArr:
   - {fileID: 11400000, guid: 0ab840d8998ca6a478c13499541b5baf, type: 2}
   - {fileID: 11400000, guid: ed318957afd04f54b8c4e526d76cf7d7, type: 2}
-  nextSceneCard: {fileID: 723424527}
   nextSceneCardPrefab: {fileID: 723424527}
-  nextScenePositionPanel: {fileID: 655967807}
   nextSceneList: []
+  nextScenePositionPanel: {fileID: 0}
 --- !u!4 &226679847
 Transform:
   m_ObjectHideFlags: 0
@@ -2571,7 +2570,7 @@ GameObject:
   - component: {fileID: 655967809}
   m_Layer: 5
   m_Name: NextScenePositionPanel
-  m_TagString: Untagged
+  m_TagString: NextScenePositionPanel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2781,6 +2780,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6242579806492448106, guid: 0f1296784a111de42857ca2099e8c83c, type: 3}
       propertyPath: m_Name
+      value: NextSceneCard
+      objectReference: {fileID: 0}
+    - target: {fileID: 6242579806492448106, guid: 0f1296784a111de42857ca2099e8c83c, type: 3}
+      propertyPath: m_TagString
       value: NextSceneCard
       objectReference: {fileID: 0}
     m_RemovedComponents: []

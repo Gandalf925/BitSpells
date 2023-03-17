@@ -11,6 +11,8 @@ TagManager:
   - EnemySideUI
   - ConfigPanel
   - HideUIToggle
+  - NextScenePositionPanel
+  - NextSceneCard
   layers:
   - Default
   - TransparentFX

@@ -59,13 +59,12 @@ public class BattleSceneManager : MonoBehaviour
     GameManager gameManager;
 
 
-
-
     [Header("Utils")]
     bool isPlayerTurn = true;
     bool isGameClear = false;
     bool isGameOver = false;
     bool isOpenUseItemPanel = false;
+
 
 
     private void Start()

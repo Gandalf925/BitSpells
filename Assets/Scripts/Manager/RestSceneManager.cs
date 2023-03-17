@@ -27,6 +27,7 @@ public class RestSceneManager : MonoBehaviour
     [SerializeField] GameObject sparkParticle1;
     [SerializeField] GameObject sparkParticle2;
 
+
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();

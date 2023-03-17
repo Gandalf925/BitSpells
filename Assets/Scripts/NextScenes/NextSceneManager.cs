@@ -8,10 +8,10 @@ public class NextSceneManager : MonoBehaviour
     public List<NextSceneEntity> forestSceneEntityList = new List<NextSceneEntity>();
     public List<NextSceneEntity> usedSceneList = new List<NextSceneEntity>();
     public NextSceneEntity[] nextSceneEntityArr;
-    public NextScene nextSceneCard;
     public NextScene nextSceneCardPrefab;
-    public GameObject nextScenePositionPanel;
     public List<NextScene> nextSceneList;
+
+    public GameObject nextScenePositionPanel;
 
     //singleton
     public static NextSceneManager instance;
@@ -30,6 +30,7 @@ public class NextSceneManager : MonoBehaviour
 
     public IEnumerator GenerateNextScene()
     {
+        nextScenePositionPanel = GameObject.Find("Canvas/FittingPanel").transform.Find("NextScenePositionPanel").gameObject;
         for (int i = 0; i < nextSceneEntityArr.Length; i++)
         {
             // // ランダムで登録されたシーンをピックアップ
@@ -38,7 +39,7 @@ public class NextSceneManager : MonoBehaviour
             // //　一度選ばれたシーンをusedSceneListに追加
             // nextSceneManager.nextSceneEntityArr.Add(randomNextScene);
 
-            nextSceneCard = Instantiate(nextSceneCardPrefab, nextScenePositionPanel.transform, false);
+            NextScene nextSceneCard = Instantiate(nextSceneCardPrefab, nextScenePositionPanel.transform, false);
             nextSceneList.Add(nextSceneCard);
             nextSceneList[i].GenerateSceneCard(nextSceneEntityArr[i].sceneName);
         }
