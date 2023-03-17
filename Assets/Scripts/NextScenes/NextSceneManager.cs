@@ -44,13 +44,9 @@ public class NextSceneManager : MonoBehaviour
         }
 
         nextScenePositionPanel.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
         nextScenePositionPanel.transform.DOScale(new Vector3(1f, 0.5f, 0f), 0.2f);
 
         yield return new WaitForSeconds(0.2f);
-    }
-
-    public void CloseNextScenePanel()
-    {
-        nextScenePositionPanel.transform.DOScale(new Vector3(1f, 0.5f, 0f), 0.2f);
     }
 }

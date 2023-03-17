@@ -2815,7 +2815,7 @@ PrefabInstance:
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1250937673}
+      objectReference: {fileID: 940450062}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -2826,7 +2826,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
       propertyPath: onValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -8733,6 +8733,16 @@ MonoBehaviour:
   ShieldFrameIcon: {fileID: 634048432}
   ShieldFrameText: {fileID: 583006392}
   playerStatusUI: {fileID: 1485191760}
+  feedbackPlayer: {fileID: 0}
+  playerSideUI: {fileID: 0}
+  battlePlayerSideUI: {fileID: 0}
+  battleEnemySideUI: {fileID: 0}
+  eventSceneTwoButtonEventPanel: {fileID: 1994675010}
+  eventSceneOneButtonEventPanel: {fileID: 1055608777}
+  eventScenePlayerSideUI: {fileID: 1972458002}
+  eventSceneEffectHolder: {fileID: 260808253}
+  hideUIToggle: {fileID: 2047205821}
+  configPanel: {fileID: 862044533}
 --- !u!4 &940450063
 Transform:
   m_ObjectHideFlags: 0
@@ -9767,17 +9777,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5a07271a12360941bbbfe02edcf30c8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  battlePlayerSideUI: {fileID: 0}
-  battleEnemySideUI: {fileID: 0}
-  restTwoButtonEventPanel: {fileID: 1994675010}
-  restOneButtonEventPanel: {fileID: 1055608777}
-  restPlayerSideUI: {fileID: 1972458002}
-  restSparkParticle1: {fileID: 1594605966}
-  restSparkParticle2: {fileID: 887017045}
   player: {fileID: 1977677844}
   artifact: {fileID: 1977677843}
-  configPanel: {fileID: 862044533}
-  HideUIToggle: {fileID: 2047205820}
 --- !u!4 &1250937674
 Transform:
   m_ObjectHideFlags: 0
@@ -10223,7 +10224,7 @@ PrefabInstance:
     - target: {fileID: 6463414253423165944, guid: 87f0c6aa9b85045efb55b6f6ad1df416, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1250937673}
+      objectReference: {fileID: 940450062}
     - target: {fileID: 6463414253423165944, guid: 87f0c6aa9b85045efb55b6f6ad1df416, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
       value: 2
@@ -10234,7 +10235,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6463414253423165944, guid: 87f0c6aa9b85045efb55b6f6ad1df416, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: GameManager, Assembly-CSharp
+      value: UIManager, Assembly-CSharp
       objectReference: {fileID: 0}
     - target: {fileID: 6463414253423165944, guid: 87f0c6aa9b85045efb55b6f6ad1df416, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
@@ -11838,8 +11839,6 @@ MonoBehaviour:
   MyItemList:
   - {fileID: 11400000, guid: 4107603d92d3bef4691e7227a7ad11ba, type: 2}
   - {fileID: 11400000, guid: 64ae7482eb6229148b0e091b73e3b89d, type: 2}
-  feedbackPlayer: {fileID: 0}
-  playerSideUI: {fileID: 1972458002}
 --- !u!4 &1977677845
 Transform:
   m_ObjectHideFlags: 0
@@ -12149,11 +12148,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2038532612}
   m_CullTransparentMesh: 1
---- !u!1 &2047205820 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1457103607610406884, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
+--- !u!114 &2047205821 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1794603107355813420, guid: 85bd9d605c0d64d3a9a49705340ff0be, type: 3}
   m_PrefabInstance: {fileID: 690912296}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2136089231
 GameObject:
   m_ObjectHideFlags: 0

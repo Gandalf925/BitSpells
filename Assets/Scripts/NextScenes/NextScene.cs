@@ -29,7 +29,6 @@ public class NextScene : MonoBehaviour
     }
 
 
-
     public void usedSceneCheck()
     {
 

@@ -84,7 +84,7 @@ public class BattleSceneManager : MonoBehaviour
             if (!isGameClear)
             {
                 isGameClear = true;
-                GameManager.instance.HideUIToggle.gameObject.SetActive(false);
+                uIManager.hideUIToggle.gameObject.SetActive(false);
                 BattleClear();
             }
         }
@@ -95,7 +95,7 @@ public class BattleSceneManager : MonoBehaviour
             if (!isGameOver)
             {
                 isGameOver = true;
-                GameManager.instance.HideUIToggle.gameObject.SetActive(false);
+                uIManager.hideUIToggle.gameObject.SetActive(false);
                 BattleDefeat();
             }
         }
