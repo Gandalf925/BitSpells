@@ -30,6 +30,7 @@ public class BattleSceneManager : MonoBehaviour
     public List<Enemy> enemies;
     public EnemyEntity[] eEntityArr;
     public Transform enemyPositionPanel;
+    public Enemy[] enemyArr;
 
     [Header("UI")]
     public Button turnEndButton;
@@ -55,14 +56,14 @@ public class BattleSceneManager : MonoBehaviour
     [SerializeField] Image useItemIcon;
     [SerializeField] TMP_Text useItemInfo;
     [SerializeField] TMP_Text useItemName;
-    UIManager uIManager;
-    GameManager gameManager;
+    public UIManager uIManager;
+    NextSceneManager nextSceneManager;
 
 
     [Header("Utils")]
     bool isPlayerTurn = true;
-    bool isGameClear = false;
-    bool isGameOver = false;
+    public bool isGameClear = false;
+    public bool isGameOver = false;
     bool isOpenUseItemPanel = false;
 
 
@@ -70,34 +71,8 @@ public class BattleSceneManager : MonoBehaviour
     private void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
-        gameManager = FindObjectOfType<GameManager>();
+        nextSceneManager = FindObjectOfType<NextSceneManager>();
         InitBattle();
-    }
-
-    void Update()
-    {
-        enemies.RemoveAll(item => item == null);
-        if (enemies.Count == 0)
-        {
-            StopAllCoroutines();
-            if (!isGameClear)
-            {
-                isGameClear = true;
-                uIManager.hideUIToggle.gameObject.SetActive(false);
-                BattleClear();
-            }
-        }
-
-        if (Player.instance.currentHP == 0)
-        {
-            StopAllCoroutines();
-            if (!isGameOver)
-            {
-                isGameOver = true;
-                uIManager.hideUIToggle.gameObject.SetActive(false);
-                BattleDefeat();
-            }
-        }
     }
 
 
@@ -105,6 +80,9 @@ public class BattleSceneManager : MonoBehaviour
     // 敵の生成、デッキの生成、手札の配布など
     void InitBattle()
     {
+        //NextSceneManagerから現在のステージに適したEnemyを1～3のランダムで取得
+        eEntityArr = nextSceneManager.GetEnemyForCurrentStage();
+
         // Enemyの初期化
         for (int i = 0; i < eEntityArr.Length; i++)
         {
@@ -130,14 +108,14 @@ public class BattleSceneManager : MonoBehaviour
         drawPile = new List<Card>();
         cardsInHand = new List<Card>();
 
-        discardPile.AddRange(GameManager.instance.player.playerDeck);
+        discardPile.AddRange(Player.instance.playerDeck);
         ShuffleCards();
         DrawCards(Player.instance.drawAmount);
 
         // PlayerのStatusを初期化
-        gameManager.artifact.playArtifactEffect();
-        gameManager.player.currentEnergy = gameManager.player.maxEnergy;
-        gameManager.player.currentHP = gameManager.player.maxHP; // 回復ポイントまで回復できないよう変更予定
+        Artifact.instance.playArtifactEffect();
+        Player.instance.currentEnergy = Player.instance.maxEnergy;
+        Player.instance.currentHP = Player.instance.maxHP; // 回復ポイントまで回復できないよう変更予定
 
         uIManager.Refresh();
 
@@ -191,7 +169,7 @@ public class BattleSceneManager : MonoBehaviour
         DrawCards(Player.instance.drawAmount);
         Player.instance.currentEnergy = Player.instance.maxEnergy;
 
-        gameManager.player.block = 0;
+        Player.instance.block = 0;
         uIManager.Refresh();
 
         yield return new WaitForSeconds(2f);
@@ -309,7 +287,7 @@ public class BattleSceneManager : MonoBehaviour
         discardPileCountText.text = discardPile.Count.ToString();
     }
 
-    void BattleClear()
+    public void BattleClear()
     {
         EndPanel.SetActive(true);
         DefeatPopup.SetActive(false);
@@ -325,20 +303,19 @@ public class BattleSceneManager : MonoBehaviour
         DefeatPopup.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
     }
 
-    void PushOKButtonAtBattleClear()
+    public void PushOKButtonAtBattleClear()
     {
         ClearPopup.SetActive(false);
 
         // ゲームクリア時の処理（カードの欠片抽選、次のシーンへ移行）
 
-        // ゲームオーバー時の処理（王国へ移行）
-
+        StartCoroutine(NextSceneManager.instance.GenerateNextScene());
     }
 
-    void PushOKButtonAtGameOver()
+    public void PushOKButtonAtGameOver()
     {
-        ClearPopup.SetActive(false);
-        // ゲームオーバー時の処理（王国へシーン移行）
+        DefeatPopup.SetActive(false);
+        // ゲームオーバー時の処理（レジスタンスの基地へシーン移行）
 
     }
 
@@ -395,7 +372,7 @@ public class BattleSceneManager : MonoBehaviour
                     Player.instance.currentHP = Player.instance.maxHP;
                 }
                 uIManager.Refresh();
-                gameManager.player.MyItemList[currentItemIndex].amount -= 1;
+                Player.instance.MyItemList[currentItemIndex].amount -= 1;
                 ShowItem();
                 if (Player.instance.MyItemList[currentItemIndex].amount <= 0)
                 {

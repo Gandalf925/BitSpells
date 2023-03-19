@@ -24,6 +24,9 @@ public class Player : MonoBehaviour
     [Header("Items")]
     public List<ItemSO> MyItemList = new List<ItemSO>();
 
+    [Header("Stage")]
+    public StageType currentStageType;
+    public StageDepth currentStageDepth;
 
 
     [Header("Utils")]

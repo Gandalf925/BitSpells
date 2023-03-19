@@ -14,4 +14,8 @@ public class EnemyEntity : ScriptableObject
     public int currentBlock;
     public Sprite icon;
     public List<EnemyAction> actions = new List<EnemyAction>();
+    public StageType stageType;
+    public StageDepth stageDepth;
 }
+
+

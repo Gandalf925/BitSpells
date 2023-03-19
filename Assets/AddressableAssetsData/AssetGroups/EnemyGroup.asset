@@ -17,14 +17,6 @@ MonoBehaviour:
     m_SerializedData: []
   m_GUID: ca09b90f3704b8f48b4abb9ec458775b
   m_SerializeEntries:
-  - m_GUID: bc2a25f86813c2e48adb77a986d331dd
-    m_Address: EnemyEntity/GoblinSolder
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: e7736f4c170d5604aaa7d7df728a84fc
-    m_Address: EnemyEntity/FrontierLoad
-    m_ReadOnly: 0
-    m_SerializedLabels: []
   - m_GUID: fdc133b0eb242c340bb4d3fbda018811
     m_Address: EnemyEntity/MasterLion
     m_ReadOnly: 0
@@ -43,10 +35,6 @@ MonoBehaviour:
     m_SerializedLabels: []
   - m_GUID: 0d32b78f8f96b90449ac5a5331030f50
     m_Address: Cards/MagicShield
-    m_ReadOnly: 0
-    m_SerializedLabels: []
-  - m_GUID: a0063631bfff78940a9dd74b79284974
-    m_Address: NextScenes/Forest1-1
     m_ReadOnly: 0
     m_SerializedLabels: []
   - m_GUID: 0ab840d8998ca6a478c13499541b5baf
