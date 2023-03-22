@@ -32,6 +32,7 @@ public class BattleSceneManager : MonoBehaviour
     public Transform enemyPositionPanel;
     public Enemy[] enemyArr;
 
+
     [Header("UI")]
     public Button turnEndButton;
     Transform deck;
@@ -113,7 +114,6 @@ public class BattleSceneManager : MonoBehaviour
         DrawCards(Player.instance.drawAmount);
 
         // PlayerのStatusを初期化
-        Artifact.instance.playArtifactEffect();
         Player.instance.currentEnergy = Player.instance.maxEnergy;
         Player.instance.currentHP = Player.instance.maxHP; // 回復ポイントまで回復できないよう変更予定
 
@@ -178,7 +178,7 @@ public class BattleSceneManager : MonoBehaviour
     IEnumerator EnemyTurn()
     {
         Debug.Log("Enemy Turn");
-        uncontrollablePanel.SetActive(true);
+        uIManager.uncontrollablePanel.SetActive(true);
         // EnemuTurnTextは後で調整すること
         StartCoroutine("DisplayEnemyTurnTextFrame");
         EachTurnInit();
@@ -198,7 +198,8 @@ public class BattleSceneManager : MonoBehaviour
             StartCoroutine(enemy.TakeTurn());
         }
         yield return new WaitForSeconds(1f);
-        uncontrollablePanel.SetActive(false);
+        uIManager.uncontrollablePanel.SetActive(false);
+
         ChangeTurn();
     }
 
@@ -305,16 +306,21 @@ public class BattleSceneManager : MonoBehaviour
 
     public void PushOKButtonAtBattleClear()
     {
+        ClearPopup.transform.DOScale(new Vector3(0, 0, 0), 0.1f);
         ClearPopup.SetActive(false);
+        EndPanel.SetActive(true);
 
-        // ゲームクリア時の処理（カードの欠片抽選、次のシーンへ移行）
+        // Playerのステータスを初期化する
+        Player.instance.currentEnergy = Player.instance.maxEnergy;
 
         StartCoroutine(NextSceneManager.instance.GenerateNextScene());
     }
 
     public void PushOKButtonAtGameOver()
     {
+        DefeatPopup.transform.DOScale(new Vector3(0, 0, 0), 0.1f);
         DefeatPopup.SetActive(false);
+        EndPanel.SetActive(true);
         // ゲームオーバー時の処理（レジスタンスの基地へシーン移行）
 
     }

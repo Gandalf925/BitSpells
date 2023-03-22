@@ -22,7 +22,10 @@ public class Player : MonoBehaviour
     public List<Card> playerDeck = new List<Card>();
 
     [Header("Items")]
+    Artifact artifacts;
     public List<ItemSO> MyItemList = new List<ItemSO>();
+    public ArtifactEntity[] equipedArts = new ArtifactEntity[3];
+
 
     [Header("Stage")]
     public StageType currentStageType;
@@ -46,6 +49,7 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
     }
 
     public void PlayCard(CardUI selectedCard, Enemy enemy)
@@ -180,6 +184,11 @@ public class Player : MonoBehaviour
                 uIManager.ShieldFrameIcon.gameObject.SetActive(false);
             }
         }
+    }
+
+    public void EquipedArtifacts()
+    {
+        artifacts.Equiped();
     }
 }
 

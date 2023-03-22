@@ -38,6 +38,7 @@ public class UIManager : MonoBehaviour
     public Toggle hideUIToggle;
 
     [SerializeField] GameObject configPanel;
+    public GameObject uncontrollablePanel;
 
     bool isOpenConfig = false;
 
@@ -76,7 +77,7 @@ public class UIManager : MonoBehaviour
         UIManager uIManager = FindObjectOfType<UIManager>();
         string sceneName = SceneManager.GetActiveScene().name;
 
-        if (sceneName == "Rest")
+        if (sceneName == "Rest" || sceneName == "Events")
         {
             if (!uIManager.hideUIToggle.isOn)
             {

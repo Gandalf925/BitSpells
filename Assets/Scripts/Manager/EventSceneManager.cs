@@ -5,7 +5,7 @@ using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
 
-public class RestSceneManager : MonoBehaviour
+public class EventSceneManager : MonoBehaviour
 {
     [Header("UI")]
     public GameObject twoButtonEventPanel;
@@ -22,25 +22,39 @@ public class RestSceneManager : MonoBehaviour
     public Image oneButtonPanelImage;
     Vector3 openEventPanelSize = new Vector3(1.35f, 1.35f, 1.35f);
     Vector3 closeEventPanelSize = new Vector3(0f, 0f, 0f);
-    int healAmount = 70;
     UIManager uIManager;
 
-    [SerializeField] GameObject sparkParticle1;
-    [SerializeField] GameObject sparkParticle2;
+    EventEntity eventData;
 
+    //singleton
+    public static EventSceneManager instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     void Start()
     {
         uIManager = FindObjectOfType<UIManager>();
-        RestInit();
+        EventInit();
         StartCoroutine(FirstOpenTwoButtonEventPanel());
-        twoButtonPanelButton1.onClick.AddListener(PushRestButton);
-        twoButtonPanelButton2.onClick.AddListener(Leave);
-        oneButtonPanelButton.onClick.AddListener(Leave);
+        twoButtonPanelButton1.onClick.AddListener(PushButton1);
+        twoButtonPanelButton2.onClick.AddListener(PushButton2);
+        oneButtonPanelButton.onClick.AddListener(PushButton2);
     }
 
-    void RestInit()
+    void EventInit()
     {
+        NextSceneManager nextSceneManager = FindObjectOfType<NextSceneManager>();
+        eventData = nextSceneManager.CreateEventScene(0);
         uIManager.Refresh();
     }
 
@@ -49,7 +63,6 @@ public class RestSceneManager : MonoBehaviour
         yield return new WaitForSeconds(2f);
         twoButtonEventPanel.SetActive(true);
         twoButtonEventPanel.transform.DOScale(openEventPanelSize, 0.2f);
-        StartParticles();
     }
 
     void OpenTwoButtonEventPanel()
@@ -80,29 +93,25 @@ public class RestSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    public void PushRestButton()
+    public void PushButton1()
     {
-        StartCoroutine(Rest());
+        StartCoroutine(activeButton1Event());
     }
 
-    public IEnumerator Rest()
+    public IEnumerator activeButton1Event()
     {
-        EndParticles();
         StartCoroutine(CloseTwoButtonEventPanel());
         yield return new WaitForSeconds(0.5f);
-        Player.instance.currentHP += Player.instance.maxHP * (healAmount / 100);
-        if (Player.instance.currentHP < Player.instance.maxHP)
-        {
-            Player.instance.currentHP = Player.instance.maxHP;
-        }
+
+        // Event処理
+        eventData.ActivateEvent();
         uIManager.Refresh();
 
         OpenOneButtonEventPanel();
     }
 
-    public void Leave()
+    public void PushButton2()
     {
-        EndParticles();
         StartCoroutine(CloseTwoButtonEventPanel());
         StartCoroutine(CloseOneButtonEventPanel());
         Debug.Log("移動先の表示をする");
@@ -110,15 +119,16 @@ public class RestSceneManager : MonoBehaviour
         StartCoroutine(NextSceneManager.instance.GenerateNextScene());
     }
 
-    void StartParticles()
+    public void InitializeEventScene(EventEntity eventData)
     {
-        sparkParticle1.SetActive(true);
-        sparkParticle2.SetActive(true);
-    }
-    void EndParticles()
-    {
-        sparkParticle1.SetActive(false);
-        sparkParticle2.SetActive(false);
+        // ScriptableObjectからのデータを使用してイベントシーンを設定
+        twoButtonPanelTextInfo.text = eventData.twoButtonEventPanelText;
+        twoButtonPanelButtonText1.text = eventData.twoButtonEventPanelButton1Text;
+        twoButtonPanelButtonText2.text = eventData.twoButtonEventPanelButton2Text;
+        twoButtonPanelImage.sprite = eventData.eventImages[0];
+        oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
+        oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
+        oneButtonPanelImage.sprite = eventData.eventImages[0];
     }
 
 }

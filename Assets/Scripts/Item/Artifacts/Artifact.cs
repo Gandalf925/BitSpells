@@ -7,8 +7,6 @@ public class Artifact : MonoBehaviour
 {
     public List<ArtifactEntity> playerHasArts = new List<ArtifactEntity>();
 
-    public List<ArtifactEntity> equipedArts = new List<ArtifactEntity>();
-
     UIManager uIManager;
 
     //singleton
@@ -27,11 +25,16 @@ public class Artifact : MonoBehaviour
         }
     }
 
+    public void Equiped()
+    {
+        playArtifactEffect();
+    }
+
     // Game開始時に効果を発するArtifactEffectはここに追加する
     public void playArtifactEffect()
     {
         uIManager = FindObjectOfType<UIManager>();
-        foreach (ArtifactEntity art in equipedArts)
+        foreach (ArtifactEntity art in Player.instance.equipedArts)
         {
             switch (art.name)
             {
@@ -42,6 +45,5 @@ public class Artifact : MonoBehaviour
         }
 
         uIManager.Refresh();
-
     }
 }

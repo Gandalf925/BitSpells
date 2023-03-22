@@ -12,7 +12,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Rest.unity
     guid: 4ff3c436daec47b4eb0d17e79529c3ce
   - enabled: 1
-    path: Assets/Scenes/Forest1-1.unity
-    guid: 3d3a8d535883a20449b500c14924bcdc
+    path: Assets/Scenes/Events.unity
+    guid: 7b00fd837ba4db54baad69b63e6e5e98
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: c21c07957c30c824189eb54e9850fa21, type: 2}

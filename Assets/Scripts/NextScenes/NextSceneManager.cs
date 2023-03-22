@@ -16,6 +16,9 @@ public class NextSceneManager : MonoBehaviour
     public List<EnemyEntity> enemyEntityList = new List<EnemyEntity>();
     List<EnemyEntity> stageEnemies;
 
+    [Header("Events")]
+    public EventEntity[] events;
+
     //singleton
     public static NextSceneManager instance;
     private void Awake()
@@ -34,6 +37,10 @@ public class NextSceneManager : MonoBehaviour
     public IEnumerator GenerateNextScene()
     {
         nextScenePositionPanel = GameObject.Find("Canvas/FittingPanel").transform.Find("NextScenePositionPanel").gameObject;
+
+        // リストを初期化する
+        nextSceneList = new List<NextScene>();
+
         for (int i = 0; i < nextSceneEntityArr.Length; i++)
         {
             NextScene nextSceneCard = Instantiate(nextSceneCardPrefab, nextScenePositionPanel.transform, false);
@@ -44,8 +51,6 @@ public class NextSceneManager : MonoBehaviour
         nextScenePositionPanel.SetActive(true);
         yield return new WaitForSeconds(0.5f);
         nextScenePositionPanel.transform.DOScale(new Vector3(1f, 0.5f, 0f), 0.2f);
-
-        yield return new WaitForSeconds(0.2f);
     }
 
     public EnemyEntity[] GetEnemyForCurrentStage()
@@ -66,4 +71,18 @@ public class NextSceneManager : MonoBehaviour
         }
         return sendBattleSceneEnemies;
     }
+
+    public EventEntity CreateEventScene(int eventIndex)
+    {
+        // 現在のシーンの場所を確認する（Forest、Depth）
+
+        // 現在のシーンに適したイベントデータをevents配列から取得
+        EventEntity eventData = events[eventIndex];
+
+        // イベントデータをEventSceneManagerに渡す
+        EventSceneManager.instance.InitializeEventScene(eventData);
+        return eventData;
+    }
+
+
 }
