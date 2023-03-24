@@ -14,13 +14,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   eventName: FullHeal
   eventDescription: 
+  threeButtonEventPanelText: 
+  threeButtonEventPanelButton1Text: 
+  threeButtonEventPanelButton2Text: 
+  threeButtonEventPanelButton3Text: 
+  threeButtonEventPanelButton1InfoText: 
+  threeButtonEventPanelButton2InfoText: 
+  threeButtonEventPanelButton3InfoText: 
+  threeButtonEventPanelImage: {fileID: 0}
+  eventType1: 0
+  eventType2: 0
+  eventType3: 0
+  buttonTextOption1: 0
+  buttonTextOption2: 0
+  buttonTextOption3: 0
   twoButtonEventPanelText: a
-  twoButtonEventPanelButton1Text: 1
-  twoButtonEventPanelButton2Text: 2
-  oneButtonEventPanelText: b
-  oneButtonEventPanelButtonText: 1
+  twoButtonEventPanelButton1Text: a
+  twoButtonEventPanelButton2Text: a
+  twoButtonEventPanelImage: {fileID: 0}
+  oneButtonEventPanelText: a
+  oneButtonEventPanelButtonText: a
+  oneButtonEventPanelImage: {fileID: 0}
+  eventType: 0
   stageType: 0
   stageDepth: 0
-  eventImages:
-  - {fileID: 21300000, guid: a3f439eab1c073c4bb5d3716ed27b003, type: 3}
-  - {fileID: 0}

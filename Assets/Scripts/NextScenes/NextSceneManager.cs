@@ -77,12 +77,36 @@ public class NextSceneManager : MonoBehaviour
         // 現在のシーンの場所を確認する（Forest、Depth）
 
         // 現在のシーンに適したイベントデータをevents配列から取得
-        EventEntity eventData = events[eventIndex];
+        EventEntity eventData = GetRandomEventForCurrentStage();
 
         // イベントデータをEventSceneManagerに渡す
         EventSceneManager.instance.InitializeEventScene(eventData);
         return eventData;
     }
 
+
+    // 次のシーンに使用するEventをランダムで決定する
+    public EventEntity GetRandomEventForCurrentStage()
+    {
+        List<EventEntity> suitableEvents = new List<EventEntity>();
+
+        foreach (var eventEntity in events)
+        {
+            if (eventEntity.stageType == Player.instance.currentStageType && eventEntity.stageDepth == Player.instance.currentStageDepth)
+            {
+                suitableEvents.Add(eventEntity);
+            }
+        }
+
+        if (suitableEvents.Count > 0)
+        {
+            return suitableEvents[Random.Range(0, suitableEvents.Count)];
+        }
+        else
+        {
+            Debug.LogError("No suitable events found.");
+            return null;
+        }
+    }
 
 }

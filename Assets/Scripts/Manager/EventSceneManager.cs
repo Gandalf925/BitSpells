@@ -4,22 +4,35 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 using DG.Tweening;
+using System;
 
 public class EventSceneManager : MonoBehaviour
 {
     [Header("UI")]
+    [Header("Three Button Event Panel UI")]
+    public GameObject threeButtonEventPanel;
+    public Image threeButtonPanelImage;
+    public TMPro.TextMeshProUGUI threeButtonEventPanelText;
+    public TMP_Text[] threeButtonEventPanelButtonTexts;
+    public TMPro.TextMeshProUGUI button1InfoText;
+    public TMPro.TextMeshProUGUI button2InfoText;
+    public TMPro.TextMeshProUGUI button3InfoText;
+
+    [Header("Two Button Event Panel UI")]
+    public Image twoButtonPanelImage;
     public GameObject twoButtonEventPanel;
     public TMP_Text twoButtonPanelTextInfo;
     public Button twoButtonPanelButton1;
     public Button twoButtonPanelButton2;
     public TMP_Text twoButtonPanelButtonText1;
     public TMP_Text twoButtonPanelButtonText2;
-    public Image twoButtonPanelImage;
+
+    [Header("One Button Event Panel UI")]
+    public Image oneButtonPanelImage;
     public GameObject oneButtonEventPanel;
     public TMP_Text oneButtonPanelTextInfo;
     public Button oneButtonPanelButton;
     public TMP_Text oneButtonPanelButtonText;
-    public Image oneButtonPanelImage;
     Vector3 openEventPanelSize = new Vector3(1.35f, 1.35f, 1.35f);
     Vector3 closeEventPanelSize = new Vector3(0f, 0f, 0f);
     UIManager uIManager;
@@ -45,10 +58,11 @@ public class EventSceneManager : MonoBehaviour
     {
         uIManager = FindObjectOfType<UIManager>();
         EventInit();
-        StartCoroutine(FirstOpenTwoButtonEventPanel());
-        twoButtonPanelButton1.onClick.AddListener(PushButton1);
-        twoButtonPanelButton2.onClick.AddListener(PushButton2);
-        oneButtonPanelButton.onClick.AddListener(PushButton2);
+
+
+        twoButtonPanelButton1.onClick.AddListener(PushTwoButton1);
+        twoButtonPanelButton2.onClick.AddListener(PushTwoButton2);
+        oneButtonPanelButton.onClick.AddListener(PushTwoButton2);
     }
 
     void EventInit()
@@ -93,12 +107,20 @@ public class EventSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    public void PushButton1()
+    IEnumerator CloseThreeButtonEventPanel()
     {
-        StartCoroutine(activeButton1Event());
+        threeButtonEventPanel.transform.DOScale(closeEventPanelSize, 0.2f);
+        yield return new WaitForSeconds(0.2f);
+        threeButtonEventPanel.SetActive(false);
+        yield return new WaitForSeconds(0.5f);
     }
 
-    public IEnumerator activeButton1Event()
+    public void PushTwoButton1()
+    {
+        StartCoroutine(activeTwoButton1Event());
+    }
+
+    public IEnumerator activeTwoButton1Event()
     {
         StartCoroutine(CloseTwoButtonEventPanel());
         yield return new WaitForSeconds(0.5f);
@@ -110,7 +132,38 @@ public class EventSceneManager : MonoBehaviour
         OpenOneButtonEventPanel();
     }
 
-    public void PushButton2()
+    public IEnumerator ShowThreeButtonEventPanel(EventEntity eventData)
+    {
+        yield return new WaitForSeconds(2f);
+        threeButtonEventPanel.SetActive(true);
+        threeButtonEventPanelText.text = eventData.threeButtonEventPanelText;
+
+        button1InfoText.text = eventData.threeButtonEventPanelButton1InfoText;
+        button2InfoText.text = eventData.threeButtonEventPanelButton2InfoText;
+        button3InfoText.text = eventData.threeButtonEventPanelButton3InfoText;
+        threeButtonPanelImage.sprite = eventData.threeButtonEventPanelImage;
+        threeButtonEventPanel.transform.DOScale(openEventPanelSize, 0.2f);
+    }
+
+
+    public void OnThreeButtonEventPanelButton1Click()
+    {
+        StartCoroutine(ActivateThreeButton1Event());
+    }
+
+
+    public void OnThreeButtonEventPanelButton2Click()
+    {
+        StartCoroutine(ActivateThreeButton2Event());
+    }
+
+    public void OnThreeButtonEventPanelButton3Click()
+    {
+        StartCoroutine(ActivateThreeButton3Event());
+    }
+
+
+    public void PushTwoButton2()
     {
         StartCoroutine(CloseTwoButtonEventPanel());
         StartCoroutine(CloseOneButtonEventPanel());
@@ -119,16 +172,77 @@ public class EventSceneManager : MonoBehaviour
         StartCoroutine(NextSceneManager.instance.GenerateNextScene());
     }
 
+    private IEnumerator ActivateThreeButton1Event()
+    {
+        StartCoroutine(CloseThreeButtonEventPanel());
+        yield return new WaitForSeconds(0.5f);
+
+        // Event処理
+        eventData.ActivateEvent(1);
+        uIManager.Refresh();
+
+        OpenOneButtonEventPanel();
+    }
+
+    private IEnumerator ActivateThreeButton2Event()
+    {
+        StartCoroutine(CloseThreeButtonEventPanel());
+        yield return new WaitForSeconds(0.5f);
+
+        // Event処理
+        eventData.ActivateEvent(2);
+        uIManager.Refresh();
+
+        OpenOneButtonEventPanel();
+    }
+
+    private IEnumerator ActivateThreeButton3Event()
+    {
+        StartCoroutine(CloseThreeButtonEventPanel());
+        yield return new WaitForSeconds(0.5f);
+
+        // Event処理
+        eventData.ActivateEvent(3);
+        uIManager.Refresh();
+
+        OpenOneButtonEventPanel();
+    }
+
     public void InitializeEventScene(EventEntity eventData)
     {
-        // ScriptableObjectからのデータを使用してイベントシーンを設定
-        twoButtonPanelTextInfo.text = eventData.twoButtonEventPanelText;
-        twoButtonPanelButtonText1.text = eventData.twoButtonEventPanelButton1Text;
-        twoButtonPanelButtonText2.text = eventData.twoButtonEventPanelButton2Text;
-        twoButtonPanelImage.sprite = eventData.eventImages[0];
-        oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
-        oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
-        oneButtonPanelImage.sprite = eventData.eventImages[0];
+        if (!string.IsNullOrEmpty(eventData.threeButtonEventPanelButton1Text) &&
+            !string.IsNullOrEmpty(eventData.threeButtonEventPanelButton2Text) &&
+            !string.IsNullOrEmpty(eventData.threeButtonEventPanelButton3Text))
+        {
+            twoButtonPanelTextInfo.text = eventData.twoButtonEventPanelText;
+            twoButtonPanelButtonText1.text = eventData.twoButtonEventPanelButton1Text;
+            twoButtonPanelButtonText2.text = eventData.twoButtonEventPanelButton2Text;
+            twoButtonPanelImage.sprite = eventData.twoButtonEventPanelImage;
+            oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
+            oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
+            oneButtonPanelImage.sprite = eventData.oneButtonEventPanelImage;
+            StartCoroutine(ShowThreeButtonEventPanel(eventData));
+        }
+        else
+        {
+            twoButtonPanelTextInfo.text = eventData.twoButtonEventPanelText;
+            twoButtonPanelButtonText1.text = eventData.twoButtonEventPanelButton1Text;
+            twoButtonPanelButtonText2.text = eventData.twoButtonEventPanelButton2Text;
+            twoButtonPanelImage.sprite = eventData.twoButtonEventPanelImage;
+            oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
+            oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
+            oneButtonPanelImage.sprite = eventData.oneButtonEventPanelImage;
+            StartCoroutine(FirstOpenTwoButtonEventPanel());
+        }
+    }
+
+    private void SetThreeButtonEventPanelTexts()
+    {
+        for (int i = 1; i <= 3; i++)
+        {
+            EventEntity.ButtonText buttonOption = (EventEntity.ButtonText)i;
+            threeButtonEventPanelButtonTexts[i - 1].text = eventData.GetThreeButtonEventPanelButtonText(buttonOption);
+        }
     }
 
 }
