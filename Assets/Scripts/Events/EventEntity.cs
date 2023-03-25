@@ -5,38 +5,48 @@ using TMPro;
 [CreateAssetMenu(fileName = "EventEntity", menuName = "BitSpells/EventEntity", order = 1)]
 public class EventEntity : ScriptableObject
 {
+
+    [Header("Event Type")]
+    public eventPatterns eventPattern;
+
+
     public string eventName;
     public string eventDescription;
 
     [Header("Three Button Event Panel UI")]
     public string threeButtonEventPanelText;
     public string threeButtonEventPanelButton1Text;
-    public string threeButtonEventPanelButton2Text;
-    public string threeButtonEventPanelButton3Text;
     public string threeButtonEventPanelButton1InfoText;
+    public ButtonColor threeButtonEventPanelButton1Color;
+    public string threeButtonEventPanelButton2Text;
     public string threeButtonEventPanelButton2InfoText;
+    public ButtonColor threeButtonEventPanelButton2Color;
+    public string threeButtonEventPanelButton3Text;
     public string threeButtonEventPanelButton3InfoText;
+    public ButtonColor threeButtonEventPanelButton3Color;
     public Sprite threeButtonEventPanelImage;
 
     public EventType eventType1;
     public EventType eventType2;
     public EventType eventType3;
 
-    [Header("Three Button Event Panel Text Options")]
-    public ButtonText buttonTextOption1;
-    public ButtonText buttonTextOption2;
-    public ButtonText buttonTextOption3;
-
     [Header("Two Button Event Panel UI")]
     public string twoButtonEventPanelText;
     public string twoButtonEventPanelButton1Text;
+    public ButtonColor twoButtonEventPanelButton1Color;
     public string twoButtonEventPanelButton2Text;
+    public ButtonColor twoButtonEventPanelButton2Color;
     public Sprite twoButtonEventPanelImage;
+
 
     [Header("One Button Event Panel UI")]
     public string oneButtonEventPanelText;
     public string oneButtonEventPanelButtonText;
+    public ButtonColor oneButtonEventPanelButtonColor;
     public Sprite oneButtonEventPanelImage;
+    public string oneButtonEventPanelText1;
+    public string oneButtonEventPanelText2;
+    public string oneButtonEventPanelText3;
 
     [Header("Two Button Events")]
     public EventActions eventActions;
@@ -119,12 +129,53 @@ public class EventEntity : ScriptableObject
         }
     }
 
+    public void ShowOneButtonEventPanelText(int buttonIndex)
+    {
+        string textToShow;
+        switch (buttonIndex)
+        {
+            case 1:
+                textToShow = oneButtonEventPanelText1;
+                break;
+            case 2:
+                textToShow = oneButtonEventPanelText2;
+                break;
+            case 3:
+                textToShow = oneButtonEventPanelText3;
+                break;
+            default:
+                Debug.LogError("Invalid button index.");
+                return;
+        }
+
+        // ここでOneButtonEventPanelにテキストを表示する処理を行います
+        // テキストオブジェクトを取得し、textToShowを設定するコードを追加してください
+    }
+
+    public enum EventType
+    {
+        FullHeal,
+        // 他のイベントタイプをここに追加
+        Leave,
+    }
+
     public enum ButtonText
     {
         Option1 = 1,
         Option2,
         Option3
     }
-
+    public enum ButtonColor
+    {
+        Red,
+        Blue,
+        Yellow,
+        Green
+    }
+    public enum eventPatterns
+    {
+        TwoButton,
+        ThreeButton
+    }
 
 }

@@ -13,10 +13,16 @@ public class EventSceneManager : MonoBehaviour
     public GameObject threeButtonEventPanel;
     public Image threeButtonPanelImage;
     public TMPro.TextMeshProUGUI threeButtonEventPanelText;
-    public TMP_Text[] threeButtonEventPanelButtonTexts;
+    public Button threeButtonPanelButton1;
+    public Button threeButtonPanelButton2;
+    public Button threeButtonPanelButton3;
+    public TMP_Text threeButtonEventPanelButtonText1;
+    public TMP_Text threeButtonEventPanelButtonText2;
+    public TMP_Text threeButtonEventPanelButtonText3;
     public TMPro.TextMeshProUGUI button1InfoText;
     public TMPro.TextMeshProUGUI button2InfoText;
     public TMPro.TextMeshProUGUI button3InfoText;
+
 
     [Header("Two Button Event Panel UI")]
     public Image twoButtonPanelImage;
@@ -60,6 +66,9 @@ public class EventSceneManager : MonoBehaviour
         EventInit();
 
 
+        threeButtonPanelButton1.onClick.AddListener(OnThreeButtonEventPanelButton1Click);
+        threeButtonPanelButton2.onClick.AddListener(OnThreeButtonEventPanelButton2Click);
+        threeButtonPanelButton3.onClick.AddListener(OnThreeButtonEventPanelButton3Click);
         twoButtonPanelButton1.onClick.AddListener(PushTwoButton1);
         twoButtonPanelButton2.onClick.AddListener(PushTwoButton2);
         oneButtonPanelButton.onClick.AddListener(PushTwoButton2);
@@ -210,9 +219,9 @@ public class EventSceneManager : MonoBehaviour
 
     public void InitializeEventScene(EventEntity eventData)
     {
-        if (!string.IsNullOrEmpty(eventData.threeButtonEventPanelButton1Text) &&
-            !string.IsNullOrEmpty(eventData.threeButtonEventPanelButton2Text) &&
-            !string.IsNullOrEmpty(eventData.threeButtonEventPanelButton3Text))
+        this.eventData = eventData;
+
+        if (eventData.eventPattern == EventEntity.eventPatterns.ThreeButton)
         {
             twoButtonPanelTextInfo.text = eventData.twoButtonEventPanelText;
             twoButtonPanelButtonText1.text = eventData.twoButtonEventPanelButton1Text;
@@ -221,6 +230,17 @@ public class EventSceneManager : MonoBehaviour
             oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
             oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
             oneButtonPanelImage.sprite = eventData.oneButtonEventPanelImage;
+            twoButtonPanelButton1.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton1Color);
+            twoButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton2Color);
+            oneButtonPanelButton.GetComponent<Image>().color = ButtonColorToColor(eventData.oneButtonEventPanelButtonColor);
+
+            threeButtonEventPanelButtonText1.text = eventData.threeButtonEventPanelButton1Text;
+            threeButtonEventPanelButtonText2.text = eventData.threeButtonEventPanelButton2Text;
+            threeButtonEventPanelButtonText3.text = eventData.threeButtonEventPanelButton3Text;
+            threeButtonPanelButton1.GetComponent<Image>().color = ButtonColorToColor(eventData.threeButtonEventPanelButton1Color);
+            threeButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.threeButtonEventPanelButton2Color);
+            threeButtonPanelButton3.GetComponent<Image>().color = ButtonColorToColor(eventData.threeButtonEventPanelButton3Color);
+
             StartCoroutine(ShowThreeButtonEventPanel(eventData));
         }
         else
@@ -232,17 +252,27 @@ public class EventSceneManager : MonoBehaviour
             oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
             oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
             oneButtonPanelImage.sprite = eventData.oneButtonEventPanelImage;
+            twoButtonPanelButton1.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton1Color);
+            twoButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton2Color);
+            oneButtonPanelButton.GetComponent<Image>().color = ButtonColorToColor(eventData.oneButtonEventPanelButtonColor);
+
             StartCoroutine(FirstOpenTwoButtonEventPanel());
         }
     }
-
-    private void SetThreeButtonEventPanelTexts()
+    private Color ButtonColorToColor(EventEntity.ButtonColor buttonColor)
     {
-        for (int i = 1; i <= 3; i++)
+        switch (buttonColor)
         {
-            EventEntity.ButtonText buttonOption = (EventEntity.ButtonText)i;
-            threeButtonEventPanelButtonTexts[i - 1].text = eventData.GetThreeButtonEventPanelButtonText(buttonOption);
+            case EventEntity.ButtonColor.Red:
+                return Color.red;
+            case EventEntity.ButtonColor.Blue:
+                return Color.blue;
+            case EventEntity.ButtonColor.Yellow:
+                return Color.yellow;
+            case EventEntity.ButtonColor.Green:
+                return Color.green;
+            default:
+                return Color.white;
         }
     }
-
 }

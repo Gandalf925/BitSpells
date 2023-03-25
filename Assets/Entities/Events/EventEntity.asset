@@ -12,23 +12,36 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb0ae3a998a2cd40aa68fe0c0fa02d3, type: 3}
   m_Name: EventEntity
   m_EditorClassIdentifier: 
+  eventPattern: 1
   eventName: b
   eventDescription: b
-  twoButtonEventPanelText: b
-  twoButtonEventPanelButton1Text: b
-  twoButtonEventPanelButton2Text: b
-  oneButtonEventPanelText: b
-  oneButtonEventPanelButtonText: b
   threeButtonEventPanelText: 
   threeButtonEventPanelButton1Text: 
+  threeButtonEventPanelButton1InfoText: 
+  threeButtonEventPanelButton1Color: 0
   threeButtonEventPanelButton2Text: 
+  threeButtonEventPanelButton2InfoText: 
+  threeButtonEventPanelButton2Color: 0
   threeButtonEventPanelButton3Text: 
-  eventType: 0
-  stageType: 0
-  stageDepth: 0
-  eventImages:
-  - {fileID: 21300000, guid: 05c28e5665661b949b628fd5cf28e1d6, type: 3}
-  - {fileID: 21300000, guid: 87bf61e478edf3a4e99f472ee4c7e087, type: 3}
+  threeButtonEventPanelButton3InfoText: 
+  threeButtonEventPanelButton3Color: 0
+  threeButtonEventPanelImage: {fileID: 0}
   eventType1: 0
   eventType2: 0
   eventType3: 0
+  twoButtonEventPanelText: b
+  twoButtonEventPanelButton1Text: b
+  twoButtonEventPanelButton1Color: 0
+  twoButtonEventPanelButton2Text: b
+  twoButtonEventPanelButton2Color: 0
+  twoButtonEventPanelImage: {fileID: 0}
+  oneButtonEventPanelText: b
+  oneButtonEventPanelButtonText: b
+  oneButtonEventPanelButtonColor: 0
+  oneButtonEventPanelImage: {fileID: 0}
+  oneButtonEventPanelText1: 
+  oneButtonEventPanelText2: 
+  oneButtonEventPanelText3: 
+  eventType: 0
+  stageType: 0
+  stageDepth: 0

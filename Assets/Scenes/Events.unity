@@ -2522,7 +2522,12 @@ MonoBehaviour:
   threeButtonEventPanel: {fileID: 1325380967}
   threeButtonPanelImage: {fileID: 499145571}
   threeButtonEventPanelText: {fileID: 1815136548}
-  threeButtonEventPanelButtonTexts: []
+  threeButtonPanelButton1: {fileID: 1944160764}
+  threeButtonPanelButton2: {fileID: 2043376849}
+  threeButtonPanelButton3: {fileID: 1059648854}
+  threeButtonEventPanelButtonText1: {fileID: 194731914}
+  threeButtonEventPanelButtonText2: {fileID: 1716465718}
+  threeButtonEventPanelButtonText3: {fileID: 1544935146}
   button1InfoText: {fileID: 1882010658}
   button2InfoText: {fileID: 355658230}
   button3InfoText: {fileID: 204655635}
