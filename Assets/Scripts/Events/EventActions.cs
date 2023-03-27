@@ -5,7 +5,7 @@ using UnityEngine;
 public class EventActions
 {
     public EventSceneManager eventSceneManager;
-    public void FullHealEvent()
+    public void FullHeal()
     {
         Player.instance.currentHP = Player.instance.maxHP;
         Debug.Log("Event処理完了");

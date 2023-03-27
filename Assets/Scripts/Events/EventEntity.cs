@@ -15,25 +15,26 @@ public class EventEntity : ScriptableObject
 
     [Header("Three Button Event Panel UI")]
     public string threeButtonEventPanelText;
+    public EventType threeButtonEventPanelButton1EventType;
     public string threeButtonEventPanelButton1Text;
     public string threeButtonEventPanelButton1InfoText;
     public ButtonColor threeButtonEventPanelButton1Color;
+    public EventType threeButtonEventPanelButton2EventType;
     public string threeButtonEventPanelButton2Text;
     public string threeButtonEventPanelButton2InfoText;
     public ButtonColor threeButtonEventPanelButton2Color;
+    public EventType threeButtonEventPanelButton3EventType;
     public string threeButtonEventPanelButton3Text;
     public string threeButtonEventPanelButton3InfoText;
     public ButtonColor threeButtonEventPanelButton3Color;
     public Sprite threeButtonEventPanelImage;
 
-    public EventType eventType1;
-    public EventType eventType2;
-    public EventType eventType3;
-
     [Header("Two Button Event Panel UI")]
     public string twoButtonEventPanelText;
+    public EventType twoButtonEventPanelButton1EventType;
     public string twoButtonEventPanelButton1Text;
     public ButtonColor twoButtonEventPanelButton1Color;
+    public EventType twoButtonEventPanelButton2EventType;
     public string twoButtonEventPanelButton2Text;
     public ButtonColor twoButtonEventPanelButton2Color;
     public Sprite twoButtonEventPanelImage;
@@ -57,43 +58,6 @@ public class EventEntity : ScriptableObject
     public StageDepth stageDepth;
 
 
-    public void ActivateEvent(int buttonIndex)
-    {
-        EventType eventTypeToActivate;
-        switch (buttonIndex)
-        {
-            case 1:
-                eventTypeToActivate = eventType1;
-                break;
-            case 2:
-                eventTypeToActivate = eventType2;
-                break;
-            case 3:
-                eventTypeToActivate = eventType3;
-                break;
-            default:
-                Debug.LogError("Invalid button index.");
-                return;
-        }
-
-        switch (eventTypeToActivate)
-        {
-            case EventType.FullHeal:
-                eventActions.FullHealEvent();
-                break;
-            // 他のイベントタイプのケースをここに追加
-            case EventType.Leave:
-                eventActions.Leave();
-                break;
-
-            default:
-                Debug.LogError("Invalid event type.");
-                break;
-        }
-    }
-
-
-
     private void OnEnable()
     {
         eventActions = new EventActions();
@@ -104,7 +68,7 @@ public class EventEntity : ScriptableObject
         switch (eventType)
         {
             case EventType.FullHeal:
-                eventActions.FullHealEvent();
+                eventActions.FullHeal();
                 break;
             // 他のイベントタイプのケースをここに追加
             default:

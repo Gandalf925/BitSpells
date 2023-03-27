@@ -39,6 +39,9 @@ public class EventSceneManager : MonoBehaviour
     public TMP_Text oneButtonPanelTextInfo;
     public Button oneButtonPanelButton;
     public TMP_Text oneButtonPanelButtonText;
+
+    private EventEntity eventEntity;
+    public EventActions eventActions;
     Vector3 openEventPanelSize = new Vector3(1.35f, 1.35f, 1.35f);
     Vector3 closeEventPanelSize = new Vector3(0f, 0f, 0f);
     UIManager uIManager;
@@ -65,13 +68,16 @@ public class EventSceneManager : MonoBehaviour
         uIManager = FindObjectOfType<UIManager>();
         EventInit();
 
+        // eventActions の初期化
+        eventActions = new EventActions();
+        eventActions.eventSceneManager = this;
 
-        threeButtonPanelButton1.onClick.AddListener(OnThreeButtonEventPanelButton1Click);
-        threeButtonPanelButton2.onClick.AddListener(OnThreeButtonEventPanelButton2Click);
-        threeButtonPanelButton3.onClick.AddListener(OnThreeButtonEventPanelButton3Click);
+        threeButtonPanelButton1.onClick.AddListener(PushThreeButton1);
+        threeButtonPanelButton2.onClick.AddListener(PushThreeButton2);
+        threeButtonPanelButton3.onClick.AddListener(PushThreeButton3);
         twoButtonPanelButton1.onClick.AddListener(PushTwoButton1);
         twoButtonPanelButton2.onClick.AddListener(PushTwoButton2);
-        oneButtonPanelButton.onClick.AddListener(PushTwoButton2);
+        oneButtonPanelButton.onClick.AddListener(PushOneButton);
     }
 
     void EventInit()
@@ -81,10 +87,16 @@ public class EventSceneManager : MonoBehaviour
         uIManager.Refresh();
     }
 
-    IEnumerator FirstOpenTwoButtonEventPanel()
+    public IEnumerator ShowTwoButtonEventPanel(EventEntity eventData)
     {
+        this.eventEntity = eventData;
         yield return new WaitForSeconds(2f);
         twoButtonEventPanel.SetActive(true);
+        twoButtonPanelTextInfo.text = eventData.twoButtonEventPanelText;
+
+        twoButtonPanelButtonText1.text = eventData.twoButtonEventPanelButton1Text;
+        twoButtonPanelButtonText2.text = eventData.twoButtonEventPanelButton2Text;
+        twoButtonPanelImage.sprite = eventData.twoButtonEventPanelImage;
         twoButtonEventPanel.transform.DOScale(openEventPanelSize, 0.2f);
     }
 
@@ -124,25 +136,9 @@ public class EventSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
     }
 
-    public void PushTwoButton1()
-    {
-        StartCoroutine(activeTwoButton1Event());
-    }
-
-    public IEnumerator activeTwoButton1Event()
-    {
-        StartCoroutine(CloseTwoButtonEventPanel());
-        yield return new WaitForSeconds(0.5f);
-
-        // Event処理
-        eventData.ActivateEvent();
-        uIManager.Refresh();
-
-        OpenOneButtonEventPanel();
-    }
-
     public IEnumerator ShowThreeButtonEventPanel(EventEntity eventData)
     {
+        this.eventEntity = eventData;
         yield return new WaitForSeconds(2f);
         threeButtonEventPanel.SetActive(true);
         threeButtonEventPanelText.text = eventData.threeButtonEventPanelText;
@@ -155,30 +151,59 @@ public class EventSceneManager : MonoBehaviour
     }
 
 
-    public void OnThreeButtonEventPanelButton1Click()
+    public void PushThreeButton1()
     {
         StartCoroutine(ActivateThreeButton1Event());
     }
 
 
-    public void OnThreeButtonEventPanelButton2Click()
+    public void PushThreeButton2()
     {
         StartCoroutine(ActivateThreeButton2Event());
     }
 
-    public void OnThreeButtonEventPanelButton3Click()
+    public void PushThreeButton3()
     {
         StartCoroutine(ActivateThreeButton3Event());
     }
 
 
+    public void PushTwoButton1()
+    {
+        StartCoroutine(activeTwoButton1Event());
+    }
+
     public void PushTwoButton2()
     {
-        StartCoroutine(CloseTwoButtonEventPanel());
-        StartCoroutine(CloseOneButtonEventPanel());
-        Debug.Log("移動先の表示をする");
+        StartCoroutine(activeTwoButton2Event());
+    }
 
-        StartCoroutine(NextSceneManager.instance.GenerateNextScene());
+    public void PushOneButton()
+    {
+        StartCoroutine(ActivateOneButtonEvent());
+    }
+
+    public IEnumerator activeTwoButton1Event()
+    {
+        StartCoroutine(CloseTwoButtonEventPanel());
+        yield return new WaitForSeconds(0.5f);
+
+        EventEntity.EventType eventType = eventEntity.twoButtonEventPanelButton1EventType;
+        ExecuteEventAction(eventType);
+        uIManager.Refresh();
+
+        OpenOneButtonEventPanel();
+    }
+    public IEnumerator activeTwoButton2Event()
+    {
+        StartCoroutine(CloseTwoButtonEventPanel());
+        yield return new WaitForSeconds(0.5f);
+
+        EventEntity.EventType eventType = eventEntity.twoButtonEventPanelButton2EventType;
+        ExecuteEventAction(eventType);
+        uIManager.Refresh();
+
+        OpenOneButtonEventPanel();
     }
 
     private IEnumerator ActivateThreeButton1Event()
@@ -187,7 +212,8 @@ public class EventSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Event処理
-        eventData.ActivateEvent(1);
+        EventEntity.EventType eventType = eventEntity.threeButtonEventPanelButton1EventType;
+        ExecuteEventAction(eventType);
         uIManager.Refresh();
 
         OpenOneButtonEventPanel();
@@ -199,7 +225,8 @@ public class EventSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Event処理
-        eventData.ActivateEvent(2);
+        EventEntity.EventType eventType = eventEntity.threeButtonEventPanelButton2EventType;
+        ExecuteEventAction(eventType);
         uIManager.Refresh();
 
         OpenOneButtonEventPanel();
@@ -211,10 +238,21 @@ public class EventSceneManager : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
 
         // Event処理
-        eventData.ActivateEvent(3);
+        EventEntity.EventType eventType = eventEntity.threeButtonEventPanelButton3EventType;
+        ExecuteEventAction(eventType);
         uIManager.Refresh();
 
         OpenOneButtonEventPanel();
+    }
+
+    private IEnumerator ActivateOneButtonEvent()
+    {
+        StartCoroutine(CloseTwoButtonEventPanel());
+        StartCoroutine(CloseOneButtonEventPanel());
+        Debug.Log("移動先の表示をする");
+        yield return new WaitForSeconds(0.2f);
+
+        StartCoroutine(NextSceneManager.instance.GenerateNextScene());
     }
 
     public void InitializeEventScene(EventEntity eventData)
@@ -256,7 +294,7 @@ public class EventSceneManager : MonoBehaviour
             twoButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton2Color);
             oneButtonPanelButton.GetComponent<Image>().color = ButtonColorToColor(eventData.oneButtonEventPanelButtonColor);
 
-            StartCoroutine(FirstOpenTwoButtonEventPanel());
+            StartCoroutine(ShowTwoButtonEventPanel(eventData));
         }
     }
     private Color ButtonColorToColor(EventEntity.ButtonColor buttonColor)
@@ -273,6 +311,24 @@ public class EventSceneManager : MonoBehaviour
                 return Color.green;
             default:
                 return Color.white;
+        }
+    }
+
+    public void ExecuteEventAction(EventEntity.EventType eventType)
+    {
+        switch (eventType)
+        {
+            case EventEntity.EventType.FullHeal:
+                // プレイヤーの完全回復処理をここに追加
+                eventActions.FullHeal();
+                break;
+            case EventEntity.EventType.Leave:
+                // Leave処理をここに追加
+                break;
+            // 他のイベントアクション処理をここに追加
+            default:
+                Debug.LogError("Invalid event type.");
+                break;
         }
     }
 }
