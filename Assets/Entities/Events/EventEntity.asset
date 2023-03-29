@@ -12,36 +12,41 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb0ae3a998a2cd40aa68fe0c0fa02d3, type: 3}
   m_Name: EventEntity
   m_EditorClassIdentifier: 
-  eventPattern: 1
+  eventPattern: 0
   eventName: b
   eventDescription: b
+  eventBackground: {fileID: 21300000, guid: b3a7271d67fad734187d4485d7793f52, type: 3}
   threeButtonEventPanelText: 
+  threeButtonEventPanelButton1EventType: 0
   threeButtonEventPanelButton1Text: 
   threeButtonEventPanelButton1InfoText: 
   threeButtonEventPanelButton1Color: 0
+  threeButtonEventPanelButton2EventType: 0
   threeButtonEventPanelButton2Text: 
   threeButtonEventPanelButton2InfoText: 
   threeButtonEventPanelButton2Color: 0
+  threeButtonEventPanelButton3EventType: 0
   threeButtonEventPanelButton3Text: 
   threeButtonEventPanelButton3InfoText: 
   threeButtonEventPanelButton3Color: 0
   threeButtonEventPanelImage: {fileID: 0}
-  eventType1: 0
-  eventType2: 0
-  eventType3: 0
   twoButtonEventPanelText: b
+  twoButtonEventPanelButton1EventType: 0
   twoButtonEventPanelButton1Text: b
   twoButtonEventPanelButton1Color: 0
+  twoButtonEventPanelButton2EventType: 1
   twoButtonEventPanelButton2Text: b
   twoButtonEventPanelButton2Color: 0
   twoButtonEventPanelImage: {fileID: 0}
   oneButtonEventPanelText: b
+  oneButtonEventPanelTextOnThreeButton1: 
+  oneButtonEventPanelTextOnThreeButton2: 
+  oneButtonEventPanelTextOnThreeButton3: 
+  oneButtonEventPanelTextOnTwoButton1: a
+  oneButtonEventPanelTextOnTwoButton2: ab
   oneButtonEventPanelButtonText: b
   oneButtonEventPanelButtonColor: 0
   oneButtonEventPanelImage: {fileID: 0}
-  oneButtonEventPanelText1: 
-  oneButtonEventPanelText2: 
-  oneButtonEventPanelText3: 
   eventType: 0
   stageType: 0
   stageDepth: 0

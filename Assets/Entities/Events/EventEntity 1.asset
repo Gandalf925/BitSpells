@@ -15,17 +15,18 @@ MonoBehaviour:
   eventPattern: 1
   eventName: ThreePanelTest
   eventDescription: 
-  threeButtonEventPanelText: c
+  eventBackground: {fileID: 21300000, guid: cb2a2e286bc36884cb8f69d3f9718084, type: 3}
+  threeButtonEventPanelText: a
   threeButtonEventPanelButton1EventType: 0
-  threeButtonEventPanelButton1Text: d
-  threeButtonEventPanelButton1InfoText: You decide to take a break.
+  threeButtonEventPanelButton1Text: a
+  threeButtonEventPanelButton1InfoText: You decide to take a break a.
   threeButtonEventPanelButton1Color: 1
   threeButtonEventPanelButton2EventType: 0
-  threeButtonEventPanelButton2Text: e
-  threeButtonEventPanelButton2InfoText: You decide to take a break.
+  threeButtonEventPanelButton2Text: a
+  threeButtonEventPanelButton2InfoText: You decide to take a break b.
   threeButtonEventPanelButton2Color: 2
   threeButtonEventPanelButton3EventType: 1
-  threeButtonEventPanelButton3Text: f
+  threeButtonEventPanelButton3Text: a
   threeButtonEventPanelButton3InfoText: Are you OK?
   threeButtonEventPanelButton3Color: 3
   threeButtonEventPanelImage: {fileID: 21300000, guid: 05c28e5665661b949b628fd5cf28e1d6, type: 3}
@@ -38,12 +39,14 @@ MonoBehaviour:
   twoButtonEventPanelButton2Color: 0
   twoButtonEventPanelImage: {fileID: 0}
   oneButtonEventPanelText: c
+  oneButtonEventPanelTextOnThreeButton1: a
+  oneButtonEventPanelTextOnThreeButton2: ab
+  oneButtonEventPanelTextOnThreeButton3: abc
+  oneButtonEventPanelTextOnTwoButton1: 
+  oneButtonEventPanelTextOnTwoButton2: 
   oneButtonEventPanelButtonText: c
   oneButtonEventPanelButtonColor: 3
   oneButtonEventPanelImage: {fileID: 0}
-  oneButtonEventPanelText1: 
-  oneButtonEventPanelText2: 
-  oneButtonEventPanelText3: 
   eventType: 0
   stageType: 0
   stageDepth: 0

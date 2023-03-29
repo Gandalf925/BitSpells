@@ -13,8 +13,11 @@ public class EventEntity : ScriptableObject
     public string eventName;
     public string eventDescription;
 
+    [Header("Event Background")]
+    public Sprite eventBackground;
+
     [Header("Three Button Event Panel UI")]
-    public string threeButtonEventPanelText;
+    [Multiline] public string threeButtonEventPanelText;
     public EventType threeButtonEventPanelButton1EventType;
     public string threeButtonEventPanelButton1Text;
     public string threeButtonEventPanelButton1InfoText;
@@ -30,7 +33,7 @@ public class EventEntity : ScriptableObject
     public Sprite threeButtonEventPanelImage;
 
     [Header("Two Button Event Panel UI")]
-    public string twoButtonEventPanelText;
+    [Multiline] public string twoButtonEventPanelText;
     public EventType twoButtonEventPanelButton1EventType;
     public string twoButtonEventPanelButton1Text;
     public ButtonColor twoButtonEventPanelButton1Color;
@@ -42,20 +45,24 @@ public class EventEntity : ScriptableObject
 
     [Header("One Button Event Panel UI")]
     public string oneButtonEventPanelText;
+
+    [Multiline] public string oneButtonEventPanelTextOnThreeButton1;
+    [Multiline] public string oneButtonEventPanelTextOnThreeButton2;
+    [Multiline] public string oneButtonEventPanelTextOnThreeButton3;
+    [Multiline] public string oneButtonEventPanelTextOnTwoButton1;
+    [Multiline] public string oneButtonEventPanelTextOnTwoButton2;
     public string oneButtonEventPanelButtonText;
     public ButtonColor oneButtonEventPanelButtonColor;
     public Sprite oneButtonEventPanelImage;
-    public string oneButtonEventPanelText1;
-    public string oneButtonEventPanelText2;
-    public string oneButtonEventPanelText3;
 
     [Header("Two Button Events")]
     public EventActions eventActions;
 
-    [Header("StageDetali")]
+    [Header("StageDetail")]
     public EventType eventType;
     public StageType stageType;
     public StageDepth stageDepth;
+
 
 
     private void OnEnable()
@@ -63,19 +70,6 @@ public class EventEntity : ScriptableObject
         eventActions = new EventActions();
     }
 
-    public void ActivateEvent()
-    {
-        switch (eventType)
-        {
-            case EventType.FullHeal:
-                eventActions.FullHeal();
-                break;
-            // 他のイベントタイプのケースをここに追加
-            default:
-                Debug.LogError("Invalid event type.");
-                break;
-        }
-    }
 
     public string GetThreeButtonEventPanelButtonText(ButtonText text)
     {
@@ -91,29 +85,6 @@ public class EventEntity : ScriptableObject
                 Debug.LogError("Invalid ButtonOption.");
                 return "";
         }
-    }
-
-    public void ShowOneButtonEventPanelText(int buttonIndex)
-    {
-        string textToShow;
-        switch (buttonIndex)
-        {
-            case 1:
-                textToShow = oneButtonEventPanelText1;
-                break;
-            case 2:
-                textToShow = oneButtonEventPanelText2;
-                break;
-            case 3:
-                textToShow = oneButtonEventPanelText3;
-                break;
-            default:
-                Debug.LogError("Invalid button index.");
-                return;
-        }
-
-        // ここでOneButtonEventPanelにテキストを表示する処理を行います
-        // テキストオブジェクトを取得し、textToShowを設定するコードを追加してください
     }
 
     public enum EventType

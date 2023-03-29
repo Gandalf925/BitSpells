@@ -2543,6 +2543,7 @@ MonoBehaviour:
   oneButtonPanelTextInfo: {fileID: 1932591354}
   oneButtonPanelButton: {fileID: 709285970}
   oneButtonPanelButtonText: {fileID: 28870116}
+  BackgroundImage: {fileID: 1790341908}
 --- !u!4 &540778143
 Transform:
   m_ObjectHideFlags: 0
@@ -4139,7 +4140,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: fdc133b0eb242c340bb4d3fbda018811, type: 2}
   - {fileID: 11400000, guid: 654ea0ec198fe094dbecaf70235f9feb, type: 2}
   events:
-  - {fileID: 11400000, guid: 9935c4b2f4c3f4b409e55486c44cf4f5, type: 2}
+  - {fileID: 11400000, guid: 88f801260e322b147a11866bc28e4f7b, type: 2}
 --- !u!4 &1128058503
 Transform:
   m_ObjectHideFlags: 0

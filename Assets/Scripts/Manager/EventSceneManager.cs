@@ -42,6 +42,8 @@ public class EventSceneManager : MonoBehaviour
 
     private EventEntity eventEntity;
     public EventActions eventActions;
+
+    public Image BackgroundImage;
     Vector3 openEventPanelSize = new Vector3(1.35f, 1.35f, 1.35f);
     Vector3 closeEventPanelSize = new Vector3(0f, 0f, 0f);
     UIManager uIManager;
@@ -84,6 +86,7 @@ public class EventSceneManager : MonoBehaviour
     {
         NextSceneManager nextSceneManager = FindObjectOfType<NextSceneManager>();
         eventData = nextSceneManager.CreateEventScene(0);
+        BackgroundImage.sprite = eventData.eventBackground;
         uIManager.Refresh();
     }
 
@@ -192,6 +195,9 @@ public class EventSceneManager : MonoBehaviour
         ExecuteEventAction(eventType);
         uIManager.Refresh();
 
+        // Update OneButtonEventPanel Text
+        oneButtonPanelTextInfo.text = eventEntity.oneButtonEventPanelTextOnTwoButton1;
+
         OpenOneButtonEventPanel();
     }
     public IEnumerator activeTwoButton2Event()
@@ -202,6 +208,9 @@ public class EventSceneManager : MonoBehaviour
         EventEntity.EventType eventType = eventEntity.twoButtonEventPanelButton2EventType;
         ExecuteEventAction(eventType);
         uIManager.Refresh();
+
+        // Update OneButtonEventPanel Text
+        oneButtonPanelTextInfo.text = eventEntity.oneButtonEventPanelTextOnTwoButton2;
 
         OpenOneButtonEventPanel();
     }
@@ -216,6 +225,9 @@ public class EventSceneManager : MonoBehaviour
         ExecuteEventAction(eventType);
         uIManager.Refresh();
 
+        // Update OneButtonEventPanel Text
+        oneButtonPanelTextInfo.text = eventEntity.oneButtonEventPanelTextOnThreeButton1;
+
         OpenOneButtonEventPanel();
     }
 
@@ -229,6 +241,8 @@ public class EventSceneManager : MonoBehaviour
         ExecuteEventAction(eventType);
         uIManager.Refresh();
 
+        oneButtonPanelTextInfo.text = eventEntity.oneButtonEventPanelTextOnThreeButton2;
+
         OpenOneButtonEventPanel();
     }
 
@@ -241,6 +255,8 @@ public class EventSceneManager : MonoBehaviour
         EventEntity.EventType eventType = eventEntity.threeButtonEventPanelButton3EventType;
         ExecuteEventAction(eventType);
         uIManager.Refresh();
+
+        oneButtonPanelTextInfo.text = eventEntity.oneButtonEventPanelTextOnThreeButton3;
 
         OpenOneButtonEventPanel();
     }
@@ -302,7 +318,7 @@ public class EventSceneManager : MonoBehaviour
         switch (buttonColor)
         {
             case EventEntity.ButtonColor.Red:
-                return Color.red;
+                return new Color(0.7f, 0.4f, 0.4f);
             case EventEntity.ButtonColor.Blue:
                 return Color.blue;
             case EventEntity.ButtonColor.Yellow:
