@@ -80,6 +80,12 @@ public class Player : MonoBehaviour
                     enemy.Damage(selectedCard);
                     enemy.CheckAlive();
                     break;
+                case "Martial Arts":
+                    Debug.Log("Used");
+                    enemy.AddActionNumber();
+                    enemy.DisplayNextAction();
+                    enemy.CheckAlive();
+                    break;
             }
 
         }

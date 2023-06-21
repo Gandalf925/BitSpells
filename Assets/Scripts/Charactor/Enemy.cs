@@ -73,6 +73,11 @@ public class Enemy : MonoBehaviour
         }
     }
 
+    public void AddActionNumber()
+    {
+        turnNumber += 1;
+    }
+
     public void CheckAlive()
     {
         if (model.isAlive)

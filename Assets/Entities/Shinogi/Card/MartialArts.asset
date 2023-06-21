@@ -16,8 +16,8 @@ MonoBehaviour:
   name: Martial Arts
   cost: 1
   value: 25
-  description: Stun your opponent
-  cardType: 2
-  targetTypes: 0
+  description: Change the opponent's behavior
+  cardType: 0
+  targetTypes: 1
   icon: {fileID: 21300000, guid: ac3fc4cbfb1ee294b8503152f0a215a3, type: 3}
   effectPrefab: {fileID: 141433446842962269, guid: 9fe8f8b3288e45a44af36ff8aa04486e, type: 3}

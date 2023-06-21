@@ -7966,6 +7966,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 20931ce77f76e224e99d56a759035e40, type: 2}
   - {fileID: 11400000, guid: 20931ce77f76e224e99d56a759035e40, type: 2}
   - {fileID: 11400000, guid: 20931ce77f76e224e99d56a759035e40, type: 2}
+  - {fileID: 11400000, guid: db50d44ca0a61ef4b9291d46c054819f, type: 2}
   MyItemList:
   - {fileID: 11400000, guid: 4107603d92d3bef4691e7227a7ad11ba, type: 2}
   - {fileID: 11400000, guid: 64ae7482eb6229148b0e091b73e3b89d, type: 2}
