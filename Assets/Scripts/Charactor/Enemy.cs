@@ -105,31 +105,17 @@ public class Enemy : MonoBehaviour
         battleSceneManager.enemies.Remove(this);
         battleSceneManager.uncontrollablePanel.SetActive(false);
         Destroy(this.gameObject);
-        CheckGameClearOrOver();
+        CheckGameClear();
     }
 
-    private void CheckGameClearOrOver()
+    private void CheckGameClear()
     {
         if (battleSceneManager.enemies.Count == 0)
         {
             StopAllCoroutines();
-            if (!battleSceneManager.isGameClear)
-            {
-                battleSceneManager.isGameClear = true;
-                battleSceneManager.uIManager.hideUIToggle.gameObject.SetActive(false);
-                battleSceneManager.BattleClear();
-            }
-        }
+            battleSceneManager.uIManager.hideUIToggle.gameObject.SetActive(false);
+            battleSceneManager.BattleClear();
 
-        if (Player.instance.currentHP == 0)
-        {
-            StopAllCoroutines();
-            if (!battleSceneManager.isGameOver)
-            {
-                battleSceneManager.isGameOver = true;
-                battleSceneManager.uIManager.hideUIToggle.gameObject.SetActive(false);
-                battleSceneManager.BattleDefeat();
-            }
         }
     }
 

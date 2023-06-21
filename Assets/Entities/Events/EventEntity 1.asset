@@ -46,7 +46,7 @@ MonoBehaviour:
   oneButtonEventPanelTextOnTwoButton2: 
   oneButtonEventPanelButtonText: c
   oneButtonEventPanelButtonColor: 3
-  oneButtonEventPanelImage: {fileID: 0}
+  oneButtonEventPanelImage: {fileID: 21300000, guid: 12cc71e0ca68eac4a8f8cee82ba7de3f, type: 3}
   eventType: 0
   stageType: 0
   stageDepth: 0

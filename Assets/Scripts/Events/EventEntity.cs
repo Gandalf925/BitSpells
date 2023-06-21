@@ -87,13 +87,6 @@ public class EventEntity : ScriptableObject
         }
     }
 
-    public enum EventType
-    {
-        FullHeal,
-        // 他のイベントタイプをここに追加
-        Leave,
-    }
-
     public enum ButtonText
     {
         Option1 = 1,
@@ -112,5 +105,14 @@ public class EventEntity : ScriptableObject
         TwoButton,
         ThreeButton
     }
+
+
+    public enum EventType
+    {
+        FullHeal,
+        HalfHeal,
+        Leave,
+    }
+
 
 }

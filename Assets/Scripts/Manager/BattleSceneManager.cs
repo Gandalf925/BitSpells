@@ -290,6 +290,9 @@ public class BattleSceneManager : MonoBehaviour
 
     public void BattleClear()
     {
+        Player.instance.currentEnergy = Player.instance.maxEnergy;
+
+        uIManager.hideUIToggle.gameObject.SetActive(false);
         EndPanel.SetActive(true);
         DefeatPopup.SetActive(false);
         ClearPopup.SetActive(true);
@@ -298,9 +301,13 @@ public class BattleSceneManager : MonoBehaviour
 
     public void BattleDefeat()
     {
+        Player.instance.currentEnergy = Player.instance.maxEnergy;
+
+        uIManager.hideUIToggle.gameObject.SetActive(false);
         EndPanel.SetActive(true);
         DefeatPopup.SetActive(true);
         ClearPopup.SetActive(false);
+        EndPanel.GetComponent<Image>().DOColor(new Color(0, 0, 0, 100), 0.3f);
         DefeatPopup.transform.DOScale(new Vector3(1, 1, 1), 0.1f);
     }
 
@@ -310,8 +317,7 @@ public class BattleSceneManager : MonoBehaviour
         ClearPopup.SetActive(false);
         EndPanel.SetActive(true);
 
-        // Playerのステータスを初期化する
-        Player.instance.currentEnergy = Player.instance.maxEnergy;
+        uIManager.hideUIToggle.gameObject.SetActive(true);
 
         StartCoroutine(NextSceneManager.instance.GenerateNextScene());
     }
@@ -321,8 +327,10 @@ public class BattleSceneManager : MonoBehaviour
         DefeatPopup.transform.DOScale(new Vector3(0, 0, 0), 0.1f);
         DefeatPopup.SetActive(false);
         EndPanel.SetActive(true);
-        // ゲームオーバー時の処理（レジスタンスの基地へシーン移行）
+        uIManager.hideUIToggle.gameObject.SetActive(true);
+        // ゲームオーバー時の処理（拠点へシーン移行）
 
+        EndPanel.GetComponent<Image>().color = new Color(231, 231, 231, 0);
     }
 
     public void ShowNextItem()

@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (6)
@@ -2512,10 +2516,13 @@ MonoBehaviour:
   playerSideUI: {fileID: 656402601}
   battlePlayerSideUI: {fileID: 656402601}
   battleEnemySideUI: {fileID: 1746269344}
-  eventSceneTwoButtonEventPanel: {fileID: 0}
-  eventSceneOneButtonEventPanel: {fileID: 0}
+  restTwoButtonEventPanel: {fileID: 0}
+  restOneButtonEventPanel: {fileID: 0}
   eventScenePlayerSideUI: {fileID: 0}
   eventSceneEffectHolder: {fileID: 0}
+  threeButtonEventPanel: {fileID: 0}
+  twoButtonEventPanel: {fileID: 0}
+  oneButtonEventPanel: {fileID: 0}
   hideUIToggle: {fileID: 1480585703}
   configPanel: {fileID: 1422745764}
   uncontrollablePanel: {fileID: 1368578487}
@@ -2736,18 +2743,35 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be5a36068d523cb41bf2d860f4738197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  threeButtonEventPanel: {fileID: 0}
+  threeButtonPanelImage: {fileID: 0}
+  threeButtonEventPanelText: {fileID: 0}
+  threeButtonPanelButton1: {fileID: 0}
+  threeButtonPanelButton2: {fileID: 0}
+  threeButtonPanelButton3: {fileID: 0}
+  threeButtonEventPanelButtonText1: {fileID: 0}
+  threeButtonEventPanelButtonText2: {fileID: 0}
+  threeButtonEventPanelButtonText3: {fileID: 0}
+  button1InfoText: {fileID: 0}
+  button2InfoText: {fileID: 0}
+  button3InfoText: {fileID: 0}
+  twoButtonPanelImage: {fileID: 0}
   twoButtonEventPanel: {fileID: 0}
   twoButtonPanelTextInfo: {fileID: 0}
   twoButtonPanelButton1: {fileID: 0}
   twoButtonPanelButton2: {fileID: 0}
   twoButtonPanelButtonText1: {fileID: 0}
   twoButtonPanelButtonText2: {fileID: 0}
-  twoButtonPanelImage: {fileID: 0}
+  oneButtonPanelImage: {fileID: 0}
   oneButtonEventPanel: {fileID: 0}
   oneButtonPanelTextInfo: {fileID: 0}
   oneButtonPanelButton: {fileID: 0}
   oneButtonPanelButtonText: {fileID: 0}
-  oneButtonPanelImage: {fileID: 0}
+  redButtonSprite: {fileID: 0}
+  blueButtonSprite: {fileID: 0}
+  yellowButtonSprite: {fileID: 0}
+  greenButtonSprite: {fileID: 0}
+  BackgroundImage: {fileID: 0}
 --- !u!4 &520911838
 Transform:
   m_ObjectHideFlags: 0
@@ -3248,7 +3272,7 @@ MonoBehaviour:
   - {fileID: 731307068}
   - {fileID: 1753865083}
   - {fileID: 105613191}
-  itemDisplay: {fileID: 1083646616}
+  itemDisplay: {fileID: 529345737}
   itemIcon: {fileID: 1083646619}
   itemName: {fileID: 1180363964}
   itemAmount: {fileID: 1820962100}
@@ -3397,6 +3421,7 @@ Transform:
   - {fileID: 241752558}
   - {fileID: 1202742448}
   - {fileID: 1819769440}
+  - {fileID: 1464052782}
   m_Father: {fileID: 1962510888}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -6077,6 +6102,7 @@ MonoBehaviour:
   enemyEntityList:
   - {fileID: 11400000, guid: fdc133b0eb242c340bb4d3fbda018811, type: 2}
   - {fileID: 11400000, guid: 654ea0ec198fe094dbecaf70235f9feb, type: 2}
+  events: []
 --- !u!4 &1051894897
 Transform:
   m_ObjectHideFlags: 0
@@ -6544,6 +6570,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (8)
@@ -7040,6 +7070,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (5)
@@ -7233,6 +7267,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (3)
@@ -7766,7 +7804,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 8b12df2ca0631cc45a15e9e4f50683d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: d9078be434b27c84ab5949f73d80ec77, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8608,6 +8646,82 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1441297634}
   m_CullTransparentMesh: 0
+--- !u!1 &1464052781
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1464052782}
+  - component: {fileID: 1464052784}
+  - component: {fileID: 1464052783}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1464052782
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464052781}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 656402602}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 251, y: 197}
+  m_SizeDelta: {x: 415.4, y: 392.04}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1464052783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464052781}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 21300000, guid: a21aabc4e573f654c93da3dc45d1851a, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1464052784
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1464052781}
+  m_CullTransparentMesh: 1
 --- !u!1001 &1480585702
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9316,6 +9430,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (7)
@@ -9821,6 +9939,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (2)
@@ -10001,6 +10123,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (9)
@@ -11849,6 +11975,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card
@@ -11950,6 +12080,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (1)
@@ -12408,6 +12542,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 241752558}
     m_Modifications:
+    - target: {fileID: 2811342291410764344, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3988505995029950339, guid: 95005d98dfe64324698cca8d22eeeb26, type: 3}
       propertyPath: m_Name
       value: Card (4)

@@ -15,7 +15,7 @@ MonoBehaviour:
   id: 2
   enemyName: Tiger general
   enemyDescription: 
-  maxHp: 1
+  maxHp: 35
   currentHp: 0
   currentBlock: 0
   icon: {fileID: 21300000, guid: 5e9b5258b95f8744f8e6c1fddeee5a28, type: 3}
@@ -30,3 +30,5 @@ MonoBehaviour:
     chance: 1
     icon: {fileID: 21300000, guid: 6da154d8dd7ad6549a4a9ef4050c14a0, type: 3}
     effectPrefab: {fileID: 6710139492206580332, guid: 95b8d3d65b5d7f1409c4ed1723887826, type: 3}
+  stageType: 0
+  stageDepth: 0

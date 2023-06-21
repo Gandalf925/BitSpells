@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bb0ae3a998a2cd40aa68fe0c0fa02d3, type: 3}
   m_Name: EventEntity
   m_EditorClassIdentifier: 
-  eventPattern: 1
+  eventPattern: 0
   eventName: b
   eventDescription: b
   eventBackground: {fileID: 21300000, guid: b3a7271d67fad734187d4485d7793f52, type: 3}

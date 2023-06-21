@@ -40,6 +40,14 @@ public class EventSceneManager : MonoBehaviour
     public Button oneButtonPanelButton;
     public TMP_Text oneButtonPanelButtonText;
 
+    [Header("Button Sprites")]
+    public Sprite redButtonSprite;
+    public Sprite blueButtonSprite;
+    public Sprite yellowButtonSprite;
+    public Sprite greenButtonSprite;
+
+    private Dictionary<EventEntity.ButtonColor, Sprite> buttonColorToSprite;
+
     private EventEntity eventEntity;
     public EventActions eventActions;
 
@@ -63,6 +71,14 @@ public class EventSceneManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        buttonColorToSprite = new Dictionary<EventEntity.ButtonColor, Sprite>
+        {
+            {EventEntity.ButtonColor.Red, redButtonSprite},
+            {EventEntity.ButtonColor.Blue, blueButtonSprite},
+            {EventEntity.ButtonColor.Yellow, yellowButtonSprite},
+            {EventEntity.ButtonColor.Green, greenButtonSprite}
+        };
     }
 
     void Start()
@@ -72,7 +88,6 @@ public class EventSceneManager : MonoBehaviour
 
         // eventActions の初期化
         eventActions = new EventActions();
-        eventActions.eventSceneManager = this;
 
         threeButtonPanelButton1.onClick.AddListener(PushThreeButton1);
         threeButtonPanelButton2.onClick.AddListener(PushThreeButton2);
@@ -284,16 +299,16 @@ public class EventSceneManager : MonoBehaviour
             oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
             oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
             oneButtonPanelImage.sprite = eventData.oneButtonEventPanelImage;
-            twoButtonPanelButton1.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton1Color);
-            twoButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton2Color);
-            oneButtonPanelButton.GetComponent<Image>().color = ButtonColorToColor(eventData.oneButtonEventPanelButtonColor);
+            twoButtonPanelButton1.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.twoButtonEventPanelButton1Color);
+            twoButtonPanelButton2.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.twoButtonEventPanelButton2Color);
+            oneButtonPanelButton.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.oneButtonEventPanelButtonColor);
 
             threeButtonEventPanelButtonText1.text = eventData.threeButtonEventPanelButton1Text;
             threeButtonEventPanelButtonText2.text = eventData.threeButtonEventPanelButton2Text;
             threeButtonEventPanelButtonText3.text = eventData.threeButtonEventPanelButton3Text;
-            threeButtonPanelButton1.GetComponent<Image>().color = ButtonColorToColor(eventData.threeButtonEventPanelButton1Color);
-            threeButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.threeButtonEventPanelButton2Color);
-            threeButtonPanelButton3.GetComponent<Image>().color = ButtonColorToColor(eventData.threeButtonEventPanelButton3Color);
+            threeButtonPanelButton1.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.threeButtonEventPanelButton1Color);
+            threeButtonPanelButton2.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.threeButtonEventPanelButton2Color);
+            threeButtonPanelButton3.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.threeButtonEventPanelButton3Color);
 
             StartCoroutine(ShowThreeButtonEventPanel(eventData));
         }
@@ -306,27 +321,23 @@ public class EventSceneManager : MonoBehaviour
             oneButtonPanelTextInfo.text = eventData.oneButtonEventPanelText;
             oneButtonPanelButtonText.text = eventData.oneButtonEventPanelButtonText;
             oneButtonPanelImage.sprite = eventData.oneButtonEventPanelImage;
-            twoButtonPanelButton1.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton1Color);
-            twoButtonPanelButton2.GetComponent<Image>().color = ButtonColorToColor(eventData.twoButtonEventPanelButton2Color);
-            oneButtonPanelButton.GetComponent<Image>().color = ButtonColorToColor(eventData.oneButtonEventPanelButtonColor);
+            twoButtonPanelButton1.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.twoButtonEventPanelButton1Color);
+            twoButtonPanelButton2.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.twoButtonEventPanelButton2Color);
+            oneButtonPanelButton.GetComponent<Image>().sprite = ButtonColorToSprite(eventData.oneButtonEventPanelButtonColor);
 
             StartCoroutine(ShowTwoButtonEventPanel(eventData));
         }
     }
-    private Color ButtonColorToColor(EventEntity.ButtonColor buttonColor)
+    private Sprite ButtonColorToSprite(EventEntity.ButtonColor buttonColor)
     {
-        switch (buttonColor)
+        if (buttonColorToSprite.TryGetValue(buttonColor, out Sprite sprite))
         {
-            case EventEntity.ButtonColor.Red:
-                return new Color(0.7f, 0.4f, 0.4f);
-            case EventEntity.ButtonColor.Blue:
-                return Color.blue;
-            case EventEntity.ButtonColor.Yellow:
-                return Color.yellow;
-            case EventEntity.ButtonColor.Green:
-                return Color.green;
-            default:
-                return Color.white;
+            return sprite;
+        }
+        else
+        {
+            Debug.LogError("Invalid button color.");
+            return null;
         }
     }
 
@@ -335,13 +346,14 @@ public class EventSceneManager : MonoBehaviour
         switch (eventType)
         {
             case EventEntity.EventType.FullHeal:
-                // プレイヤーの完全回復処理をここに追加
                 eventActions.FullHeal();
                 break;
-            case EventEntity.EventType.Leave:
-                // Leave処理をここに追加
+            case EventEntity.EventType.HalfHeal:
+                eventActions.HalfHeal();
                 break;
-            // 他のイベントアクション処理をここに追加
+            case EventEntity.EventType.Leave:
+                eventActions.Leave();
+                break;
             default:
                 Debug.LogError("Invalid event type.");
                 break;

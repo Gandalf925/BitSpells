@@ -4,17 +4,24 @@ using UnityEngine;
 
 public class EventActions
 {
-    public EventSceneManager eventSceneManager;
     public void FullHeal()
     {
         Player.instance.currentHP = Player.instance.maxHP;
-        Debug.Log("Event処理完了");
     }
 
-    public void Leave()
+    public void HalfHeal()
     {
-        NextSceneManager.instance.GenerateNextScene();
+        Player.instance.currentHP += (Player.instance.maxHP / 2);
+        // もし回復後のHPが最大HPを超えた場合、最大HPに戻す
+        if (Player.instance.currentHP > Player.instance.maxHP)
+        {
+            Player.instance.currentHP = Player.instance.maxHP;
+        }
     }
+
+    public void Leave() { }
+
+
 
 
 }

@@ -29,10 +29,15 @@ public class UIManager : MonoBehaviour
     public GameObject battleEnemySideUI;
 
     [Header("Rest")]
-    public GameObject eventSceneTwoButtonEventPanel;
-    public GameObject eventSceneOneButtonEventPanel;
+    public GameObject restTwoButtonEventPanel;
+    public GameObject restOneButtonEventPanel;
     public GameObject eventScenePlayerSideUI;
     public GameObject eventSceneEffectHolder;
+
+    [Header("Events")]
+    public GameObject threeButtonEventPanel;
+    public GameObject twoButtonEventPanel;
+    public GameObject oneButtonEventPanel;
 
     [Header("All")]
     public Toggle hideUIToggle;
@@ -74,37 +79,48 @@ public class UIManager : MonoBehaviour
 
     public void HideUI()
     {
-        UIManager uIManager = FindObjectOfType<UIManager>();
         string sceneName = SceneManager.GetActiveScene().name;
 
         if (sceneName == "Rest" || sceneName == "Events")
         {
-            if (!uIManager.hideUIToggle.isOn)
+            if (!hideUIToggle.isOn)
             {
-                uIManager.eventSceneTwoButtonEventPanel.SetActive(false);
-                uIManager.eventSceneOneButtonEventPanel.SetActive(false);
-                uIManager.eventScenePlayerSideUI.SetActive(false);
-                uIManager.eventSceneEffectHolder.SetActive(false);
+                restTwoButtonEventPanel.SetActive(false);
+                restOneButtonEventPanel.SetActive(false);
+                threeButtonEventPanel.SetActive(false);
+                twoButtonEventPanel.SetActive(false);
+                oneButtonEventPanel.SetActive(false);
+                eventScenePlayerSideUI.SetActive(false);
+                if (sceneName == "Rest")
+                {
+                    eventSceneEffectHolder.SetActive(false);
+                }
             }
             else
             {
-                uIManager.eventSceneTwoButtonEventPanel.SetActive(true);
-                uIManager.eventSceneOneButtonEventPanel.SetActive(true);
-                uIManager.eventScenePlayerSideUI.SetActive(true);
-                uIManager.eventSceneEffectHolder.SetActive(true);
+                restTwoButtonEventPanel.SetActive(true);
+                restOneButtonEventPanel.SetActive(true);
+                threeButtonEventPanel.SetActive(true);
+                twoButtonEventPanel.SetActive(true);
+                oneButtonEventPanel.SetActive(true);
+                eventScenePlayerSideUI.SetActive(true);
+                if (sceneName == "Rest")
+                {
+                    eventSceneEffectHolder.SetActive(true);
+                }
             }
         }
         else if (sceneName == "Battle")
         {
-            if (!uIManager.hideUIToggle.isOn)
+            if (!hideUIToggle.isOn)
             {
-                uIManager.battlePlayerSideUI.SetActive(false);
-                uIManager.battleEnemySideUI.SetActive(false);
+                battlePlayerSideUI.SetActive(false);
+                battleEnemySideUI.SetActive(false);
             }
             else
             {
-                uIManager.battlePlayerSideUI.SetActive(true);
-                uIManager.battleEnemySideUI.SetActive(true);
+                battlePlayerSideUI.SetActive(true);
+                battleEnemySideUI.SetActive(true);
             }
         }
     }

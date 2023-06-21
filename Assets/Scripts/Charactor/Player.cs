@@ -49,6 +49,7 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        battleSceneManager = FindObjectOfType<BattleSceneManager>();
 
     }
 
@@ -109,8 +110,6 @@ public class Player : MonoBehaviour
 
     IEnumerator AfterCardEffects(CardUI selectedCard)
     {
-        battleSceneManager = FindObjectOfType<BattleSceneManager>();
-
         yield return new WaitForSeconds(0.5f);
         selectedCard.gameObject.SetActive(false);
         battleSceneManager.cardsInHand.Remove(selectedCard.data);
