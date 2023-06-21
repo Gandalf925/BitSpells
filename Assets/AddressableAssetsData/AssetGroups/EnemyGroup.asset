@@ -45,6 +45,10 @@ MonoBehaviour:
     m_Address: NextScenes/Battle
     m_ReadOnly: 0
     m_SerializedLabels: []
+  - m_GUID: 20931ce77f76e224e99d56a759035e40
+    m_Address: Cards/Kodachi
+    m_ReadOnly: 0
+    m_SerializedLabels: []
   m_ReadOnly: 0
   m_Settings: {fileID: 11400000, guid: 1854ccb9b58aeee44909251fa079d60e, type: 2}
   m_SchemaSet:

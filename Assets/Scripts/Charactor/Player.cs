@@ -76,6 +76,10 @@ public class Player : MonoBehaviour
                     enemy.Damage(selectedCard);
                     enemy.CheckAlive();
                     break;
+                case "Kodachi":
+                    enemy.Damage(selectedCard);
+                    enemy.CheckAlive();
+                    break;
             }
 
         }
